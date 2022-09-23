@@ -17,7 +17,7 @@ namespace AppDiagnose.Controllers
             var s1 = new Symptom();
             s1.navn = "tretthet";
 
-            var s2 = new Symptom;
+            var s2 = new Symptom();
             s2.navn = "hodepine";
 
             symptomene.Add(s1);
