@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useState } from 'react';
 /*
 export class Counter extends Component {
   static displayName = Counter.name;
@@ -34,4 +34,4 @@ export class Counter extends Component {
       </div>
     );
   }
-}
+
