@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppDiagnose.Models
+namespace AppDiagnose.Controllers
 {
-    public class Symptom
+    public class SymptomController
     {
-        public string navn { get; set; }
     }
 }
