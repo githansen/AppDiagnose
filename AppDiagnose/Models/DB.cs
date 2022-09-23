@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace AppDiagnose.Models
 {
-    public class SymptomDB :DbContext
+    public class DB :DbContext
     {
-        public SymptomDB (DbContextOptions<SymptomDB> options) : base(options)
+        public DB (DbContextOptions<DB> options) : base(options)
         {
             Database.EnsureCreated();
         }
         public DbSet<Symptom> Symptomer { get; set; }
+        public DbSet<Diagnose> Diagnoser { get; set; }
     }
 }

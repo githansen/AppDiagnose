@@ -10,9 +10,9 @@ namespace AppDiagnose.Controllers
     [Route("[Controller]/[action]")]
     public class SymptomController: ControllerBase
     {
-        private readonly SymptomDB _symptomDB;
+        private readonly DB _symptomDB;
 
-        public SymptomController(SymptomDB symptomDB)
+        public SymptomController(DB symptomDB)
         {
             _symptomDB = symptomDB;
         }

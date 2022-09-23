@@ -24,7 +24,7 @@ namespace AppDiagnose
         {
 
             services.AddControllers();
-            services.AddDbContext<SymptomDB>(options => options.UseSqlite("Data source=AppDiagnose.db"));
+            services.AddDbContext<DB>(options => options.UseSqlite("Data source=AppDiagnose.db"));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
