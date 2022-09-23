@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace AppDiagnose.Models
 {
-    public class Symptom
+    public class DiagnoseSymptomRel
     {
         public int id { get; set; }
-        public string navn { get; set; }
-        public virtual List<DiagnoseSymptomRel> DiagnoseSymptomRels { get; set; }
+        public int symptomId { get; set; }
+        public int diagnoseId { get; set; }
     }
 }

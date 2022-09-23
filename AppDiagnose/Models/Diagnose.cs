@@ -9,5 +9,6 @@ namespace AppDiagnose.Models
     {
         public int id { get; set; }
         public string navn { get; set; }
+        public virtual List<DiagnoseSymptomRel> DiagnoseSymptomRels { get; set; }
     }
 }

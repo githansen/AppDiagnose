@@ -14,5 +14,11 @@ namespace AppDiagnose.Models
         }
         public DbSet<Symptom> Symptomer { get; set; }
         public DbSet<Diagnose> Diagnoser { get; set; }
+        public DbSet<DiagnoseSymptomRel> DiagnoseSymptomRels { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
     }
 }
