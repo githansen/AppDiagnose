@@ -10,20 +10,16 @@ namespace AppDiagnose.Controllers
     [Route("[Controller]/[action]")]
     public class SymptomController: ControllerBase
     {
+        private readonly SymptomDB _symptomDB;
+
+        public SymptomController(SymptomDB symptomDB)
+        {
+            _symptomDB = symptomDB;
+        }
         public List<Symptom> HentAlle()
         {
-            var symptomene = new List<Symptom>();
-
-            var s1 = new Symptom();
-            s1.navn = "tretthet";
-
-            var s2 = new Symptom();
-            s2.navn = "hodepine";
-
-            symptomene.Add(s1);
-            symptomene.Add(s2);
-
-            return symptomene;
+            List<Symptom> alleSymptomer = _symptomDB.Symptomer.ToList();
+            return alleSymptomer;
         }
     }
 }
