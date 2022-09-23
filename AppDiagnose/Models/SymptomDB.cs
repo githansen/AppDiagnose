@@ -9,5 +9,9 @@ namespace AppDiagnose.Models
     public class SymptomDB :DbContext
     {
         public SymptomDB (DbContextOptions<SymptomDB> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
+        public DbSet<Symptom> Symptomer { get; set; }
     }
 }
