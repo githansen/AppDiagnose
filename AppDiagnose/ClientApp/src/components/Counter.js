@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+/*
 export class Counter extends Component {
   static displayName = Counter.name;
 
@@ -14,17 +14,23 @@ export class Counter extends Component {
       currentCount: this.state.currentCount + 1
     });
   }
+  */
+    export const Counter = () => { 
+        const [counter, setcounter] = useState(0);
 
-  render() {
+        function inc() {
+            setcounter(counter + 1);
+        }
+
     return (
       <div>
         <h1>Counter</h1>
 
         <p>This is a simple example of a React component.</p>
 
-        <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
+        <p aria-live="polite">Current count: <strong>{counter}</strong></p>
 
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
+        <button className="btn btn-primary" onClick={inc}>Increment</button>
       </div>
     );
   }
