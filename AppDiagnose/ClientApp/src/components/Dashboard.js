@@ -10,11 +10,11 @@ export const Dashboard = () => {
                     <div className="col-md-6">
                         <div className="p-5 mb-4 bg-dark rounded-3">
                             <div className="container-fluid py-5">
-                                <h1 className="display-5 fw-bold text-light">Dashboard</h1>
-                                <p className="col-md-12 fs-5 text-light">
+                                <h1 className="display-5 fw-bold text-light">CRUD Dashboard</h1>
+                                <p className="col-md-12 fs-5 text-light p-0">
                                     Dette er ditt dashboard. Her kan du legge til og endre kategorier, symptomer, diagnoser, bedrifter eller medisiner.
                                     Prøv deg frem!
-                            </p>
+                                </p>
                                 <button type="button" className="btn btn-light mt-3">Les dokumentasjonen her</button>
                             </div>
                         </div>
