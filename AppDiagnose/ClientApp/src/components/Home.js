@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 
-export class Home extends Component {
-  static displayName = Home.name;
 
-  render () {
+const kalkulerDiagnose = () => {
+    alert('Din diagnose kalkulerer...');
+};
+
+
+export const Home = () => {
+
+
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
+        <div className="container py-4">
+            <div class="row align-items-md-stretch">
+                <div className="col-md-6">
+                    <div className="h-100 p-5 bg-light border rounded-3">
+                        <h4 className="mb-4"><i class="bi bi-activity"></i> Velg symptomer</h4>
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" id="flexCheckDefault"></input>
+                          <label className="form-check-label" for="flexCheckDefault">
+                            Konsentrasjonsvansker
+                          </label>
+                        </div>
+                        <div class="form-check">
+                            <input className="form-check-input" type="checkbox" id="flexCheckChecked"></input>
+                          <label className="form-check-label" for="flexCheckChecked">
+                            Vondt i hodet
+                          </label>
+                        </div>
+                        <button className="mt-3 w-100 btn btn-lg btn-primary" type="button" onClick={kalkulerDiagnose}>Kalkuler</button>
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="h-100 p-5 bg-dark border rounded-3">
+                        <h4 className="mb-4 text-light"><i class="bi bi-clipboard2-pulse"></i> Diagnose</h4>
+                        <p className=" text-light">Din diagnose er <span><b>...</b></span></p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button className="mt-3 btn btn-warning mx-2" type="button">Les mer om diagnosen</button>
+                            <button className="mt-3 btn btn-info text-light" type="button">Se medisiner</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
-  }
 }
