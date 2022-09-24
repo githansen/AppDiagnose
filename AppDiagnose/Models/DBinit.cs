@@ -19,7 +19,8 @@ namespace AppDiagnose.Models
                 var ADHD = new Diagnose
                 {
                     navn = "ADHD",
-                    info = "????????"
+                    info = "????????",
+                    link="www.adhd-norge.no"
                 };
 
                 var konsentrasjonsvansker = new Symptom
@@ -68,7 +69,8 @@ namespace AppDiagnose.Models
                 var Whiplash = new Diagnose
                 {
                     navn="Whiplash",
-                    info="AUAUAU"
+                    info="AUAUAU",
+                    link="www.whiplash.no"
                 };
                 context.Diagnoser.Add(Whiplash);
                 var sym1 = new Symptom

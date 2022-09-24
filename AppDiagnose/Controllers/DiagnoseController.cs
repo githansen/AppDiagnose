@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-
+using System;
+using System.Security.Principal;
 
 namespace AppDiagnose.Controllers
 {
@@ -17,15 +18,35 @@ namespace AppDiagnose.Controllers
             _db = db;
         }
 
-    public List<Diagnose> hent()
+        public List<Diagnose> hent()
         {
+            
+
             List<Diagnose> diagnoseList = _db.Diagnoser.Select(k => new Diagnose
             {
                 DiagnoseId = k.DiagnoseId,
                 navn=k.navn,
                 info=k.info,
-                symptomer=k.symptomer
+                symptomer = k.symptomer,
+                link = k.link
             }).ToList();
+
+
+            //Pga databasestrukturen vil man få en 'loop' med objekter inni objekter, dette fjerner unødvendig data
+            foreach(var i in diagnoseList)
+            {
+               
+                foreach(var j in i.symptomer)
+                {
+                    j.diagnose.navn = null;
+                    j.diagnose.symptomer = null;
+                    j.diagnose.info = null;
+                    j.diagnose.link = null;
+                }
+            }
+
+
+
 
             return diagnoseList;
         }
@@ -38,6 +59,20 @@ namespace AppDiagnose.Controllers
                 kategori=k.kategori,
                 diagnoser=k.diagnoser
             }).ToList();
+            
+             
+
+            //Pga databasestrukturen vil man få en 'loop' med objekter inni objekter, dette fjerner unødvendig data
+            foreach (var i in s)
+            {
+                foreach(var j in i.diagnoser)
+                {
+                    j.symptom.diagnoser = null;
+                    j.symptom.navn = "";
+                    j.symptom.kategori = "";
+                };
+            }
+
             return s;
         }
     }
