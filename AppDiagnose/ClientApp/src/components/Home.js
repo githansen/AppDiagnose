@@ -29,12 +29,20 @@ export const Home = () => {
                     ut += `${i.navn}`
                     ut += "</button>"
                     for (let j of i.symptomer) {
-                        ut += `<div class='content'><div className="form-check"><input className="form-check-input" type="checkbox" id="flexCheckDefault"></input>
-                                <label className="form-check-label"> ${j.navn}</label> </div> </div>`
+                        ut += `<div class='content'><div className="form-check"><input className="form-check-input" type="checkbox" id="flexCheckDefault value=${j.navn}></input>
+                                <label className="form-check-label" value=${j.navn}> ${j.navn}</label> </div> </div>`
+                        
                     }
+                   
                 }
-                console.log(ut);
                 document.getElementById("utskrift").innerHTML = ut;
+                var y = document.getElementsByTagName("input")
+                console.log("HER")
+                for (let i of y) {
+                    console.log(i.value)
+                }
+                
+               
                 var coll = document.getElementsByClassName("collapsible");
                 var i;
 
@@ -67,8 +75,7 @@ export const Home = () => {
         fetch("/diagnoses/HentAlleSymptomer")
             .then(data => data.json())
             .then((data) => {
-                console.log(data[0].navn)
-                console.log(data)
+             
                 setSymptomer(data);
             });
     }, []);
