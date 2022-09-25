@@ -88,12 +88,6 @@ namespace AppDiagnose.DAL
 
             return liste;
         }
-        public async Task<Symptom> hentSymptom()
-        {
-            string sm = "Konsentrasjonsvansker";
-           List <Symptom> s = await _db.Symptomer.Where(x => x.navn==sm).ToListAsync();
-           
-            return s[0];
-        }
+        
     }
 }
