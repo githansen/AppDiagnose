@@ -19,7 +19,7 @@ namespace AppDiagnose.Models
         public virtual DbSet<Symptom> Symptomer { get; set; }
         public virtual DbSet<SymptomForDiagnose> SymptomForDiagnose { get; set; }
 
-
+        public virtual DbSet<Kategori> kategorier { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // må importere pakken Microsoft.EntityFrameworkCore.Proxies

@@ -22,24 +22,28 @@ namespace AppDiagnose.Models
                     info = "????????",
                     link="www.adhd-norge.no"
                 };
-
+                var mentalt = new Kategori
+                {
+                    navn = "mentalt",
+                };
+                context.kategorier.Add(mentalt);
                 var konsentrasjonsvansker = new Symptom
                 {
                     navn = "Konsentrasjonsvansker",
-                    kategori = "Mentalt",
+                    kategori = mentalt
                 };
 
                 var hyperaktivitet = new Symptom
                 {
                     navn = "Hyperaktivitet",
-                    kategori = "Mentalt",
+                    kategori = mentalt
 
                 };
-
+                
                 var impulsivitet = new Symptom
                 {
                     navn = "Impulsivitet",
-                    kategori = "Mentalt",
+                    kategori = mentalt
                 };
                 var konsvansker = new SymptomForDiagnose
                 {
@@ -76,20 +80,20 @@ namespace AppDiagnose.Models
                 var sym1 = new Symptom
                 {
                    navn="hodepine",
-                   kategori="hode"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym1);
 
                 var sym2 = new Symptom
                 {
                     navn = "nakkestivhet",
-                    kategori = "nakke"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym2);
                 var sym3 = new Symptom
                 {
                     navn = "skuldersmerter",
-                    kategori = "overkropp"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym3);
                 
@@ -97,7 +101,7 @@ namespace AppDiagnose.Models
                 var sym5 = new Symptom
                 {
                     navn = "ryggsmerter",
-                    kategori = "rygg"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym5);
                 
@@ -105,19 +109,19 @@ namespace AppDiagnose.Models
                 var sym7 = new Symptom
                 {
                     navn = "svimmelhet",
-                    kategori = "mentalt"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym7);
                 var sym8 = new Symptom
                 {
                     navn = "øresus",
-                    kategori = "øre"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym8);
                 var sym9 = new Symptom
                 {
                     navn = "synsforstyrrelser",
-                    kategori = "øyne"
+                    kategori = mentalt
                 };
                 context.Symptomer.Add(sym9);
                 var symdig1 = new SymptomForDiagnose
