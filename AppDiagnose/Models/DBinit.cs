@@ -22,39 +22,61 @@ namespace AppDiagnose.Models
                     info = "????????",
                     link="www.adhd-norge.no"
                 };
+
+                //Kategori 1
                 var mentalt = new Kategori
                 {
                     navn = "mentalt",
                 };
                 context.kategorier.Add(mentalt);
+
+                //Kategori 2
+                var hode = new Kategori
+                {
+                    navn = "hode"
+                };
+                context.kategorier.Add(hode);
+
+                //Kategori 3
+                var rygg = new Kategori
+                {
+                    navn = "rygg"
+                };
+                context.kategorier.Add(rygg);
+
+                //Symptom 1
                 var konsentrasjonsvansker = new Symptom
                 {
                     navn = "Konsentrasjonsvansker",
                     kategori = mentalt
                 };
 
+                //Symptom 2
                 var hyperaktivitet = new Symptom
                 {
                     navn = "Hyperaktivitet",
                     kategori = mentalt
 
                 };
-                
+                //Symptom 3
                 var impulsivitet = new Symptom
                 {
                     navn = "Impulsivitet",
                     kategori = mentalt
                 };
+                //Symptom for diagnose 1
                 var konsvansker = new SymptomForDiagnose
                 {
                     symptom = konsentrasjonsvansker,
                     diagnose = ADHD
                 };
+                //Symptom for diagnose 2
                 var hyper = new SymptomForDiagnose
                 {
                     symptom = hyperaktivitet,
                     diagnose = ADHD
                 };
+                //Symptom for diagnose 3
                 var impuls = new SymptomForDiagnose
                 {
                     symptom = impulsivitet,
@@ -80,7 +102,7 @@ namespace AppDiagnose.Models
                 var sym1 = new Symptom
                 {
                    navn="hodepine",
-                    kategori = mentalt
+                    kategori = hode
                 };
                 context.Symptomer.Add(sym1);
 
@@ -101,7 +123,7 @@ namespace AppDiagnose.Models
                 var sym5 = new Symptom
                 {
                     navn = "ryggsmerter",
-                    kategori = mentalt
+                    kategori = rygg
                 };
                 context.Symptomer.Add(sym5);
                 
@@ -115,27 +137,31 @@ namespace AppDiagnose.Models
                 var sym8 = new Symptom
                 {
                     navn = "øresus",
-                    kategori = mentalt
+                    kategori = hode
                 };
                 context.Symptomer.Add(sym8);
                 var sym9 = new Symptom
                 {
                     navn = "synsforstyrrelser",
-                    kategori = mentalt
+                    kategori = hode
                 };
                 context.Symptomer.Add(sym9);
+
+                //Symptom for diagnose 4
                 var symdig1 = new SymptomForDiagnose
                 {
                     diagnose=Whiplash,
                     symptom=sym1
                 };
                 context.SymptomForDiagnose.Add(symdig1);
+                //Symptom for diagnose 5
                 var symdig2 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,
                     symptom = sym2
                 };
                 context.SymptomForDiagnose.Add(symdig2);
+                //Symptom for diagnose 6
                 var symdig3 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,
@@ -143,30 +169,37 @@ namespace AppDiagnose.Models
                 };
                 context.SymptomForDiagnose.Add(symdig3);
 
+                //Symptom for diagnose 7
                 var symdig5 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,
                     symptom = sym5
                 };
                 context.SymptomForDiagnose.Add(symdig5);
+
+                //Symptom for diagnose 8
                 var symdig6 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,
                     symptom = konsentrasjonsvansker
                 };
                 context.SymptomForDiagnose.Add(symdig6);
+                //Symptom for diagnose 9
                 var symdig7 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,
                     symptom = sym7
                 };
                 context.SymptomForDiagnose.Add(symdig7);
+
+                //Symptom for diagnose 10
                 var symdig8 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,
                     symptom = sym8
                 };
                 context.SymptomForDiagnose.Add(symdig8);
+                //Symptom for diagnose 11
                 var symdig9 = new SymptomForDiagnose
                 {
                     diagnose = Whiplash,

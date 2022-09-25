@@ -1,4 +1,5 @@
 ﻿using AppDiagnose.Models;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -86,6 +87,13 @@ namespace AppDiagnose.DAL
             List<Symptom> liste = await _db.Symptomer.Where(x => x.kategori == kategori).ToListAsync();
 
             return liste;
+        }
+        public async Task<Symptom> hentSymptom()
+        {
+            string sm = "Konsentrasjonsvansker";
+           List <Symptom> s = await _db.Symptomer.Where(x => x.navn==sm).ToListAsync();
+           
+            return s[0];
         }
     }
 }

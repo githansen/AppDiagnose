@@ -34,5 +34,13 @@ namespace AppDiagnose.Controllers
         {
             return await _db.HentSymptomerFraKategori(k);
         }
+        public async Task<List<Kategori>> HentAlleKategorier()
+        {
+            return await _db.HentAlleKategorier();
+        }
+        public async Task<Symptom> hentSymptom()
+        {
+            return await _db.hentSymptom();
+        }
     }
 }
