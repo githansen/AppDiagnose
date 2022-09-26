@@ -6,8 +6,8 @@ namespace AppDiagnose.Models
 {
     public class Kategori
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+       
+        public int Id { get; set; }  
         public string navn { get; set; }
         public virtual List<Symptom> symptomer { get; set; }
 
