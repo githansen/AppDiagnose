@@ -1,7 +1,10 @@
+using AppDiagnose.DAL;
+using AppDiagnose.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,8 +23,16 @@ namespace AppDiagnose
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllersWithViews();
+            services.AddScoped<IRepository, Repository>();
+            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        // må være med når det skal serialiseres "kompliserte" strukturer til JSON. 
+        // i tillegg må Microsoft.AspNetCore.NewtonsoftJson installeres som pakke
+        );
+
+            services.AddDbContext<DB>(options => options.UseSqlite("Data Source=Diagnose.db"));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -36,6 +47,7 @@ namespace AppDiagnose
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                DBinit.Initialize(app);
             }
             else
             {

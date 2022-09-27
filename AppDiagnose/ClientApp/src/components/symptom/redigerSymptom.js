@@ -1,14 +1,45 @@
 ﻿
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup } from "reactstrap";
 import { Link } from 'react-router-dom';
+import $ from 'jquery'
 
-
-const lagreSymptom = () => {
-    alert('Lagre symptom! (Ingen funksjonalitet)');
-};
 
 export const redigerSymptom = () => {
+    const [symptom, setSymptom] = useState(null)
+    const [kategorier, setKategorier] = useState([])
+    const id = window.location.search.substring(1); 
+
+    const lagreSymptom = () => {
+    
+        const s = {
+            symptomId: symptom.symptomId,
+            navn: $("#navn").val(),
+            kategori: $("#kat").val(),
+        }
+ 
+        $.post("/diagnoses/endreSymptom", s, function (data) {
+            console.log(data)
+        })
+    };
+
+
+    useEffect(() => {
+        const url = "/diagnoses/HentEtSymptom?" + id 
+        console.log(url)
+        fetch(url)
+            .then(data => data.json())
+            .then((data) => {
+                setSymptom(data)
+                document.getElementById("navn").value = data.navn
+            })
+        fetch("/diagnoses/HentAlleKategorier")
+            .then(data => data.json())
+            .then((data) => {
+                setKategorier(data)
+            })
+        
+    },[])
     return (
         <div className="container py-4">
             <div className="row align-items-md-stretch">
@@ -17,8 +48,14 @@ export const redigerSymptom = () => {
                     <p>Rediger symptomet</p>
                     <Form >
                         <FormGroup>
-                            <Label for="navn">Navn</Label>{' '}
-                            <Input name="navn"></Input>
+                            <Label for="navn">Navn</Label>
+                            <Input id="navn" name="navn"></Input>
+                            <select id="kat">
+                                {kategorier.map((kat, index) => {
+
+                                    return <option value={kat.navn}> {kat.navn} </option>
+                                })}
+                            </select>
                         </FormGroup>
 
                         <ButtonGroup className="float-right">
@@ -32,7 +69,7 @@ export const redigerSymptom = () => {
                           </Button>
                           <Button
                             color="success"
-                            onClick={lagreSymptom}
+                            onClick={() => lagreSymptom()}
                           >
                             <i className="bi bi-check"></i>
                             Lagre
