@@ -1,5 +1,10 @@
 ﻿import React, { Component } from 'react';
 
+
+const handleSubmit = (evt) => {
+    evt.preventDefault();
+};
+
 export const Diagnose = () => {
     return (
         <div className="container py-4">
