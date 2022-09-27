@@ -3,8 +3,10 @@ import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
-const slettSymptom = () => {
+const slettSymptom = (index) => {
+    console.log(index)
     alert('Vil du slette denne? (Ingen funksjonalitet)');
+   
 };
 
 
@@ -30,21 +32,13 @@ export const alleSymptomer = () => {
                             <tr><th>#ID</th><th>Navn</th><th> Handling </th> </tr> 
                         </thead>
                         <tbody>
-                            {liste.map(i => {
-
+                            {liste.map((i, index) => {
                                 return <tr><th scope="row"> {i.symptomId}</th> <td>{i.navn}</td> <td>
-                                    <Button
-                                    className="mx-2"
-                                    color="primary"
-                                    tag={Link}
-                                    to="/redigerSymptom">
-                                    Rediger
-                                    </Button> <Button
-                                        color="danger"
-                                        onClick={slettSymptom}
-                                    >
+                                    <Button className="mx-2" color="primary" tag={Link} to="/redigerSymptom"> Rediger </Button>
+                                    <Button color="danger" onClick={() => slettSymptom(i.symptomId)}>
                                         Slett
-                                    </Button></td></tr>
+                                    </Button></td>
+                                </tr>
                             }) }
                         </tbody>
                     </Table>
