@@ -42,5 +42,13 @@ namespace AppDiagnose.Controllers
         {
             return  _db.kalkuler(data);
         }
+        public async Task<Symptom> HentEtSymptom(int id)
+        {
+            return await _db.HentEtSymptom(id);
+        }
+        public async Task<bool> endreSymptom(Data s)
+        {
+            return await _db.endreSymptom(s);
+        }
     }
 }

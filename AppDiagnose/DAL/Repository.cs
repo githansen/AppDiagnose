@@ -2,6 +2,7 @@
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -128,6 +129,34 @@ namespace AppDiagnose.DAL
 
             
             return retur;
+        }
+
+        public async Task<Symptom> HentEtSymptom(int symptomId)
+        {
+            Symptom hent = await _db.Symptomer.FindAsync(symptomId);
+            var retur = new Symptom()
+            {
+                SymptomId = hent.SymptomId,
+                navn = hent.navn,
+                diagnoser = hent.diagnoser,
+                kategori = hent.kategori
+                
+            };
+            return retur;
+            
+        }
+        public async Task<bool> endreSymptom(Data s)
+        {
+            Symptom hent = await _db.Symptomer.FindAsync(s.symptomId);
+            List<Kategori> list = await _db.kategorier.Where(x => x.navn == s.kategori).ToListAsync();
+            Kategori denne = list[0];
+
+            hent.navn = s.navn;
+            hent.kategori = denne;
+
+            await _db.SaveChangesAsync();
+
+            return false;
         }
 
 

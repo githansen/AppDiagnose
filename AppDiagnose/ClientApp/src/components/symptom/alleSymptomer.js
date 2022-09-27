@@ -26,20 +26,15 @@ export const alleSymptomer = () => {
             <div className="row align-items-md-stretch">
                 <div className="col-md-12">
                     <h1><i className="bi bi-activity"></i> Symptomer</h1>
-                    <p>Legg til eller rediger symptomer</p>
-                    <Table striped>
-                        <thead>
-                            <tr><th>#ID</th><th>Navn</th><th> Handling </th> </tr> 
-                        </thead>
-                        <tbody>
+                    <p>Legg til eller rediger symptomer</p><Table striped><thead><tr><th>#ID</th><th>Navn</th><th>Handling</th></tr></thead><tbody>
                             {liste.map((i, index) => {
-                                return <tr><th scope="row"> {i.symptomId}</th> <td>{i.navn}</td> <td>
-                                    <Button className="mx-2" color="primary" tag={Link} to="/redigerSymptom"> Rediger </Button>
-                                    <Button color="danger" onClick={() => slettSymptom(i.symptomId)}>
-                                        Slett
-                                    </Button></td>
+                                return <tr key={index}><th scope="row"> {i.symptomId}</th>
+
+                                    <td>{i.navn}</td>
+                                    <td><Button className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerSymptom", search: `?id=${i.symptomId}` }}>Rediger</Button>
+                                        <Button color="danger" onClick={() => slettSymptom(i.symptomId)}>Slett</Button></td>
                                 </tr>
-                            }) }
+                            })}
                         </tbody>
                     </Table>
                       
