@@ -99,17 +99,18 @@ export const Home = () => {
                 <div className="col-md-6">
                     <div className="h-100 p-5 bg-light border rounded-3">
                         <h4 className="mb-4"><i className="bi bi-clipboard2-pulse"></i> Velg symptomer</h4>
-
-
-                        {/* 
-                        {symptomer.map((i, index) => {
-                            return <div className="form-check"><input className="form-check-input" type="checkbox" id="flexCheckDefault"></input>
-                                <label className="form-check-label">{i.navn}</label> </div>
-                        })}
-                        */}
-
-
-                        <div id="utskrift"></div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="flexCheckDefault"></input>
+                            <label className="form-check-label" htmlFor="flexCheckDefault">
+                                Konsentrasjonsvansker
+                          </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="flexCheckChecked"></input>
+                            <label className="form-check-label" htmlFor="flexCheckChecked">
+                                Vondt i hodet
+                          </label>
+                        </div>
                         <button className="mt-3 w-100 btn btn-lg btn-primary" type="button" onClick={kalkulerDiagnose}>Kalkuler</button>
                     </div>
                 </div>

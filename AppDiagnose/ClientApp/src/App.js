@@ -3,8 +3,12 @@ import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Dashboard } from './components/Dashboard';
-import { Symptom } from './components/Symptom';
-import { Diagnose } from './components/Diagnose';
+//Symptom 
+import { alleSymptomer } from './components/symptom/alleSymptomer';
+import { redigerSymptom } from './components/symptom/redigerSymptom';
+import { testSymptomer } from './components/symptom/testSymptomer';
+//Diagnose 
+import { Diagnose } from './components/diagnose/Diagnose';
 
 import './custom.css'
 
@@ -16,7 +20,9 @@ v
       <Layout>
         <Route exact path='/' component={Home} />
         <Route path='/dashboard' component={Dashboard} />
-        <Route path='/symptom' component={Symptom} />
+        <Route path='/alleSymptomer' component={alleSymptomer} />
+        <Route path='/redigerSymptom' component={redigerSymptom} />
+        <Route path='/testSymptomer' component={testSymptomer} />
         <Route path='/diagnose' component={Diagnose} />
       </Layout>
     );
