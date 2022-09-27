@@ -38,5 +38,9 @@ namespace AppDiagnose.Controllers
         {
             return await _db.HentAlleKategorier();
         }
+        public Diagnose kalkuler(Data data)
+        {
+            return  _db.kalkuler(data);
+        }
     }
 }

@@ -88,6 +88,48 @@ namespace AppDiagnose.DAL
 
             return liste;
         }
-        
+        public  Diagnose kalkuler(Data data)
+        {
+
+            List<Diagnose> liste = _db.Diagnoser.Select(k => new Diagnose
+            {
+                DiagnoseId = k.DiagnoseId,
+                navn = k.navn,
+                info = k.info,
+                symptomer = k.symptomer,
+                link = k.link
+            }).ToList();
+            
+            string[] sympt  = data.symptomer;
+
+            Diagnose retur = new Diagnose();
+            int match = 0;
+            int antall;
+            foreach (var i in liste)
+            {
+                foreach(var j in i.symptomer)
+                {
+                     antall = 0;
+                    for(int k = 0; k < sympt.Length; k++)
+                    {
+                        if (j.symptom.navn.ToLower().Equals(sympt[k].ToLower()))
+                        {
+                            antall++;
+                        }
+                    }
+                    if(antall > match)
+                    {
+                        retur = i;
+                        match = antall;
+                    }
+                }
+                
+            }
+
+            
+            return retur;
+        }
+
+
     }
 }

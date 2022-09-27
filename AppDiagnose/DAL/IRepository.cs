@@ -10,5 +10,6 @@ namespace AppDiagnose.DAL
         Task<List<Symptom>> hentalleSymptomer();
         Task <List<Symptom>> HentSymptomerFraKategori(Kategori kategori);
         Task<List<Kategori>> HentAlleKategorier();
+         Diagnose kalkuler(Data data);
     }
 }
