@@ -82,6 +82,8 @@ namespace AppDiagnose.Models
                     symptom = impulsivitet,
                     diagnose = ADHD
                 };
+
+                //Lagrer i databasen
                 context.SymptomForDiagnose.Add(konsvansker);
                 context.SymptomForDiagnose.Add(hyper);
                 context.SymptomForDiagnose.Add(impuls);
@@ -99,6 +101,8 @@ namespace AppDiagnose.Models
                     link="www.whiplash.no"
                 };
                 context.Diagnoser.Add(Whiplash);
+
+                //Symptom 4
                 var sym1 = new Symptom
                 {
                    navn="hodepine",
@@ -106,40 +110,46 @@ namespace AppDiagnose.Models
                 };
                 context.Symptomer.Add(sym1);
 
+
+                //Symptom 5
                 var sym2 = new Symptom
                 {
                     navn = "nakkestivhet",
                     kategori = mentalt
                 };
                 context.Symptomer.Add(sym2);
+                //Symptom 6
                 var sym3 = new Symptom
                 {
                     navn = "skuldersmerter",
                     kategori = mentalt
                 };
                 context.Symptomer.Add(sym3);
-                
-         
+
+                //Symptom 7
                 var sym5 = new Symptom
                 {
                     navn = "ryggsmerter",
                     kategori = rygg
                 };
                 context.Symptomer.Add(sym5);
-                
-                
+
+                //Symptom 8
                 var sym7 = new Symptom
                 {
                     navn = "svimmelhet",
                     kategori = mentalt
                 };
                 context.Symptomer.Add(sym7);
+                //Symptom 9
                 var sym8 = new Symptom
                 {
                     navn = "øresus",
                     kategori = hode
                 };
                 context.Symptomer.Add(sym8);
+
+                //Symptom 10
                 var sym9 = new Symptom
                 {
                     navn = "synsforstyrrelser",
@@ -207,7 +217,7 @@ namespace AppDiagnose.Models
                 };
                 context.SymptomForDiagnose.Add(symdig9);
 
-
+                //Lagrer endringer
                 context.SaveChanges();
             }
         }

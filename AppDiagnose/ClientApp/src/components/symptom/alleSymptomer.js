@@ -1,18 +1,25 @@
 ﻿import React, { Component, useEffect, useState} from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import $ from 'jquery'
 
 
 const slettSymptom = (index) => {
-    console.log(index)
-    alert('Vil du slette denne? (Ingen funksjonalitet)');
+    //Sletter symptom fra databasen
+    let url = "/diagnoses/slettSymptom?Id=" + index
+    $.post(url, function (data) {
+        window.location.reload()
+    });
+    
    
 };
 
 
 export const alleSymptomer = () => {
     const [liste, setListe] = useState([])
+    //Use-Effect kjøres her 1 gang i det dokumentet rendres
     useEffect(() => {
+        //Henter liste over alle symptomer
         fetch("/diagnoses/hentalleSymptomer")
             .then(data => data.json())
             .then((data) => {

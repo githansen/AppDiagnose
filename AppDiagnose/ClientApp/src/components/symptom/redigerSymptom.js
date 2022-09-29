@@ -10,6 +10,7 @@ export const redigerSymptom = () => {
     const [kategorier, setKategorier] = useState([])
     const id = window.location.search.substring(1); 
 
+
     const lagreSymptom = () => {
     
         const s = {

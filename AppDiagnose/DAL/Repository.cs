@@ -28,24 +28,6 @@ namespace AppDiagnose.DAL
                 symptomer = k.symptomer,
                 link = k.link
             }).ToListAsync();
-
-
-            //Pga databasestrukturen vil man få en 'loop' med objekter inni objekter, dette fjerner unødvendig data
-            foreach (var i in diagnoseList)
-            {
-
-                foreach (var j in i.symptomer)
-                {
-                    j.diagnose.navn = null;
-                    j.diagnose.symptomer = null;
-                    j.diagnose.info = null;
-                    j.diagnose.link = null;
-                }
-            }
-
-
-
-
             return diagnoseList;
         }
 
@@ -59,19 +41,6 @@ namespace AppDiagnose.DAL
                 diagnoser = k.diagnoser
             }).ToListAsync();
 
-
-
-            //Pga databasestrukturen vil man få en 'loop' med objekter inni objekter, dette fjerner unødvendig data
-            foreach (var i in s)
-            {
-                foreach (var j in i.diagnoser)
-                {
-                    j.symptom.diagnoser = null;
-                    j.symptom.navn = "";
-                    j.symptom.kategori = null;
-                };
-            }
-
             return s;
         }
         public async Task<List<Kategori>> HentAlleKategorier()
@@ -83,15 +52,18 @@ namespace AppDiagnose.DAL
             }).ToListAsync();
             return liste;
         }
+
         public async Task <List<Symptom>> HentSymptomerFraKategori(Kategori kategori)
         {
             List<Symptom> liste = await _db.Symptomer.Where(x => x.kategori == kategori).ToListAsync();
 
             return liste;
         }
+
         public  Diagnose kalkuler(Data data)
         {
 
+            // Henter først listen over alle diagnoser
             List<Diagnose> liste = _db.Diagnoser.Select(k => new Diagnose
             {
                 DiagnoseId = k.DiagnoseId,
@@ -101,16 +73,26 @@ namespace AppDiagnose.DAL
                 link = k.link
             }).ToList();
             
+            //Finner så listen over symptomer sendt fra klient
             string[] sympt  = data.symptomer;
 
+
+            //Tomt objekt, dette oppdateres og returneres når vi har funnet riktig
             Diagnose retur = new Diagnose();
+
+            // Vi returnerer Diagnosen med flest matches fra listen sendt fra klient. int match som tellevariabel. Vi benytter en algoritme inspirert av 
+            // Maks-metodene fra DATS2300-kompendiet; https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2 
             int match = 0;
             int antall;
+            // Looper gjennom listen over diagnoser
             foreach (var i in liste)
             {
+                //Looper gjennom listen over symptomer i diagnose-objektet
                 foreach(var j in i.symptomer)
                 {
+                    //Teller antall matches 
                      antall = 0;
+                    //For hvert symptom, looper vi gjennom listen sendt fra klient og leter etter matches
                     for(int k = 0; k < sympt.Length; k++)
                     {
                         if (j.symptom.navn.ToLower().Equals(sympt[k].ToLower()))
@@ -118,6 +100,7 @@ namespace AppDiagnose.DAL
                             antall++;
                         }
                     }
+                    //Hvis antall matches er større enn for de tidligere diagnosene oppdateres 'match' og retur-objektet
                     if(antall > match)
                     {
                         retur = i;
@@ -126,37 +109,65 @@ namespace AppDiagnose.DAL
                 }
                 
             }
-
+            
             
             return retur;
         }
 
         public async Task<Symptom> HentEtSymptom(int symptomId)
         {
+
             Symptom hent = await _db.Symptomer.FindAsync(symptomId);
-            var retur = new Symptom()
-            {
-                SymptomId = hent.SymptomId,
-                navn = hent.navn,
-                diagnoser = hent.diagnoser,
-                kategori = hent.kategori
-                
-            };
+           
+              var retur = new Symptom()
+              {
+                  SymptomId = hent.SymptomId,
+                  navn = hent.navn,
+                  diagnoser = hent.diagnoser,
+                  kategori = hent.kategori
+
+              };
+
             return retur;
-            
         }
         public async Task<bool> endreSymptom(Data s)
         {
+            // Objektet s vil her inneholde nytt symptomnavn, ny symptomkategori(kun kategorinavn, ikke objektet) og opprinnelig SymptomId
+
+            //Finner først symptomet som skal endres på
             Symptom hent = await _db.Symptomer.FindAsync(s.symptomId);
+
+            //Skal så finne kategori ut fra navnet, dette gjøres ved å hente en liste over Kategori-objekter med tilsvarende navn
+            //Denne listen skal kun inneholde 1 objekt, som vi henter med list[0]
             List<Kategori> list = await _db.kategorier.Where(x => x.navn == s.kategori).ToListAsync();
             Kategori denne = list[0];
 
+            //Oppdaterer navn og kategori på symptomet vi skal endre på 
             hent.navn = s.navn;
             hent.kategori = denne;
 
+            //Lagrer til slutt 
             await _db.SaveChangesAsync();
 
             return false;
+        }
+        public async Task<bool> slettSymptom(int Id)
+        {
+
+            //Vi kan ikke slette symptomet direkte siden det blir en fremmednøkkel i hjelpetabellen
+            //Sletter derfor først alle oppføringer i hjelpetabellen SymptomForDiagnose med symptomer som skal slettes 
+            //Det gjøres ved å hente en liste, for så å iterere gjennom og slette alle oppføringer 
+            List<SymptomForDiagnose> liste = await _db.SymptomForDiagnose.Where(x => x.symptom.SymptomId == Id).ToListAsync();
+            foreach(var i in liste)
+            {
+                _db.Remove(i);
+                await _db.SaveChangesAsync();
+            }
+            //Finner til slutt symptomet og sletter det fra Symptomer-tabellen
+            Symptom symptom = await _db.Symptomer.FindAsync(Id);
+            _db.Remove(symptom);    
+            await _db.SaveChangesAsync();
+            return true;
         }
 
 

@@ -50,5 +50,9 @@ namespace AppDiagnose.Controllers
         {
             return await _db.endreSymptom(s);
         }
+        public async Task<bool> slettSymptom(int Id)
+        {
+            return await _db.slettSymptom(Id);
+        }
     }
 }

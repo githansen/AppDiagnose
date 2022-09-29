@@ -13,5 +13,6 @@ namespace AppDiagnose.DAL
          Diagnose kalkuler(Data data);
         Task<Symptom> HentEtSymptom(int symptomId);
         Task<bool> endreSymptom(Data s);
+        Task<bool> slettSymptom(int Id);
     }
 }
