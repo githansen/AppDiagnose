@@ -19,14 +19,14 @@ export const redigerSymptom = () => {
             kategori: $("#kat").val(),
         }
  
-        $.post("/diagnoses/endreSymptom", s, function (data) {
+        $.post("/diagnose/endreSymptom", s, function (data) {
             console.log(data)
         })
     };
 
 
     useEffect(() => {
-        const url = "/diagnoses/HentEtSymptom?" + id 
+        const url = "/diagnose/HentEtSymptom?" + id 
         console.log(url)
         fetch(url)
             .then(data => data.json())
@@ -34,7 +34,7 @@ export const redigerSymptom = () => {
                 setSymptom(data)
                 document.getElementById("navn").value = data.navn
             })
-        fetch("/diagnoses/HentAlleKategorier")
+        fetch("/diagnose/HentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
                 setKategorier(data)
@@ -54,7 +54,7 @@ export const redigerSymptom = () => {
                             <select id="kat">
                                 {kategorier.map((kat, index) => {
 
-                                    return <option value={kat.navn}> {kat.navn} </option>
+                                    return <option key={index} value={kat.navn}> {kat.navn} </option>
                                 })}
                             </select>
                         </FormGroup>

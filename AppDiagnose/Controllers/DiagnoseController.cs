@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 namespace AppDiagnose.Controllers
 {
     [Route("[controller]/[action]")]
-    public class DiagnosesController : ControllerBase
+    public class DiagnoseController : ControllerBase
     {
         private readonly IRepository _db;
 
-        public DiagnosesController(IRepository db)
+        public DiagnoseController(IRepository db)
         {
              _db = db;
         }
@@ -30,17 +30,14 @@ namespace AppDiagnose.Controllers
         {
             return await _db.hentalleSymptomer();
         }
-        public async Task <List<Symptom>> HentSymptomerFraKategori(Kategori k)
-        {
-            return await _db.HentSymptomerFraKategori(k);
-        }
+        
         public async Task<List<Kategori>> HentAlleKategorier()
         {
             return await _db.HentAlleKategorier();
         }
-        public Diagnose kalkuler(Data data)
+        public async Task <Diagnose> kalkuler(Data data)
         {
-            return  _db.kalkuler(data);
+            return await  _db.kalkuler(data);
         }
         public async Task<Symptom> HentEtSymptom(int id)
         {

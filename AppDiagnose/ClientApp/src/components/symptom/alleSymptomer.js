@@ -6,7 +6,7 @@ import $ from 'jquery'
 
 const slettSymptom = (index) => {
     //Sletter symptom fra databasen
-    let url = "/diagnoses/slettSymptom?Id=" + index
+    let url = "/diagnose/slettSymptom?Id=" + index
     $.post(url, function (data) {
         window.location.reload()
     });
@@ -20,7 +20,7 @@ export const alleSymptomer = () => {
     //Use-Effect kjøres her 1 gang i det dokumentet rendres
     useEffect(() => {
         //Henter liste over alle symptomer
-        fetch("/diagnoses/hentalleSymptomer")
+        fetch("/diagnose/hentalleSymptomer")
             .then(data => data.json())
             .then((data) => {
                 setListe(data)

@@ -20,6 +20,7 @@ namespace AppDiagnose.DAL
 
         public async Task<List<Diagnose>> hentalleDiagnoser()
         {
+            //Samme som i  forelesninger
             List<Diagnose> diagnoseList = await _db.Diagnoser.Select(k => new Diagnose
             {
                 DiagnoseId = k.DiagnoseId,
@@ -33,6 +34,7 @@ namespace AppDiagnose.DAL
 
         public async Task<List<Symptom>> hentalleSymptomer()
         {
+            //Samme som i forelesninger
             List<Symptom> s = await _db.Symptomer.Select(k => new Symptom
             {
                 SymptomId = k.SymptomId,
@@ -45,6 +47,7 @@ namespace AppDiagnose.DAL
         }
         public async Task<List<Kategori>> HentAlleKategorier()
         {
+            //Samme som i forelesninger
             List<Kategori> liste = await _db.kategorier.Select(k => new Kategori
             {
                 navn= k.navn,
@@ -53,25 +56,20 @@ namespace AppDiagnose.DAL
             return liste;
         }
 
-        public async Task <List<Symptom>> HentSymptomerFraKategori(Kategori kategori)
-        {
-            List<Symptom> liste = await _db.Symptomer.Where(x => x.kategori == kategori).ToListAsync();
+     
 
-            return liste;
-        }
-
-        public  Diagnose kalkuler(Data data)
+        public async Task <Diagnose> kalkuler(Data data)
         {
 
             // Henter først listen over alle diagnoser
-            List<Diagnose> liste = _db.Diagnoser.Select(k => new Diagnose
+            List<Diagnose> liste = await _db.Diagnoser.Select(k => new Diagnose
             {
                 DiagnoseId = k.DiagnoseId,
                 navn = k.navn,
                 info = k.info,
                 symptomer = k.symptomer,
                 link = k.link
-            }).ToList();
+            }).ToListAsync();
             
             //Finner så listen over symptomer sendt fra klient
             string[] sympt  = data.symptomer;

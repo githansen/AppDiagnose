@@ -1,19 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AppDiagnose.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppDiagnose.Models
+namespace AppDiagnose.DAL
 {
-  
-    public class DB : DbContext 
+
+    public class DB : DbContext
     {
         public DB(DbContextOptions<DB> options) : base(options)
         {
             Database.EnsureCreated();
 
         }
-      
+
 
         public virtual DbSet<Diagnose> Diagnoser { get; set; }
         public virtual DbSet<Symptom> Symptomer { get; set; }

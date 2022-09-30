@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AppDiagnose.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
 
-namespace AppDiagnose.Models
+namespace AppDiagnose.DAL
 {
-        public static class DBinit
-        {
-            public static void Initialize(IApplicationBuilder app)
+    public static class DBinit
+    {
+        public static void Initialize(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
@@ -20,7 +21,7 @@ namespace AppDiagnose.Models
                 {
                     navn = "ADHD",
                     info = "????????",
-                    link="www.adhd-norge.no"
+                    link = "www.adhd-norge.no"
                 };
 
                 //Kategori 1
@@ -89,23 +90,23 @@ namespace AppDiagnose.Models
                 context.SymptomForDiagnose.Add(impuls);
                 context.Symptomer.Add(konsentrasjonsvansker);
                 context.Symptomer.Add(impulsivitet);
-                context.Symptomer.Add(hyperaktivitet);                
+                context.Symptomer.Add(hyperaktivitet);
                 context.Diagnoser.Add(ADHD);
 
 
                 //DIAGNOSE 2
                 var Whiplash = new Diagnose
                 {
-                    navn="Whiplash",
-                    info="AUAUAU",
-                    link="www.whiplash.no"
+                    navn = "Whiplash",
+                    info = "AUAUAU",
+                    link = "www.whiplash.no"
                 };
                 context.Diagnoser.Add(Whiplash);
 
                 //Symptom 4
                 var sym1 = new Symptom
                 {
-                   navn="hodepine",
+                    navn = "hodepine",
                     kategori = hode
                 };
                 context.Symptomer.Add(sym1);
@@ -160,8 +161,8 @@ namespace AppDiagnose.Models
                 //Symptom for diagnose 4
                 var symdig1 = new SymptomForDiagnose
                 {
-                    diagnose=Whiplash,
-                    symptom=sym1
+                    diagnose = Whiplash,
+                    symptom = sym1
                 };
                 context.SymptomForDiagnose.Add(symdig1);
                 //Symptom for diagnose 5
