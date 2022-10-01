@@ -31,16 +31,8 @@ export const Home = () => {
     const [symptomer, setSymptomer] = useState([])
     const [kategorier, setKategorier] = useState([])
     
-    const data = {
-        symptomer: ["konsentrasjonsvansker", "hyperaktivitet"]
-    }
+   
     useEffect(() => {
-
-
-        $.post("/diagnose/kalkuler", data, function (data) {
-            console.log(data)
-        })
-
         fetch("/diagnose/hentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
