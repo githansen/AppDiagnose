@@ -104,7 +104,7 @@ namespace AppDiagnose.DAL
 
                 // Vi returnerer Diagnosen med flest matches fra listen sendt fra klient. int match som tellevariabel. Vi benytter en algoritme inspirert av 
                 // Maks-metodene fra DATS2300-kompendiet; https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2 
-                int match = 100;
+                int match = 1000;
                 int antall;
                 int prosent = 0;
                 // Looper gjennom listen over diagnoser
