@@ -2,7 +2,21 @@ import React, { Component, useState, useEffect } from 'react';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 import "./collapse.css"
 const kalkulerDiagnose = () => {
-    alert('Din diagnose kalkuleres..');
+
+    let liste = []
+    const data = {
+        symptomer: liste
+    }
+    var y = document.getElementsByTagName("input")
+    for (let i of y) {
+        if (i.checked) {
+            liste.push(i.value)
+        }
+    }
+    $.post("/diagnose/kalkuler", data, function (data) {
+        console.log(data)
+        alert(data)
+    })
 };
 
 const lesMerOmDiagnose = () => {
@@ -13,7 +27,6 @@ const diagnoseMedisiner = () => {
     alert('Medisiner kommer snart...');
 };
 
-let liste = ["konsentrasjonsvansker", "hyperaktivitet"]
 export const Home = () => {
     const [symptomer, setSymptomer] = useState([])
     const [kategorier, setKategorier] = useState([])
@@ -24,11 +37,11 @@ export const Home = () => {
     useEffect(() => {
 
 
-        $.post("/diagnoses/kalkuler", data, function (data) {
+        $.post("/diagnose/kalkuler", data, function (data) {
             console.log(data)
         })
 
-        fetch("/diagnoses/hentAlleKategorier")
+        fetch("/diagnose/hentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
                 setKategorier(data)
@@ -45,11 +58,7 @@ export const Home = () => {
                    
                 }
                 document.getElementById("utskrift").innerHTML = ut;
-                var y = document.getElementsByTagName("input")
-                console.log("HER")
-                for (let i of y) {
-                    console.log(i.value)
-                }
+               
                 
                
                 var coll = document.getElementsByClassName("collapsible");
@@ -81,7 +90,7 @@ export const Home = () => {
 
 
     useEffect(() => {
-        fetch("/diagnoses/HentAlleSymptomer")
+        fetch("/diagnose/HentAlleSymptomer")
             .then(data => data.json())
             .then((data) => {
              
@@ -99,18 +108,7 @@ export const Home = () => {
                 <div className="col-md-6">
                     <div className="h-100 p-5 bg-light border rounded-3">
                         <h4 className="mb-4"><i className="bi bi-clipboard2-pulse"></i> Velg symptomer</h4>
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="flexCheckDefault"></input>
-                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                Konsentrasjonsvansker
-                          </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="flexCheckChecked"></input>
-                            <label className="form-check-label" htmlFor="flexCheckChecked">
-                                Vondt i hodet
-                          </label>
-                        </div>
+                        <div id="utskrift"></div>
                         <button className="mt-3 w-100 btn btn-lg btn-primary" type="button" onClick={kalkulerDiagnose}>Kalkuler</button>
                     </div>
                 </div>
