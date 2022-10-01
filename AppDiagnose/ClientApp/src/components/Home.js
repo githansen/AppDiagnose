@@ -4,15 +4,17 @@ import "./collapse.css"
 const kalkulerDiagnose = () => {
 
     let liste = []
-    const data = {
-        symptomer: liste
-    }
+    
     var y = document.getElementsByTagName("input")
     for (let i of y) {
         if (i.checked) {
             liste.push(i.value)
         }
     }
+    const data = {
+        symptomer: liste
+    }
+    console.log(data)
     $.post("/diagnose/kalkuler", data, function (data) {
         console.log(data)
         alert(data)

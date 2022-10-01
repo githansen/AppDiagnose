@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace AppDiagnose.DAL
@@ -103,16 +104,18 @@ namespace AppDiagnose.DAL
 
                 // Vi returnerer Diagnosen med flest matches fra listen sendt fra klient. int match som tellevariabel. Vi benytter en algoritme inspirert av 
                 // Maks-metodene fra DATS2300-kompendiet; https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2 
-                int match = 0;
+                int match = 100;
                 int antall;
+                int prosent = 0;
                 // Looper gjennom listen over diagnoser
                 foreach (var i in liste)
                 {
+                    //Teller antall matches 
+                    antall = 0;
                     //Looper gjennom listen over symptomer i diagnose-objektet
                     foreach (var j in i.symptomer)
                     {
-                        //Teller antall matches 
-                        antall = 0;
+                        
                         //For hvert symptom, looper vi gjennom listen sendt fra klient og leter etter matches
                         for (int k = 0; k < sympt.Length; k++)
                         {
@@ -121,12 +124,18 @@ namespace AppDiagnose.DAL
                                 antall++;
                             }
                         }
-                        //Hvis antall matches er større enn for de tidligere diagnosene oppdateres 'match' og retur-objektet
-                        if (antall > match)
-                        {
-                            retur = i;
-                            match = antall;
-                        }
+                       
+                    }
+                    prosent = 100 * antall / i.symptomer.Count;
+                    if(sympt.Length > i.symptomer.Count)
+                    {
+                        prosent += 100*(sympt.Length / i.symptomer.Count - 1);
+                    }
+                    //Hvis antall matches er større enn for de tidligere diagnosene oppdateres 'match' og retur-objektet
+                    if (Math.Abs(100 - prosent) < match)
+                    {
+                        retur = i;
+                        match = Math.Abs(100-prosent);
                     }
 
                 }
