@@ -19,6 +19,12 @@ code {
     border-radius:100px;
 }
 
+.btn-disabled {
+    opacity: .3!important;
+    cursor: default!important;
+}
+.btn-disabled:hover {opacity:.3!important;}
+
 .btn-primary {
     color: #fff;
     background-color: #0A65CC !important;
@@ -34,6 +40,10 @@ code {
     background-color: #fff !important;
     border-color: #0A65CC !important;
     color: #0A65CC !important;
+}
+
+.btn-info:hover {
+    opacity:.75;
 }
 
 .btn-warning {

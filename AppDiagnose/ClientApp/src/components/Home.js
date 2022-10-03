@@ -5,6 +5,7 @@ import {
     Container,
     Row,
     Col,
+    Tooltip,
 } from 'reactstrap';
 
 
@@ -21,16 +22,14 @@ const lesMerOmDiagnose = () => {
     alert('Linken kommer snart...');
 };
 
-const diagnoseMedisiner = () => {
-    alert('Medisiner kommer snart...');
-};
-
 let liste = ["konsentrasjonsvansker", "hyperaktivitet"]
 export const Home = () => {
 
     const [symptomer, setSymptomer] = useState([])
     const [kategorier, setKategorier] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
+    const [tooltipOpen, setTooltipOpen] = useState(false);
+    const toggle = () => setTooltipOpen(!tooltipOpen);
     
     const data = {
         symptomer: ["konsentrasjonsvansker", "hyperaktivitet"]
@@ -152,7 +151,10 @@ export const Home = () => {
                                     </p>
                                     <div className="d-grid gap-2 ">
                                         <button className="mt-3 w-100 btn btn-info" type="button" onClick={lesMerOmDiagnose}><i className="bi bi-eye"></i> Les mer</button>
-                                        <button className="mt-3 w-100 btn btn-info" type="button" onClick={diagnoseMedisiner}><i className="bi bi-capsule"></i> Se medisiner</button>
+                                        <button id="medisinKnp" className="mt-3 w-100 btn btn-info btn-disabled" type="button"><i className="bi bi-capsule"></i> Se medisiner</button>
+                                          <Tooltip isOpen={tooltipOpen} target="medisinKnp" toggle={toggle} >
+                                            Kommer snart...
+                                          </Tooltip>
                                     </div>
                                 </div> 
                             </div>

@@ -71,7 +71,7 @@ export const Dashboard = () => {
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
                                         <h6 className="mb-0"><i className="bi bi-capsule"></i> Medisiner</h6>
-                                        <p className="mb-0 opacity-75">Coming soon...</p>
+                                        <p className="mb-0 opacity-75">Kommer snart...</p>
                                     </div>
                                     <small className="opacity-50 text-nowrap">.04</small>
                                 </div>
