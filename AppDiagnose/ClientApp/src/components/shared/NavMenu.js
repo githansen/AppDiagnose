@@ -18,7 +18,7 @@ export const NavMenu = () => {
                                 <NavLink tag={Link} className="text-dark" to="/dashboard"><i className="bi bi-house-door"></i> Dashboard</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to=""><i className="bi bi-file-text"></i> Dokumentasjon</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/dokumentasjon"><i className="bi bi-file-text"></i> Dokumentasjon</NavLink>
                             </NavItem>
                         </ul>
                     </Collapse>

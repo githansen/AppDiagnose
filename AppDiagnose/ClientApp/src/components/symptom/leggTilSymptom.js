@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
 
-export const redigerDiagnose = () => {
+export const leggTilSymptom = () => {
     const [symptom, setSymptom] = useState(null)
     const [kategorier, setKategorier] = useState([])
     const id = window.location.search.substring(1);
 
-    const lagreDiagnose = () => {
+    const lagreSymptom = () => {
 
         const s = {
             symptomId: symptom.symptomId,
@@ -45,7 +45,7 @@ export const redigerDiagnose = () => {
         <div className="container py-4">
             <div className="row align-items-md-stretch">
                 <div className="col-md-12">
-                    <h1><i className="bi bi-clipboard2-pulse"></i> Rediger diagnose: <b><span id='navnTittel'></span></b></h1>
+                    <h1><i className="bi bi-activity"></i> Legg til nytt symptom</h1>
                     <p>*Alle felt må være fyllt ut</p>
 
                     <Form >
@@ -78,17 +78,17 @@ export const redigerDiagnose = () => {
                             <Button
                                 color="danger"
                                 tag={Link}
-                                to="/alleDiagnoser"
+                                to="/alleSymptomer"
                             >
                                 <i className="bi bi-x"></i>
                             Avbryt
                           </Button>
                             <Button
                                 color="success"
-                                onClick={() => lagrediagnose()}
+                                onClick={() => lagreSymptom()}
                             >
-                                <i className="bi bi-check"></i>
-                            Lagre
+                                <i className="bi bi-plus"></i>
+                            Legg til
                           </Button>
                         </ButtonGroup>
                     </Form>

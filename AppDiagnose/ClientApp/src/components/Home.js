@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-import "./collapse.css"
+import "./home.css"
 import {
     Container,
     Row,
@@ -112,13 +112,17 @@ export const Home = () => {
                 <div className="col-md-8">
 
                     <div className="p-5 bg-light border rounded-3">
-                        <h4 className="mb-4"><i className="bi bi-clipboard2-pulse"></i> Klikk på en kategori og velg symptomer</h4>
+                        <h1 className="mb-3 text-center">Hei, ønsker du å finne din diagnose?</h1>
+                        <p className="text-center">
+                            Klikk på en eller flere kategorier nedenfor, og velg dine symptomer.
+                            Klikk deretter på "Kalkuler", og whoops så er din diagnose klar.
+                            </p>
                         <Container>
                             <Row xs="3" id="symptomByKategoriUtskrift">
                             </Row>
                         </Container> 
-                        <button className="mt-3 w-100 btn btn-lg btn-primary" type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> Kalkuler</button>
                     </div>
+                    <button className="w-100 btn btn-lg btn-primary btn-kalkuler p-3 " type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> KALKULER</button>
                 </div>
                 <div className="col-md-4">
                     <div id="forDiagnose" className="card text-center bg-dark text-white">

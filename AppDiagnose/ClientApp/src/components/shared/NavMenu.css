@@ -2,14 +2,8 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
 html {
-  font-size: 14px;
+  font-size: 15px;
 }
 @media (min-width: 768px) {
   html {
@@ -38,4 +32,10 @@ html {
 }
 .nav-item.special .nav-link:hover{
     color:#fff;
+}
+
+.logo img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }

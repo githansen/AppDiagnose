@@ -2,19 +2,36 @@
     background: rgba(241,242,244,.6);
 }
 
+a {
+    color: #0A65CC;
+}
+
+code {
+    color: #E01A76;
+}
+
+
 .tableTitteltd {
     text-transform: capitalize;
+}
+
+.btn {
+    border-radius:100px;
 }
 
 .btn-primary {
     color: #fff;
     background-color: #0A65CC !important;
     border-color: #0A65CC !important;
-    transition: all .35s;
 }
 
 .btn-primary:hover {
-    opacity:.8;
+    background-color: #171717 !important;
+    border-color: #171717 !important;
+}
+
+.leeess {
+    margin-top:1500px;
 }
 
 .btn-info {
@@ -23,16 +40,37 @@
     color: #0A65CC !important;
 }
 
+.btn-warning {
+    background-color: #171717 !important;
+    border-color: #171717 !important;
+    color: #fff !important;
+}
+
+
+.btn-warning:hover {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    color: #171717 !important;
+}
 
 .btn-success {
     background-color: #f5821f !important;
     border-color: #f5821f !important;
     color: #fff !important;
 }
+
+.btn-success:hover {
+    background-color: #0da824 !important;
+    border-color: #0da824 !important;
+}
 .btn-danger {
     background-color: #171717 !important;
     border-color: #171717 !important;
     color: #fff !important;
+}
+.btn-danger:hover {
+    background-color: #e81320 !important;
+    border-color: #e81320 !important;
 }
 .bg-light {
     background-color: #fff !important;
@@ -43,6 +81,8 @@
 
 .bg-dark {
     border: none !important;
+    border-radius: calc(0.25rem - 1px);
+    box-shadow: 0 0 30px -20px rgba(0,0,0,0.175);
 }
 .bg-dark.diagnos_bg {
     background-position:center;
@@ -53,6 +93,10 @@
     background-size: cover;
 }
 
+.list-group-item {
+    border-radius: calc(0.25rem - 1px)!important;
+}
+
 .card-img-overlay {
     background: rgba(10, 101, 204, 0.75);
 }
@@ -61,8 +105,14 @@
     background: rgba(10, 101, 204, 0.9);
 }
 
-.logo img {
-    width: 20px;
-    height: 20px;
-    margin-right:5px;
+select option {
+    text-transform: capitalize
+}
+
+table thead tr th {
+    border-top:none!important;
+}
+
+.bg-primary {
+    background-color: #0A65CC!important;
 }

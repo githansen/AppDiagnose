@@ -1,6 +1,6 @@
 ﻿import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup } from "reactstrap";
-import Select from 'react-select'
+import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
@@ -45,7 +45,7 @@ export const redigerSymptom = () => {
         <div className="container py-4">
             <div className="row align-items-md-stretch">
                 <div className="col-md-12">
-                    <h2><i className="bi bi-activity"></i> Rediger symptom: <b><span id='navnTittel'></span></b></h2>
+                    <h1><i className="bi bi-activity"></i> Rediger symptom: <b><span id='navnTittel'></span></b></h1>
                     <p>*Alle felt må være fyllt ut</p>
 
                     <Form >
