@@ -1,24 +1,15 @@
 import React, { Component, useState, useEffect } from 'react';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 import "./collapse.css"
-const kalkulerDiagnose = () => {
+import { Container, Row, Col } from 'reactstrap';
 
-    let liste = []
-    
-    var y = document.getElementsByTagName("input")
-    for (let i of y) {
-        if (i.checked) {
-            liste.push(i.value)
-        }
-    }
-    const data = {
-        symptomer: liste
-    }
-    console.log(data)
-    $.post("/diagnose/kalkuler", data, function (data) {
-        console.log(data)
-        alert(data)
-    })
+
+
+const kalkulerDiagnose = () => {
+    var etterDiagnose = document.getElementById("etterDiagnose");
+    etterDiagnose.style.display = "block"
+    var forDiagnose = document.getElementById("forDiagnose");
+    forDiagnose.style.display = "none"
 };
 
 const lesMerOmDiagnose = () => {
@@ -29,30 +20,46 @@ const diagnoseMedisiner = () => {
     alert('Medisiner kommer snart...');
 };
 
+let liste = ["konsentrasjonsvansker", "hyperaktivitet"]
 export const Home = () => {
+
     const [symptomer, setSymptomer] = useState([])
     const [kategorier, setKategorier] = useState([])
     
-   
+    const data = {
+        symptomer: ["konsentrasjonsvansker", "hyperaktivitet"]
+    }
     useEffect(() => {
-        fetch("/diagnose/hentAlleKategorier")
+
+
+        $.post("/diagnoses/kalkuler", data, function (data) {
+            console.log(data)
+        })
+
+        fetch("/diagnoses/hentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
                 setKategorier(data)
                 let ut = ""
                 for (let i of data) {
-                    ut += "<button class='collapsible'>"
+                    ut += '<div>'
+                    ut += `<div class="collapsible"><img className="img-fluid" src="./img/kategori_${i.navn}.png"></img>`
                     ut += `${i.navn}`
-                    ut += "</button>"
+                    ut += '</div>'
                     for (let j of i.symptomer) {
-                        ut += `<div class='content'><div className="form-check"><input className="form-check-input" type="checkbox" id="flexCheckDefault value=${j.navn}></input>
-                                <label className="form-check-label" value=${j.navn}> ${j.navn}</label> </div> </div>`
+                        ut += `<div class='content'><div className="form-check"><input className="form-check-input" type="checkbox" id="check${j.navn}" value=${j.navn}></input>
+                                <label className="form-check-label" for=check${j.navn}> ${j.navn}</label> </div> </div>`
                         
                     }
+                    ut += '</div>'
                    
                 }
-                document.getElementById("utskrift").innerHTML = ut;
-               
+                document.getElementById("symptomByKategoriUtskrift").innerHTML = ut;
+                var y = document.getElementsByTagName("input")
+                console.log("HER")
+                for (let i of y) {
+                    console.log(i.value)
+                }
                 
                
                 var coll = document.getElementsByClassName("collapsible");
@@ -84,7 +91,7 @@ export const Home = () => {
 
 
     useEffect(() => {
-        fetch("/diagnose/HentAlleSymptomer")
+        fetch("/diagnoses/HentAlleSymptomer")
             .then(data => data.json())
             .then((data) => {
              
@@ -95,24 +102,29 @@ export const Home = () => {
 
     return (
         <div className="container py-4">
-            
 
             <div className="row align-items-md-stretch">
-                
-                <div className="col-md-6">
+                <div className="col-md-8">
                     <div className="h-100 p-5 bg-light border rounded-3">
-                        <h4 className="mb-4"><i className="bi bi-clipboard2-pulse"></i> Velg symptomer</h4>
-                        <div id="utskrift"></div>
-                        <button className="mt-3 w-100 btn btn-lg btn-primary" type="button" onClick={kalkulerDiagnose}>Kalkuler</button>
+                        <h4 className="mb-4"><i className="bi bi-clipboard2-pulse"></i> Klikk på en kategori og velg symptomer</h4>
+                        <Container>
+                            <Row xs="3" id="symptomByKategoriUtskrift">
+                            </Row>
+                        </Container>
+                        <button className="mt-3 w-100 btn btn-lg btn-primary" type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> Kalkuler</button>
                     </div>
                 </div>
-                <div className="col-md-6">
-                    <div className="h-100 p-5 bg-dark border rounded-3">
+                <div className="col-md-4">
+                    <div id="forDiagnose" className="p-5 bg-dark border rounded-3">
+                        <h4 className="mb-4 text-light"><i className="bi bi-file-medical"></i> Diagnose</h4>
+                        <p className=" text-light">Fyll ut skjemaet til venstre<span></span></p>
+                    </div>
+                    <div id="etterDiagnose" className="p-5 bg-dark border rounded-3">
                         <h4 className="mb-4 text-light"><i className="bi bi-file-medical"></i> Diagnose</h4>
                         <p className=" text-light">Din diagnose er <span><b>...</b></span></p>
-                        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button className="mt-3 btn btn-warning mx-2" type="button" onClick={lesMerOmDiagnose}>Les mer om diagnosen</button>
-                            <button className="mt-3 btn btn-info text-light" type="button" onClick={diagnoseMedisiner}>Se medisiner</button>
+                        <div className="d-grid gap-2 ">
+                            <button className="mt-3 w-100 btn btn-warning" type="button" onClick={lesMerOmDiagnose}><i className="bi bi-eye"></i> Les mer om diagnosen</button>
+                            <button className="mt-3 w-100 btn btn-info text-light" type="button" onClick={diagnoseMedisiner}><i className="bi bi-capsule"></i> Se medisiner</button>
                         </div>
                     </div>
                 </div>
@@ -120,3 +132,4 @@ export const Home = () => {
         </div>
     );
 }
+

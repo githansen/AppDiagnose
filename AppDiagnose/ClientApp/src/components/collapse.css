@@ -1,25 +1,50 @@
-﻿body {
-}
+﻿
 .collapsible {
-    background-color: #001a00;
-    color: white;
+    background: #f8f9fa;
+    color: #000;
     cursor: pointer;
-    padding: 18px;
+    padding: 10px;
     width: 100%;
     border: none;
-    text-align: left;
     outline: none;
     font-size: 15px;
+    text-transform: capitalize;
+    text-align:center;
 }
 
-    .active, .collapsible:hover {
-        background-color: #000000;
-    }
+.collapsible.active, .collapsible:hover {
+    background-color: #e7f1ff;
+    color: #0c63e4;
+}
 
-.content
-{
-    padding: 0 18px;
+.content {
+    padding: 5px 10px;
+    text-transform: capitalize;
     display: none;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #fff;
+}
+
+#symptomByKategoriUtskrift label {
+    font-size:13px;
+}
+
+#symptomByKategoriUtskrift label:hover {
+    cursor: pointer;
+    color: #0c63e4;
+    opacity:.8;
+}
+
+#symptomByKategoriUtskrift input[type="checkbox"]:checked+label {
+    color: #0c63e4;
+}
+
+#symptomByKategoriUtskrift img {
+    display:block;
+    width:100%;
+    padding:10px 20px;
+}
+
+#etterDiagnose {
+    display: none;
 }
