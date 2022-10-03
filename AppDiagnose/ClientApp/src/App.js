@@ -8,7 +8,10 @@ import { alleSymptomer } from './components/symptom/alleSymptomer';
 import { redigerSymptom } from './components/symptom/redigerSymptom';
 import { testSymptomer } from './components/symptom/testSymptomer';
 //Diagnose 
-import { Diagnose } from './components/diagnose/Diagnose';
+import { alleDiagnoser } from './components/diagnose/alleDiagnoser';
+import { redigerDiagnose } from './components/diagnose/redigerDiagnose';
+//Kategori 
+import { alleKategorier } from './components/kategori/alleKategorier';
 
 import './custom.css'
 
@@ -23,7 +26,9 @@ v
         <Route path='/alleSymptomer' component={alleSymptomer} />
         <Route path='/redigerSymptom' component={redigerSymptom} />
         <Route path='/testSymptomer' component={testSymptomer} />
-        <Route path='/diagnose' component={Diagnose} />
+        <Route path='/alleDiagnoser' component={alleDiagnoser} />
+        <Route path='/redigerDiagnose' component={redigerDiagnose} />
+        <Route path='/alleKategorier' component={alleKategorier} />
       </Layout>
     );
   }

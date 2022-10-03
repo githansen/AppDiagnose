@@ -1,6 +1,68 @@
 ﻿body {
+    background: rgba(241,242,244,.6);
 }
 
 .tableTitteltd {
     text-transform: capitalize;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0A65CC !important;
+    border-color: #0A65CC !important;
+    transition: all .35s;
+}
+
+.btn-primary:hover {
+    opacity:.8;
+}
+
+.btn-info {
+    background-color: #fff !important;
+    border-color: #0A65CC !important;
+    color: #0A65CC !important;
+}
+
+
+.btn-success {
+    background-color: #f5821f !important;
+    border-color: #f5821f !important;
+    color: #fff !important;
+}
+.btn-danger {
+    background-color: #171717 !important;
+    border-color: #171717 !important;
+    color: #fff !important;
+}
+.bg-light {
+    background-color: #fff !important;
+    border: none !important;
+    border-radius: calc(0.25rem - 1px);
+    box-shadow: 0 0 30px -20px rgba(0,0,0,0.175);
+}
+
+.bg-dark {
+    border: none !important;
+}
+.bg-dark.diagnos_bg {
+    background-position:center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.card-img-overlay {
+    background: rgba(10, 101, 204, 0.75);
+}
+
+.card-img-overlay.cio2{
+    background: rgba(10, 101, 204, 0.9);
+}
+
+.logo img {
+    width: 20px;
+    height: 20px;
+    margin-right:5px;
 }

@@ -29,12 +29,14 @@
     <None Remove="ClientApp\src\components\shared\" />
     <None Remove="ClientApp\src\components\symptom\" />
     <None Remove="ClientApp\public\img\" />
+    <None Remove="ClientApp\src\components\kategori\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\src\components\diagnose\" />
     <Folder Include="ClientApp\src\components\shared\" />
     <Folder Include="ClientApp\src\components\symptom\" />
     <Folder Include="ClientApp\public\img\" />
+    <Folder Include="ClientApp\src\components\kategori\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

@@ -1,4 +1,8 @@
-﻿a.navbar-brand {
+﻿body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
@@ -15,4 +19,23 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.nav-item.special {
+    background: #0A65CC;
+    border-radius: 100px;
+    padding: 0 10px;
+    transition: all .1s;
+    margin-right: 10px;
+}
+.nav-item.special .nav-link{
+    color:#fff;
+    transition: all .1s;
+}
+
+.nav-item.special:hover{
+    background: #171717;
+}
+.nav-item.special .nav-link:hover{
+    color:#fff;
 }

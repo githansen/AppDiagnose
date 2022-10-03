@@ -35,7 +35,7 @@ export const Dashboard = () => {
                             </div>
                         </NavLink>
 
-                        <NavLink tag={Link} className="text-dark" to="/diagnose">
+                        <NavLink tag={Link} className="text-dark" to="/alleDiagnoser">
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
@@ -47,7 +47,7 @@ export const Dashboard = () => {
                             </div>
                         </NavLink>
 
-                        <NavLink>
+                        <NavLink tag={Link} className="text-dark" to="/alleKategorier">
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
@@ -58,27 +58,14 @@ export const Dashboard = () => {
                                 </div>
                             </div>
                         </NavLink>
-
                         <NavLink>
-                            <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                                <div className="d-flex gap-2 w-100 justify-content-between">
-                                    <div>
-                                        <h6 className="mb-0"><i className="bi bi-building"></i> Bedrifter</h6>
-                                        <p className="mb-0 opacity-75">Legg til eller rediger bedrifter</p>
-                                    </div>
-                                    <small className="opacity-50 text-nowrap">.04</small>
-                                </div>
-                            </div>
-                        </NavLink>
-
-                        <NavLink>
-                            <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                            <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style={{ backgroundColor: "rgba(241,242,244,.6)" }}>
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
                                         <h6 className="mb-0"><i className="bi bi-capsule"></i> Medisiner</h6>
-                                        <p className="mb-0 opacity-75">Legg til eller rediger medisiner</p>
+                                        <p className="mb-0 opacity-75">Coming soon...</p>
                                     </div>
-                                    <small className="opacity-50 text-nowrap">.05</small>
+                                    <small className="opacity-50 text-nowrap">.04</small>
                                 </div>
                             </div>
                         </NavLink>
