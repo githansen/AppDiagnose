@@ -112,3 +112,28 @@ table thead tr th {
 .bg-primary {
     background-color: #0A65CC!important;
 }
+
+.lastInn-Boks {
+    margin-top: 40px;
+    text-align: center;
+    color: #171717;
+}
+.lasterInn-Ikon {
+    --bs-spinner-width: 2rem;
+    --bs-spinner-height: 2rem;
+    --bs-spinner-vertical-align: -0.125em;
+    --bs-spinner-border-width: 0.25em;
+    --bs-spinner-animation-speed: 0.75s;
+    --bs-spinner-animation-name: spinner-border;
+    border: var(--bs-spinner-border-width) solid;
+    border-right-color: transparent;
+    display: inline-block;
+    width: var(--bs-spinner-width);
+    height: var(--bs-spinner-height);
+    vertical-align: var(--bs-spinner-vertical-align);
+    border-radius: 50%;
+    -webkit-animation: var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name);
+    animation: var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name);
+    --bs-text-opacity: 1;
+    color: #171717 !important;
+}

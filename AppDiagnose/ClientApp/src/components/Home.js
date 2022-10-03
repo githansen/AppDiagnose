@@ -30,12 +30,13 @@ export const Home = () => {
 
     const [symptomer, setSymptomer] = useState([])
     const [kategorier, setKategorier] = useState([])
+    const [lasterInnIkon, setLasterInn] = useState(false);
     
     const data = {
         symptomer: ["konsentrasjonsvansker", "hyperaktivitet"]
     }
     useEffect(() => {
-
+        setLasterInn(true);
 
         $.post("/diagnose/kalkuler", data, function (data) {
             console.log(data)
@@ -90,7 +91,7 @@ export const Home = () => {
                         
                     });
                 }
-               
+                setLasterInn(false);
             })
     }, []);
 
@@ -99,10 +100,10 @@ export const Home = () => {
         fetch("/diagnose/HentAlleSymptomer")
             .then(data => data.json())
             .then((data) => {
-             
                 setSymptomer(data);
             });
     }, []);
+
 
 
     return (
@@ -118,6 +119,12 @@ export const Home = () => {
                             Klikk deretter på "Kalkuler", og whoops så er din diagnose klar.
                             </p>
                         <Container>
+                            {lasterInnIkon && (
+                                <div className="lastInn-Boks">
+                                    <div className="lasterInn-Ikon"></div>
+                                    <p>Laster inn...</p>
+                                </div>
+                            )}
                             <Row xs="3" id="symptomByKategoriUtskrift">
                             </Row>
                         </Container> 
