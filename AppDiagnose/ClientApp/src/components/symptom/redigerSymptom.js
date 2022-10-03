@@ -17,14 +17,14 @@ export const redigerSymptom = () => {
             kategori: $("#kat").val(),
         }
  
-        $.post("/diagnose/endreSymptom", s, function (data) {
+        $.post("/diagnoses/endreSymptom", s, function (data) {
             console.log(data)
         })
     };
 
 
     useEffect(() => {
-        const url = "/diagnose/HentEtSymptom?" + id 
+        const url = "/diagnoses/HentEtSymptom?" + id 
         console.log(url)
         fetch(url)
             .then(data => data.json())
@@ -33,7 +33,7 @@ export const redigerSymptom = () => {
                 document.getElementById("navn").value = data.navn
                 document.getElementById("navnTittel").innerHTML = data.navn
             })
-        fetch("/diagnose/HentAlleKategorier")
+        fetch("/diagnoses/HentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
                 setKategorier(data)
