@@ -122,7 +122,7 @@ export const Home = () => {
                             </Row>
                         </Container> 
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary btn-kalkuler p-3 " type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> KALKULER</button>
+                    <button className="w-100 btn btn-lg btn-kalkuler p-3 " type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> KALKULER</button>
                 </div>
                 <div className="col-md-4">
                     <div id="forDiagnose" className="card text-center bg-dark text-white">

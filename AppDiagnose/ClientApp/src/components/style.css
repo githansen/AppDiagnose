@@ -30,14 +30,16 @@ code {
     border-color: #171717 !important;
 }
 
-.leeess {
-    margin-top:1500px;
-}
 
 .btn-info {
     background-color: #fff !important;
     border-color: #0A65CC !important;
     color: #0A65CC !important;
+    transition: all .4s;
+}
+
+.btn-info:hover {
+    opacity:.75;
 }
 
 .btn-warning {

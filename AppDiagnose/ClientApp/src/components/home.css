@@ -54,5 +54,13 @@ label {
     margin-bottom: 0 !important;
 }
 .btn-kalkuler {
-    border-radius:0!important;
+    border-radius: 0 !important;
+    background-color: #171717 !important;
+    border-color: #171717 !important;
+    color:#fff!important;
+    letter-spacing:3px;
+}
+.btn-kalkuler:hover {
+    background-color: #0A65CC !important;
+    border-color: #0A65CC !important;
 }
