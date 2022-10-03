@@ -82,7 +82,7 @@ namespace AppDiagnose.DAL
 
         public async Task <Diagnose> kalkuler(Data data)
         {
-            if (data.symptomer.Count() == 0) return null;
+            if (data.symptomer.Length == 0) return null;
             try
             {
                 // Henter først listen over alle diagnoser

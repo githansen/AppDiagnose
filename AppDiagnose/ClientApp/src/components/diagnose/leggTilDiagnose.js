@@ -1,6 +1,6 @@
 ﻿import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup } from "reactstrap";
-import Select from 'react-select';
+
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 

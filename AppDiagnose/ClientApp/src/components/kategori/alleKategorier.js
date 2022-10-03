@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export const alleKategorier = () => {
     const [liste, setListe] = useState([])
     useEffect(() => {
-        fetch("/diagnoses/hentalleSymptomer")
+        fetch("/diagnose/hentalleSymptomer")
             .then(data => data.json())
             .then((data) => {
                 setListe(data)

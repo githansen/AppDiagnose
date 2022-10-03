@@ -37,11 +37,9 @@ export const Home = () => {
     useEffect(() => {
 
 
-        $.post("/diagnoses/kalkuler", data, function (data) {
-            console.log(data)
-        })
+ 
 
-        fetch("/diagnoses/hentAlleKategorier")
+        fetch("/diagnose/hentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
                 setKategorier(data)
@@ -60,11 +58,7 @@ export const Home = () => {
                    
                 }
                 document.getElementById("symptomByKategoriUtskrift").innerHTML = ut;
-                var y = document.getElementsByTagName("input")
-                console.log("HER")
-                for (let i of y) {
-                    console.log(i.value)
-                }
+               
                 
                
                 var coll = document.getElementsByClassName("collapsible");

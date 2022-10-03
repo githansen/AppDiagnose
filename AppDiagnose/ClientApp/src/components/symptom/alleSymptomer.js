@@ -19,7 +19,7 @@ const leggTilNySymptom = (index) => {
 export const alleSymptomer = () => {
     const [liste, setListe] = useState([])
     useEffect(() => {
-        fetch("/diagnoses/hentalleSymptomer")
+        fetch("/diagnose/hentalleSymptomer")
             .then(data => data.json())
             .then((data) => {
                 setListe(data)
