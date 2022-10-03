@@ -19,7 +19,7 @@ const leggTilNyDiagnose = (index) => {
 export const alleDiagnoser = () => {
     const [liste, setListe] = useState([])
     useEffect(() => {
-        fetch("/diagnoses/hentalleSymptomer")
+        fetch("/diagnose/HentalleDiagnoser")
             .then(data => data.json())
             .then((data) => {
                 setListe(data)
@@ -53,11 +53,11 @@ export const alleDiagnoser = () => {
                     >
                         <thead><tr><th>#ID</th><th>Navn</th><th></th></tr></thead><tbody>
                             {liste.map((i, index) => {
-                                return <tr key={index}><th scope="row" className="align-middle"> {i.symptomId}</th>
+                                return <tr key={index}><th scope="row" className="align-middle"> {i.diagnoseId}</th>
 
                                     <td className="tableTitteltd align-middle">{i.navn}</td>
-                                    <td style={{ textAlign: 'right' }}><Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerDiagnose", search: `?id=${i.symptomId}` }}><i className="bi bi-pencil"></i></Button>
-                                        <Button size="sm" color="danger" onClick={() => slettDiagnose(i.symptomId)}><i className="bi bi-trash3"></i></Button></td>
+                                    <td style={{ textAlign: 'right' }}><Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerDiagnose", search: `?id=${i.diagnoseId}` }}><i className="bi bi-pencil"></i></Button>
+                                        <Button size="sm" color="danger" onClick={() => slettDiagnose(i.diagnoseId)}><i className="bi bi-trash3"></i></Button></td>
                                 </tr>
                             })}
                         </tbody>
