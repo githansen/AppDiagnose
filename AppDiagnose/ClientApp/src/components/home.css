@@ -1,6 +1,6 @@
 ﻿
 .collapsible {
-    background: #f8f9fa;
+    background: #fff;
     color: #000;
     cursor: pointer;
     padding: 10px;
@@ -18,15 +18,15 @@
 }
 
 .content {
-    padding: 5px 10px;
+    padding: 5px;
     text-transform: capitalize;
     display: none;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #e7f1ff;
 }
 
 #symptomByKategoriUtskrift label {
-    font-size:13px;
+    font-size:14px;
 }
 
 #symptomByKategoriUtskrift label:hover {
@@ -47,4 +47,12 @@
 
 #etterDiagnose {
     display: none;
+}
+
+
+label {
+    margin-bottom: 0 !important;
+}
+.btn-kalkuler {
+    border-radius:0!important;
 }
