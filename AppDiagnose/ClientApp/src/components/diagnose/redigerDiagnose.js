@@ -7,15 +7,14 @@ import $ from 'jquery'
 
 export const redigerDiagnose = () => {
     const [symptom, setSymptom] = useState(null)
-    const [kategorier, setKategorier] = useState([])
     const id = window.location.search.substring(1);
+    const [lasterInnIkon, setLasterInn] = useState(false); 
 
     const lagreDiagnose = () => {
 
         const s = {
             symptomId: symptom.symptomId,
             navn: $("#navn").val(),
-            kategori: $("#kat").val(),
         }
 
         $.post("/diagnose/endreSymptom", s, function (data) {
@@ -25,6 +24,8 @@ export const redigerDiagnose = () => {
 
 
     useEffect(() => {
+        //Viser lasterInn-ikon
+        setLasterInn(true);
         const url = "/diagnose/HentEtSymptom?" + id
         console.log(url)
         fetch(url)
@@ -33,11 +34,8 @@ export const redigerDiagnose = () => {
                 setSymptom(data)
                 document.getElementById("navn").value = data.navn
                 document.getElementById("navnTittel").innerHTML = data.navn
-            })
-        fetch("/diagnose/HentAlleKategorier")
-            .then(data => data.json())
-            .then((data) => {
-                setKategorier(data)
+                //Skjuler lasterInn-ikon   
+                setLasterInn(false);
             })
 
     }, [])
@@ -51,23 +49,7 @@ export const redigerDiagnose = () => {
                     <Form >
 
                         <div className="row align-items-md-stretch">
-                            <div className="col-md-4">
-                                <FormGroup>
-                                    <Label for="kategoriSelect">
-                                        Velg kategori
-                            </Label>
-                                    <Input
-                                        id="kategoriSelect"
-                                        name="kategoriSelect"
-                                        type="select"
-                                    >
-                                        {kategorier.map((kat, index) => {
-                                            return <option value={kat.navn}> {kat.navn} </option>
-                                        })}
-                                    </Input>
-                                </FormGroup>
-                            </div>
-                            <div className="col-md-8">
+                            <div className="col-md-12">
                                 <FormGroup>
                                     <Label for="navn">Navn</Label>
                                     <Input id="navn" name="navn"></Input>
@@ -92,6 +74,13 @@ export const redigerDiagnose = () => {
                           </Button>
                         </ButtonGroup>
                     </Form>
+
+                    {lasterInnIkon && (
+                        <div className="lastInn-Boks">
+                            <div className="lasterInn-Ikon"></div>
+                            <p>Laster inn...</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

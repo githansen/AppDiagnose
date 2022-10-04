@@ -35,6 +35,8 @@ export const Home = () => {
         symptomer: ["konsentrasjonsvansker", "hyperaktivitet"]
     }
     useEffect(() => {
+        
+        //Viser lasterInn-ikon
         setLasterInn(true);
 
         $.post("/diagnose/kalkuler", data, function (data) {
@@ -90,6 +92,7 @@ export const Home = () => {
                         
                     });
                 }
+                //Skjuler lasterInn-ikon
                 setLasterInn(false);
             })
     }, []);

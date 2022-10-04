@@ -23,12 +23,17 @@ const leggTilNySymptom = (index) => {
 
 export const alleSymptomer = () => {
     const [liste, setListe] = useState([])
+    const [lasterInnIkon, setLasterInn] = useState(false);
     //Use-Effect kjøres her 1 gang i det dokumentet rendres
     useEffect(() => {
+        //Viser lasterInn-ikon
+        setLasterInn(true);
         //Henter liste over alle symptomer
         fetch("/diagnose/hentalleSymptomer")
             .then(data => data.json())
             .then((data) => {
+                //Skjuler lasterInn-ikon
+                setLasterInn(false);
                 setListe(data)
             })
     }, []);
@@ -52,12 +57,15 @@ export const alleSymptomer = () => {
                     </Button>
                 </div>
             </div>
+            {lasterInnIkon && (
+                <div className="lastInn-Boks">
+                    <div className="lasterInn-Ikon"></div>
+                    <p>Laster inn...</p>
+                </div>
+            )}
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
-                    <Table
-                        hover
-                        size="sm"
-                    >
+                    <Table hover size="sm">
                         <thead><tr><th>#ID</th><th>Navn</th><th></th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.symptomId}</th>

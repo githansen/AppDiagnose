@@ -6,10 +6,16 @@ import { Link } from 'react-router-dom';
 
 export const alleKategorier = () => {
     const [liste, setListe] = useState([])
+    const [lasterInnIkon, setLasterInn] = useState(false);
+
     useEffect(() => {
+        //Viser lasterInn-ikon
+        setLasterInn(true);
         fetch("/diagnose/HentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
+                //Skjuler lasterInn-ikon
+                setLasterInn(false);
                 setListe(data)
             })
     }, []);
@@ -23,12 +29,15 @@ export const alleKategorier = () => {
                     <p>Liste over alle symptom-kategorier. (Viser pr.nå alle symptomer. Må byttes med kategorier)</p>
                 </div>
             </div>
+            {lasterInnIkon && (
+                <div className="lastInn-Boks">
+                    <div className="lasterInn-Ikon"></div>
+                    <p>Laster inn...</p>
+                </div>
+            )}
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
-                    <Table
-                        hover
-                        size="md"
-                    >
+                    <Table hover size="md">
                         <thead><tr><th>Alle kategorier</th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
