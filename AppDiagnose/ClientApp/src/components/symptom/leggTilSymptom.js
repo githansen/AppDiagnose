@@ -25,15 +25,15 @@ export const leggTilSymptom = () => {
 
 
     useEffect(() => {
-        const url = "/diagnose/HentEtSymptom?" + id
-        console.log(url)
-        fetch(url)
-            .then(data => data.json())
-            .then((data) => {
-                setSymptom(data)
-                document.getElementById("navn").value = data.navn
-                document.getElementById("navnTittel").innerHTML = data.navn
-            })
+        //const url = "/diagnose/HentEtSymptom?" + id
+        //console.log(url)
+        //fetch(url)
+        //    .then(data => data.json())
+        //    .then((data) => {
+        //        setSymptom(data)
+        //        document.getElementById("navn").value = data.navn
+        //        document.getElementById("navnTittel").innerHTML = data.navn
+        //    })
         fetch("/diagnose/HentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
