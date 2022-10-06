@@ -18,7 +18,7 @@ export const leggTilSymptom = () => {
         //    kategori: $("#kat").val(),
         //}
         var navn = $("#navn").val()
-        var kategori = $("kategoriSelect").val()
+        var kategori = $("#kategoriSelect").val()
         console.log(kategori)
 
 
@@ -67,7 +67,7 @@ export const leggTilSymptom = () => {
                                     >
                                         {kategorier.map((kat, index) => {
                                             console.log(kat)
-                                            return <option value={kat.id}>{kat.id} - {kat.navn} </option>
+                                            return <option key={index} value={kat.id}>{kat.id} - {kat.navn} </option>
                                         })}
                                     </Input>
                                 </FormGroup>
