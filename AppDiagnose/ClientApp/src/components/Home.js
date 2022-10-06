@@ -16,6 +16,21 @@ const kalkulerDiagnose = () => {
     etterDiagnose.style.display = "block"
     var forDiagnose = document.getElementById("forDiagnose");
     forDiagnose.style.display = "none"
+
+    var y = document.getElementsByTagName("input")
+    let symptomer = []
+    for (let i of y) {
+        if (i.checked) {
+            symptomer.push(i.value)
+        }
+    }
+    const s = {
+        symptomer: symptomer
+    };
+    $.post("/diagnose/kalkuler", s, function (data) {
+        console.log(data)
+    })
+
 };
 
 const lesMerOmDiagnose = () => {
@@ -39,9 +54,7 @@ export const Home = () => {
         //Viser lasterInn-ikon
         setLasterInn(true);
 
-        $.post("/diagnose/kalkuler", data, function (data) {
-            console.log(data)
-        })
+        
 
         fetch("/diagnose/hentAlleKategorier")
             .then(data => data.json())
@@ -62,11 +75,7 @@ export const Home = () => {
                    
                 }
                 document.getElementById("symptomByKategoriUtskrift").innerHTML = ut;
-                var y = document.getElementsByTagName("input")
-                console.log("HER")
-                for (let i of y) {
-                    console.log(i.value)
-                }
+               
                 
                
                 var coll = document.getElementsByClassName("collapsible");

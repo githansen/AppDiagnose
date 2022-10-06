@@ -127,8 +127,8 @@ namespace AppDiagnose.DAL
                         }
                        
                     }
-                    prosent = 100 * (i.symptomer.Count+sympt.Length)/(2 * antall);
                     
+                    prosent = antall != 0 ? 100 * (i.symptomer.Count + sympt.Length) / (2 * antall) : 0;
                     //Hvis dette er en bedre match endres returobjektet
                     if (Math.Abs(100 - prosent) < match)
                     {
