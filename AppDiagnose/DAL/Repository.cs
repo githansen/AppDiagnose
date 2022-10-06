@@ -221,6 +221,21 @@ namespace AppDiagnose.DAL
             }
         }
 
+        public async Task<bool> CreateSymptom(string navn, int kategoriId) // creates new symptom in the db -- to run: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
+        {
+            try // tries to create new 'Symptom'
+            { 
+                Kategori k = await _db.kategorier.FindAsync(kategoriId); // finds kategori given kategoriId
+                var new_symptom = new Symptom { navn = navn, kategori = k}; // creates new Symptom object
+                _db.Symptomer.Add(new_symptom); // adds that object to the database
+                await _db.SaveChangesAsync(); // saves!
+                return true; // returns true if successful
+            }
+            catch // if creation of 'Symptom' fails -> return false
+            {
+                return false;
+            }
+        }
 
     }
 }

@@ -14,5 +14,6 @@ namespace AppDiagnose.DAL
         Task<Symptom> HentEtSymptom(int symptomId);
         Task<bool> endreSymptom(Data s);
         Task<bool> slettSymptom(int Id);
+        Task<bool> CreateSymptom(string navn, int kategoriId);
     }
 }

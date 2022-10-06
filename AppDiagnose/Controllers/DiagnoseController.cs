@@ -51,5 +51,9 @@ namespace AppDiagnose.Controllers
         {
             return await _db.slettSymptom(Id);
         }
+        public async Task<bool> CreateSymptom(string navn, int kategoriId)
+        {
+            return await _db.CreateSymptom(navn, kategoriId);
+        }
     }
 }

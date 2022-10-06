@@ -10,30 +10,34 @@ export const leggTilSymptom = () => {
     const [kategorier, setKategorier] = useState([])
     const id = window.location.search.substring(1);
 
-    const lagreSymptom = () => {
+    const createSymptom = () => {
 
-        const s = {
-            symptomId: symptom.symptomId,
-            navn: $("#navn").val(),
-            kategori: $("#kat").val(),
-        }
+        //const s = {
+        //    symptomId: symptom.symptomId,
+        //    navn: $("#navn").val(),
+        //    kategori: $("#kat").val(),
+        //}
+        var navn = $("#navn").val()
+        var kategori = $("kat").val()
+        console.log(kategori)
 
-        $.post("/diagnose/endreSymptom", s, function (data) {
+
+        $.post("/Diagnose/CreateSymptom?navn=" + navn + "&kategoriId=" + kategori,  function (data) {
             console.log(data)
         })
     };
 
 
     useEffect(() => {
-        const url = "/diagnose/HentEtSymptom?" + id
-        console.log(url)
-        fetch(url)
-            .then(data => data.json())
-            .then((data) => {
-                setSymptom(data)
-                document.getElementById("navn").value = data.navn
-                document.getElementById("navnTittel").innerHTML = data.navn
-            })
+        //const url = "/diagnose/HentEtSymptom?" + id
+        //console.log(url)
+        //fetch(url)
+        //    .then(data => data.json())
+        //    .then((data) => {
+        //        setSymptom(data)
+        //        document.getElementById("navn").value = data.navn
+        //        document.getElementById("navnTittel").innerHTML = data.navn
+        //    })
         fetch("/diagnose/HentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
@@ -62,7 +66,8 @@ export const leggTilSymptom = () => {
                                         type="select"
                                     >
                                         {kategorier.map((kat, index) => {
-                                            return <option value={kat.navn}> {kat.navn} </option>
+                                            console.log(kat)
+                                            return <option value={kat.id}>{kat.id} - {kat.navn} </option>
                                         })}
                                     </Input>
                                 </FormGroup>
@@ -85,7 +90,7 @@ export const leggTilSymptom = () => {
                           </Button>
                             <Button
                                 color="success"
-                                onClick={() => lagreSymptom()}
+                                onClick={() => createSymptom()}
                             >
                                 <i className="bi bi-plus"></i>
                             Legg til
