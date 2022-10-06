@@ -16,7 +16,7 @@ export const redigerSymptom = () => {
         const s = {
             symptomId: symptom.symptomId,
             navn: $("#navn").val(),
-            kategori: $("#kat").val(),
+            kategori: $("#kategoriSelect").val(),
         }
  
         $.post("/diagnose/endreSymptom", s, function (data) {
