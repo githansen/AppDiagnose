@@ -67,6 +67,7 @@ namespace AppDiagnose.DAL
                 //Samme som i forelesninger
                 List<Kategori> liste = await _db.kategorier.Select(k => new Kategori
                 {
+                    Id = k.Id,
                     navn = k.navn,
                     symptomer = k.symptomer
                 }).ToListAsync();

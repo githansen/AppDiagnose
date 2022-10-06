@@ -18,7 +18,7 @@ export const leggTilSymptom = () => {
         //    kategori: $("#kat").val(),
         //}
         var navn = $("#navn").val()
-        var kategori = $("kat").val()
+        var kategori = $("kategoriSelect").val()
         console.log(kategori)
 
 
