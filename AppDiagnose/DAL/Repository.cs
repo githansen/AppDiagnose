@@ -179,6 +179,8 @@ namespace AppDiagnose.DAL
                 //Finner først symptomet som skal endres på
                 Symptom hent = await _db.Symptomer.FindAsync(s.symptomId);
 
+                List<Symptom> sjekk = await _db.Symptomer.Where(x => x.navn == s.navn).ToListAsync();
+                if (sjekk.Count > 0) return false;
                 //Skal så finne kategori ut fra navnet, dette gjøres ved å hente en liste over Kategori-objekter med tilsvarende navn
                 //Denne listen skal kun inneholde 1 objekt, som vi henter med list[0]
                 List<Kategori> list = await _db.kategorier.Where(x => x.navn == s.kategori).ToListAsync();
