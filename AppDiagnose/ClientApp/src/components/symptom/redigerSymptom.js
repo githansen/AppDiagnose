@@ -1,6 +1,5 @@
 ﻿import React, { Component, useEffect, useState } from 'react';
-import { Form, FormGroup, Input, Label, Button, ButtonGroup } from "reactstrap";
-import Select from 'react-select';
+import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert } from "reactstrap";
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
@@ -9,7 +8,12 @@ export const redigerSymptom = () => {
     const [symptom, setSymptom] = useState(null)
     const [kategorier, setKategorier] = useState([])
     const id = window.location.search.substring(1);
-    const [lasterInnIkon, setLasterInn] = useState(false); 
+    const [lasterInnIkon, setLasterInn] = useState(false);
+
+    //Alert
+    const [visible, setVisible] = useState(false);
+    const [color, setColor] = useState('primary');
+    const [alertText, setText] = useState('');
 
     const lagreSymptom = () => {
     
@@ -22,6 +26,20 @@ export const redigerSymptom = () => {
         $.post("/diagnose/endreSymptom", s, function (data) {
             console.log(data)
         })
+
+        //Endrer tittel på side til oppdatert navn
+        let nyttNavn = $("#navn").val();
+        $("#navnTittel").html(nyttNavn); 
+        //Alert som viser at symptom er satt inn suksessfullt
+        setColor('success');
+        setText('Dine endringer er nå lagret!');
+        setVisible(true);
+        //Gjemmer alert etter 2sek 
+        if (setVisible) {
+            setTimeout(() => {
+                setVisible(false);
+            }, 2000)
+        }
     };
 
 
@@ -50,6 +68,11 @@ export const redigerSymptom = () => {
         <div className="container py-4">
             <div className="row align-items-md-stretch">
                 <div className="col-md-12">
+                    <Alert id="varslingsBoks" color={color} isOpen={visible} >
+                        <div>{alertText}</div>
+                    </Alert>
+                </div>
+                <div className="col-md-12">
                     <h1><i className="bi bi-activity"></i> Rediger symptom: <b><span id='navnTittel'></span></b></h1>
                     <p>*Alle felt må være fyllt ut</p>
                     <Form >
@@ -65,7 +88,7 @@ export const redigerSymptom = () => {
                               type="select"
                             >
                                 {kategorier.map((kat, index) => {
-                                    return <option value={kat.navn}> {kat.navn} </option>
+                                    return <option value={kat.navn}> {kat.navn.charAt(0).toUpperCase() + kat.navn.slice(1)} </option>
                                 })}
                             </Input>
                           </FormGroup>

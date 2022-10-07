@@ -1,6 +1,5 @@
 ﻿import React, { Component, useEffect, useState } from 'react';
-import { Form, FormGroup, Input, Label, Button, ButtonGroup } from "reactstrap";
-import Select from 'react-select';
+import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert } from "reactstrap";
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
@@ -9,6 +8,12 @@ export const leggTilSymptom = () => {
     const [symptom, setSymptom] = useState(null)
     const [kategorier, setKategorier] = useState([])
     const id = window.location.search.substring(1);
+
+    //Alert
+    const [visible, setVisible] = useState(false);
+    const [color, setColor] = useState('primary');
+    const [alertText, setText] = useState('');
+
 
     const createSymptom = () => {
 
@@ -25,8 +30,22 @@ export const leggTilSymptom = () => {
         $.post("/Diagnose/CreateSymptom?navn=" + navn + "&kategoriId=" + kategori,  function (data) {
             console.log(data)
         })
-    };
 
+
+        //Setter input og select til initial
+        $('#navn').val('');
+        $('#kategoriSelect').prop('selectedIndex', 0);
+        //Alert som viser at symptom er satt inn suksessfullt
+        setColor('success');
+        setText('Symptom "' + navn + '" ble lagt inn!');
+        setVisible(true);
+        //Gjemmer alert etter 2sek 
+        if (setVisible) {
+            setTimeout(() => {
+                setVisible(false);
+            }, 2000)
+        }
+    };
 
     useEffect(() => {
         //const url = "/diagnose/HentEtSymptom?" + id
@@ -49,6 +68,11 @@ export const leggTilSymptom = () => {
         <div className="container py-4">
             <div className="row align-items-md-stretch">
                 <div className="col-md-12">
+                    <Alert id="varslingsBoks" color={color} isOpen={visible} >
+                        <div>{alertText}</div>
+                    </Alert>
+                </div>
+                <div id="leggInnBoks" className="col-md-12">
                     <h1><i className="bi bi-activity"></i> Legg til nytt symptom</h1>
                     <p>*Alle felt må være fyllt ut</p>
 
@@ -67,7 +91,7 @@ export const leggTilSymptom = () => {
                                     >
                                         {kategorier.map((kat, index) => {
                                             console.log(kat)
-                                            return <option key={index} value={kat.id}>{kat.id} - {kat.navn} </option>
+                                            return <option key={index} value={kat.id}>{kat.id} - {kat.navn.charAt(0).toUpperCase() + kat.navn.slice(1)} </option>
                                         })}
                                     </Input>
                                 </FormGroup>
