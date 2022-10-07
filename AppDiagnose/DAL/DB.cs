@@ -1,5 +1,6 @@
 ﻿using AppDiagnose.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +27,11 @@ namespace AppDiagnose.DAL
             // må importere pakken Microsoft.EntityFrameworkCore.Proxies
             // og legge til"viritual" på de attriuttene som ønskes å lastes automatisk (LazyLoading)
             optionsBuilder.UseLazyLoadingProxies();
+        }
+
+        internal object Query<T>(T v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
