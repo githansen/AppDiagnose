@@ -67,8 +67,10 @@ export const Home = () => {
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {
+                        console.log(j)
+                        
                         ut += `<div class='content'><div className="form-check"><input className="form-check-input" type="checkbox" id="check${j.navn}" value=${j.navn}></input>
-                                <label className="form-check-label" for=check${j.navn}> ${j.navn}</label> </div> </div>`
+                                <label className="form-check-label" for=check${j.symptomId}> ${j.navn}</label> </div> </div>`
                         
                     }
                     ut += '</div>'
