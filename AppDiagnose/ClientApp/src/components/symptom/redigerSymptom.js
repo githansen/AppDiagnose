@@ -106,8 +106,8 @@ export const redigerSymptom = () => {
                             tag={Link}
                             to="/alleSymptomer"
                         >
-                            <i className="bi bi-x"></i> 
-                            Avbryt
+                            <i className="bi bi-box-arrow-in-left"></i> 
+                            Tilbake
                           </Button>
                           <Button
                             color="success"

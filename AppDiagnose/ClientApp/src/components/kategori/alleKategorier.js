@@ -26,7 +26,7 @@ export const alleKategorier = () => {
             <div className="row align-items-center my-4">
                 <div className="col-md-12">
                     <h1><i className="bi bi-bookmarks"></i> Kategorier</h1>
-                    <p>Liste over alle symptom-kategorier. (Viser pr.nå alle symptomer. Må byttes med kategorier)</p>
+                    <p>Liste over alle symptom-kategorier</p>
                 </div>
             </div>
             {lasterInnIkon && (
@@ -41,7 +41,8 @@ export const alleKategorier = () => {
                         <thead><tr><th>Alle kategorier</th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
-                                    <td className="tableTitteltd align-middle">{i.navn}</td>
+                                    <td className="tableTitteltd align-middle"><img className="img-fluid" src={`./img/kategori_${i.navn}.png`}></img>{i.navn}</td>
+                                    
                                 </tr>
                             })}
                         </tbody>

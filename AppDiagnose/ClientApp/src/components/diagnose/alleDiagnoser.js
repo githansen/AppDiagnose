@@ -16,6 +16,7 @@ const leggTilNyDiagnose = (index) => {
 };
 
 
+
 export const alleDiagnoser = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
@@ -38,7 +39,7 @@ export const alleDiagnoser = () => {
             <div className="row align-items-center my-4">
                 <div className="col-md-8">
                     <h1><i className="bi bi-clipboard2-pulse"></i> Diagnoser</h1>
-                    <p>Legg til eller rediger diagnoser (Må byttes med diagnose-data.)</p>
+                    <p>Legg til eller rediger diagnoser</p>
                 </div>
                 <div className="col-md-4">
                     <Button

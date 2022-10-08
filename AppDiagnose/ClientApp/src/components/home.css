@@ -7,9 +7,10 @@
     width: 100%;
     border: none;
     outline: none;
-    font-size: 15px;
+    font-size: 16px;
     text-transform: capitalize;
-    text-align:center;
+    text-align: left;
+    border-radius: 5px;
 }
 
 .collapsible.active, .collapsible:hover {
@@ -17,12 +18,24 @@
     color: #0c63e4;
 }
 
+.collapsible.active {
+    border-bottom-left-radius:0px;
+    border-bottom-right-radius:0px;
+    margin-bottom: 10px;
+}
+
+.kategoriBoks {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .content {
-    padding: 5px;
+    padding: 8px 15px;
     text-transform: capitalize;
     display: none;
     overflow: hidden;
-    background-color: #e7f1ff;
+    width: 33.333%;
 }
 
 #symptomByKategoriUtskrift label {
@@ -39,9 +52,19 @@
     color: #0c63e4;
 }
 
+#symptomByKategoriUtskrift input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+}
+#symptomByKategoriUtskrift input[type="checkbox"]:hover {
+    cursor:pointer;
+}
+#symptomByKategoriUtskrift input[type="checkbox"]:hover+label {
+    color: #0c63e4;
+}
+
 #symptomByKategoriUtskrift img {
-    display:block;
-    width:100%;
+    max-width:100px;
     padding:10px 20px;
 }
 
@@ -54,11 +77,14 @@ label {
     margin-bottom: 0 !important;
 }
 .btn-kalkuler {
-    border-radius: 0 !important;
     background-color: #171717 !important;
     border-color: #171717 !important;
-    color:#fff!important;
-    letter-spacing:3px;
+    color: #fff !important;
+    letter-spacing: 3px;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-left-radius: calc(0.25rem - 1px) !important;
+    border-bottom-right-radius: calc(0.25rem - 1px)!important;
 }
 .btn-kalkuler:hover {
     background-color: #0A65CC !important;

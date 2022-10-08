@@ -7,6 +7,7 @@ import {
     Col,
     Tooltip,
 } from 'reactstrap';
+import $ from 'jquery'
 
 
 
@@ -37,7 +38,6 @@ const lesMerOmDiagnose = () => {
     alert('Linken kommer snart...');
 };
 
-let liste = ["konsentrasjonsvansker", "hyperaktivitet"]
 export const Home = () => {
 
     const [symptomer, setSymptomer] = useState([])
@@ -45,10 +45,9 @@ export const Home = () => {
     const [lasterInnIkon, setLasterInn] = useState(false);
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const toggle = () => setTooltipOpen(!tooltipOpen);
+
+
     
-    const data = {
-        symptomer: ["konsentrasjonsvansker", "hyperaktivitet"]
-    }
     useEffect(() => {
         
         //Viser lasterInn-ikon
@@ -62,15 +61,15 @@ export const Home = () => {
                 setKategorier(data)
                 let ut = ""
                 for (let i of data) {
-                    ut += '<div>'
+                    ut += '<div class="kategoriBoks">'
                     ut += `<div class="collapsible"><img className="img-fluid" src="./img/kategori_${i.navn}.png"></img>`
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {
                         console.log(j)
                         
-                        ut += `<div class='content'><div className="form-check"><input className="form-check-input" type="checkbox" id="check${j.navn}" value=${j.navn}></input>
-                                <label className="form-check-label" for=check${j.symptomId}> ${j.navn}</label> </div> </div>`
+                        ut += `<div class='content'><div class="form-check round"><input class="form-check-input" type="checkbox" id="check${j.symptomId}" value=${j.navn}></input>
+                                <label class="form-check-label" for=check${j.symptomId}> ${j.navn}</label> </div> </div>`
                         
                     }
                     ut += '</div>'
@@ -93,11 +92,11 @@ export const Home = () => {
                     coll[i].addEventListener("click", function () {
                         this.classList.toggle("active");
                         for (let i of liste) {
-                            if (i.style.display === "block") {
+                            if (i.style.display === "inline-block") {
                                 i.style.display = "none"
                             }
                             else {
-                                i.style.display = "block"
+                                i.style.display = "inline-block"
                             }
                         }
                         
@@ -138,8 +137,8 @@ export const Home = () => {
                                     <p>Laster inn...</p>
                                 </div>
                             )}
-                            <Row xs="3" id="symptomByKategoriUtskrift">
-                            </Row>
+                            <div id="symptomByKategoriUtskrift">
+                            </div>
                         </Container> 
                     </div>
                     <button className="w-100 btn btn-lg btn-kalkuler p-3 " type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> KALKULER</button>
