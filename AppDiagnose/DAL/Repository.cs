@@ -36,6 +36,7 @@ namespace AppDiagnose.DAL
                 {
                     foreach(var j in i.symptomer)
                     {
+
                         j.diagnose.navn = null;
                         j.diagnose.info = null;
                         j.diagnose.symptomer = null;
