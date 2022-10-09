@@ -62,7 +62,7 @@ export const Home = () => {
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
-                    ut += `<div class="collapsible"><img className="img-fluid" src="./img/kategori_${i.navn}.png"></img>`
+                    ut += `<div class="collapsible"><img className="img-fluid" src="./img/kategori_${i.id}.png"></img>`
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {

@@ -65,7 +65,7 @@ export const alleDiagnoser = () => {
                             {liste.map((i, index) => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.diagnoseId}</th>
 
-                                    <td className="tableTitteltd align-middle">{i.navn}</td>
+                                    <td className="tableTitteltd ">{i.navn} <a href={`${i.link}`} target="_blank"><i className="bi bi-box-arrow-up-right"></i></a></td>
                                     <td style={{ textAlign: 'right' }}><Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerDiagnose", search: `?id=${i.diagnoseId}` }}><i className="bi bi-pencil"></i></Button>
                                         <Button size="sm" color="danger" onClick={() => slettDiagnose(i.diagnoseId)}><i className="bi bi-trash3"></i></Button></td>
                                 </tr>

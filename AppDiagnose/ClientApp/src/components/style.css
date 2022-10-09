@@ -151,3 +151,7 @@ table thead tr th {
     --bs-text-opacity: 1;
     color: #171717 !important;
 }
+
+table tr th:first-of-type {
+    width:80px;
+}

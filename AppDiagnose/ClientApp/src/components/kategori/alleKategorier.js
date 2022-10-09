@@ -41,7 +41,7 @@ export const alleKategorier = () => {
                         <thead><tr><th>Alle kategorier</th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
-                                    <td className="tableTitteltd align-middle"><img className="img-fluid" src={`./img/kategori_${i.navn}.png`}></img>{i.navn}</td>
+                                    <td className="tableTitteltd align-middle"><img className="img-fluid" src={`./img/kategori_${i.id}.png`}></img>{i.navn}</td>
                                     
                                 </tr>
                             })}

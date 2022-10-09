@@ -218,7 +218,7 @@ namespace AppDiagnose.DAL
                 //K4-S5
                 var daarlig_aande = new Symptom
                 {
-                    navn = "Dårlig ånde)",
+                    navn = "Dårlig ånde",
                     kategori = ore_nese_hals
                 };
                 context.Symptomer.Add(daarlig_aande);
