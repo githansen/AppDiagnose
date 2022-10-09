@@ -29,9 +29,6 @@ namespace AppDiagnose.DAL
             optionsBuilder.UseLazyLoadingProxies();
         }
 
-        internal object Query<T>(T v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
