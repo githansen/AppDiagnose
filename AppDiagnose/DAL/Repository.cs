@@ -184,6 +184,14 @@ namespace AppDiagnose.DAL
                     kategori = hent.kategori
 
                 };
+                foreach(var i in retur.diagnoser)
+                {
+                    i.diagnose.symptomer.Clear();
+                    i.symptom.kategori = null;
+                    i.symptom = null;
+                            
+                }
+                retur.kategori.symptomer.Clear();
 
                 return retur;
             }
