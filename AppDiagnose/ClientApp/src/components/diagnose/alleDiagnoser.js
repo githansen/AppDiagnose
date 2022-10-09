@@ -37,19 +37,8 @@ export const alleDiagnoser = () => {
     return (
         <div className="container py-4">
             <div className="row align-items-center my-4">
-                <div className="col-md-8">
+                <div className="col-md-12">
                     <h1><i className="bi bi-clipboard2-pulse"></i> Diagnoser</h1>
-                    <p>Legg til eller rediger diagnoser</p>
-                </div>
-                <div className="col-md-4">
-                    <Button
-                        className="float-right"
-                        color="success"
-                        tag={Link}
-                        to="/leggTilDiagnose"
-                    >
-                        <i className="bi bi-plus-lg"></i> Legg til ny
-                    </Button>
                 </div>
             </div>
             {lasterInnIkon && (
@@ -65,9 +54,10 @@ export const alleDiagnoser = () => {
                             {liste.map((i, index) => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.diagnoseId}</th>
 
-                                    <td className="tableTitteltd ">{i.navn} <a href={`${i.link}`} target="_blank"><i className="bi bi-box-arrow-up-right"></i></a></td>
-                                    <td style={{ textAlign: 'right' }}><Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerDiagnose", search: `?id=${i.diagnoseId}` }}><i className="bi bi-pencil"></i></Button>
-                                        <Button size="sm" color="danger" onClick={() => slettDiagnose(i.diagnoseId)}><i className="bi bi-trash3"></i></Button></td>
+                                    <td className="tableTitteltd ">{i.navn}</td>
+                                    <td style={{ textAlign: 'right' }}>
+                                        <a size="sm" className="mx-2 btn btn-success btn-sm" href={`${i.link}`} target="_blank"><i className="bi bi-box-arrow-up-right"></i></a>
+                                    </td>
                                 </tr>
                             })}
                         </tbody>

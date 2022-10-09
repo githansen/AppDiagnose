@@ -3,6 +3,11 @@ import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
+function Example() {
+    useEffect(() => {
+        document.title = 'My Page Title';
+    });
+}
 
 const slettSymptom = (index) => {
     //Sletter symptom fra databasen
@@ -12,12 +17,6 @@ const slettSymptom = (index) => {
     });
     
    
-};
-
-const leggTilNySymptom = (index) => {
-    console.log(index)
-    alert('Test! (Ingen funksjonalitet)');
-
 };
 
 

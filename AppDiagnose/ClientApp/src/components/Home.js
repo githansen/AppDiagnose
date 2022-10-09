@@ -13,8 +13,12 @@ import $ from 'jquery'
 
 
 const kalkulerDiagnose = () => {
+    //Sender bruker øverst på siden for å se diagnose
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+    //Viser blokk med diagnosen til brukeren
     var etterDiagnose = document.getElementById("etterDiagnose");
     etterDiagnose.style.display = "block"
+    //Skjuler blokk som veileder brukeren
     var forDiagnose = document.getElementById("forDiagnose");
     forDiagnose.style.display = "none"
 
@@ -28,7 +32,7 @@ const kalkulerDiagnose = () => {
     const s = {
         symptomer: symptomer
     };
-    $.post("/diagnose/kalkuler", s, function (data) {
+    $.post("/diagnose/Kalkuler", s, function (data) {
         console.log(data)
     })
 
@@ -50,10 +54,8 @@ export const Home = () => {
     
     useEffect(() => {
         
-        //Viser lasterInn-ikon
+        //Viser lasterInn-ikon 
         setLasterInn(true);
-
-        
 
         fetch("/diagnose/hentAlleKategorier")
             .then(data => data.json())
@@ -101,7 +103,7 @@ export const Home = () => {
                         
                     });
                 }
-                //Skjuler lasterInn-ikon
+                //Skjuler lasterInn-ikon 
                 setLasterInn(false);
             })
     }, []);
