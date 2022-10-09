@@ -115,15 +115,8 @@ namespace AppDiagnose.DAL
             if (data.symptomer.Count() == 0) return null;
             try
             {
-                // Henter først listen over alle diagnoser
-                List<Diagnose> liste = await _db.Diagnoser.Select(k => new Diagnose
-                {
-                    DiagnoseId = k.DiagnoseId,
-                    navn = k.navn,
-                    info = k.info,
-                    symptomer = k.symptomer,
-                    link = k.link
-                }).ToListAsync();
+           
+                List<Diagnose> liste = await hentalleDiagnoser();
 
                 //Finner så listen over symptomer sendt fra klient
                 string[] sympt = data.symptomer;
