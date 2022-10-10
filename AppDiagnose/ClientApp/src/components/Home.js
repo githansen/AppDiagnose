@@ -12,38 +12,13 @@ import $ from 'jquery'
 
 
 
-const kalkulerDiagnose = () => {
-    //Sender bruker øverst på siden for å se diagnose
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-    //Viser blokk med diagnosen til brukeren
-    var etterDiagnose = document.getElementById("etterDiagnose");
-    etterDiagnose.style.display = "block"
-    //Skjuler blokk som veileder brukeren
-    var forDiagnose = document.getElementById("forDiagnose");
-    forDiagnose.style.display = "none"
-
-    var y = document.getElementsByTagName("input")
-    let symptomer = []
-    for (let i of y) {
-        if (i.checked) {
-            symptomer.push(i.value)
-        }
-    }
-    const s = {
-        symptomer: symptomer
-    };
-    $.post("/diagnose/Kalkuler", s, function (data) {
-        console.log(data)
-    })
-
-};
 
 const lesMerOmDiagnose = () => {
     alert('Linken kommer snart...');
 };
 
 export const Home = () => {
-
+    const [diagnose, setDiagnose] = useState("")
     const [symptomer, setSymptomer] = useState([])
     const [kategorier, setKategorier] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
@@ -51,7 +26,33 @@ export const Home = () => {
     const toggle = () => setTooltipOpen(!tooltipOpen);
 
 
-    
+    const kalkulerDiagnose = () => {
+        //Sender bruker øverst på siden for å se diagnose
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+        //Viser blokk med diagnosen til brukeren
+        var etterDiagnose = document.getElementById("etterDiagnose");
+        etterDiagnose.style.display = "block"
+        //Skjuler blokk som veileder brukeren
+        var forDiagnose = document.getElementById("forDiagnose");
+        forDiagnose.style.display = "none"
+
+        var y = document.getElementsByTagName("input")
+        let symptomer = []
+        for (let i of y) {
+            if (i.checked) {
+                symptomer.push(i.value)
+            }
+        }
+        const s = {
+            symptomer: symptomer
+        };
+        $.post("/diagnose/Kalkuler", s, function (data) {
+            console.log(data)
+            setDiagnose(data);
+        })
+
+    };
+
     useEffect(() => {
         
         //Viser lasterInn-ikon 
@@ -158,10 +159,10 @@ export const Home = () => {
                             <img className="card-img" src="./img/diagnose_bg_placeholder.jpg" alt="Diagnose_Placeholder"></img>
                             <div className="card-img-overlay cio2 d-flex align-items-center justify-content-center">
                                 <div>
-                                    <h1><i className="bi bi-file-medical"></i></h1>
-                                    <h5 className="card-title">Din diagnose er ADHD</h5>
+                                <h1><i className="bi bi-file-medical"></i></h1>
+                                <h5 className="card-title">Din diagnose er {diagnose.navn}</h5>
                                     <p className="card-text">
-                                    Sed in eros luctus, tincidunt nisl ac, varius quam. Suspendisse tincidunt eleifend nunc a pharetra. Maecenas lobortis molestie sem in tristique. Nunc quis justo non orci finibus. 
+                                    {diagnose.info} 
                                     </p>
                                     <div className="d-grid gap-2 ">
                                         <button className="mt-3 w-100 btn btn-info" type="button" onClick={lesMerOmDiagnose}><i className="bi bi-eye"></i> Les mer</button>

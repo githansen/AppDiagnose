@@ -112,9 +112,9 @@ namespace AppDiagnose.DAL
 
                 // Vi returnerer Diagnosen med flest matches fra listen sendt fra klient. int match som tellevariabel. Vi benytter en algoritme inspirert av 
                 // Maks-metodene fra DATS2300-kompendiet; https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2 
-                int match = 1000;
-                int antall;
-                int prosent = 0;
+                double match = 0;
+                double antall;
+                double prosent = 0;
                 // Looper gjennom listen over diagnoser
                 foreach (var i in liste)
                 {
@@ -134,13 +134,14 @@ namespace AppDiagnose.DAL
                         }
                        
                     }
-                    
-                    prosent = antall != 0 ? 100 * (i.symptomer.Count + sympt.Length) / (2 * antall) : 0;
+                    double symptomlengde = i.symptomer.Count;
+                    double inputlengde = sympt.Length;
+                    prosent =  100.0 * (2.0 * antall)/(symptomlengde + inputlengde);
                     //Hvis dette er en bedre match endres returobjektet
-                    if (Math.Abs(100 - prosent) < match)
+                    if (prosent >  match)
                     {
                         retur = i;
-                        match = Math.Abs(100-prosent);
+                        match = prosent;
                     }
 
                 }
