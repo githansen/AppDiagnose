@@ -70,7 +70,7 @@ export const alleSymptomer = () => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.symptomId}</th>
 
                                     <td className="tableTitteltd align-middle">{i.navn}</td>
-                                    <td className="tableTitteltd align-middle">(Hent kategori)</td>
+                                    <td className="tableTitteltd align-middle">{i.kategori.navn}</td>
                                     <td style={{ textAlign: 'right' }}>
                                         <Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerSymptom", search: `?id=${i.symptomId}` }}><i className="bi bi-pencil"></i></Button>
                                         <Button size="sm" color="danger" onClick={() => slettSymptom(i.symptomId)}><i className="bi bi-trash3"></i></Button></td>

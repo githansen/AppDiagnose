@@ -114,7 +114,7 @@ export const Home = () => {
             .then(data => data.json())
             .then((data) => {
                 setSymptomer(data);
-            });
+            })
     }, []);
 
 
