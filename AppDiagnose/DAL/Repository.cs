@@ -62,19 +62,9 @@ namespace AppDiagnose.DAL
                     SymptomId = k.SymptomId,
                     navn = k.navn,
                     kategori = k.kategori,
-                    diagnoser = k.diagnoser
                 }).ToListAsync();
 
-                foreach(var i in s)
-                {
-                    foreach(var j in i.diagnoser)
-                    {
-                        j.symptom.navn = null;
-                        j.symptom.kategori = null;
-                        j.symptom.diagnoser = null;
-                        j.symptom = null;
-                    }
-                }
+               
                 return s;
             }
             catch
@@ -93,14 +83,7 @@ namespace AppDiagnose.DAL
                     navn = k.navn,
                     symptomer = k.symptomer
                 }).ToListAsync();
-                foreach(var i in liste)
-                {
-                    foreach(var j in i.symptomer)
-                    {
-                        j.diagnoser.Clear();
-                       
-                    }
-                }
+              
                 
                 return liste;
             }
@@ -182,17 +165,11 @@ namespace AppDiagnose.DAL
                 {
                     SymptomId = hent.SymptomId,
                     navn = hent.navn,
-                    diagnoser = hent.diagnoser,
+                   
                     kategori = hent.kategori
 
                 };
-                foreach(var i in retur.diagnoser)
-                {
-                    i.diagnose.symptomer.Clear();
-                    i.symptom.kategori = null;
-                    i.symptom = null;
-                            
-                }
+              
                 retur.kategori.symptomer.Clear();
 
                 return retur;
