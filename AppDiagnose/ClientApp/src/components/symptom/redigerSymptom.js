@@ -53,20 +53,23 @@ export const redigerSymptom = () => {
         setLasterInn(true);
         const url = "/diagnose/HentEtSymptom?" + id 
         console.log(url)
-        fetch(url)
-            .then(data => data.json())
-            .then((data) => {
+        $.get(url, function (data) {
+            
                 setSymptom(data)
                 document.getElementById("navn").value = data.navn
                 document.getElementById("navnTittel").innerHTML = data.navn
                 //Skjuler lasterInn-ikon   
                 setLasterInn(false);
-            })
-        fetch("/diagnose/HentAlleKategorier")
-            .then(data => data.json())
-            .then((data) => {
+        }).fail(function (jqXHR) {
+            //Feilhåndtering
+        })
+
+        $.get("/diagnose/HentAlleKategorier", function (data) {
+            
                 setKategorier(data)
-            })
+        }).fail(function (jqXHR) {
+            //Feilhåndtering
+        })
 
     }, [])
     return (

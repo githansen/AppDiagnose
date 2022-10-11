@@ -28,13 +28,14 @@ export const alleSymptomer = () => {
         //Viser lasterInn-ikon 
         setLasterInn(true);
         //Henter liste over alle symptomer 
-        fetch("/diagnose/hentalleSymptomer")
-            .then(data => data.json())
-            .then((data) => {
+        $.get("/diagnose/hentalleSymptomer", function (data) {
+            
                 //Skjuler lasterInn-ikon 
                 setLasterInn(false);
                 setListe(data)
-            })
+        }).fail(function (jqXHR) {
+            //feilmelding her
+        })
     }, []);
 
 

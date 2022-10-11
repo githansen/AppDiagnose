@@ -34,6 +34,8 @@ export const leggTilSymptom = () => {
 
         $.post("/Diagnose/CreateSymptom?navn=" + navn + "&kategoriId=" + kategori,  function (data) {
             console.log(data)
+        }).fail(function (jqXHR) {
+            //feilmelding her
         })
 
 
@@ -62,10 +64,10 @@ export const leggTilSymptom = () => {
         //        document.getElementById("navn").value = data.navn
         //        document.getElementById("navnTittel").innerHTML = data.navn
         //    })
-        fetch("/diagnose/HentAlleKategorier")
-            .then(data => data.json())
-            .then((data) => {
+        $.get("/diagnose/HentAlleKategorier", function (data) {
                 setKategorier(data)
+            }).fail(function (jqXHR) {
+                //Feilmelding her
             })
 
     }, [])

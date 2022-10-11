@@ -42,6 +42,9 @@ export const Home = () => {
             console.log(data)
             setDiagnose(data);
         })
+            .fail(function (jqXHR) {
+                //Håndter feilmelding her
+            })
 
     };
 
@@ -50,9 +53,8 @@ export const Home = () => {
         //Viser lasterInn-ikon 
         setLasterInn(true);
 
-        fetch("/diagnose/hentAlleKategorier")
-            .then(data => data.json())
-            .then((data) => {
+        $.get("/diagnose/hentAlleKategorier", function (data) {
+            
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
@@ -92,12 +94,16 @@ export const Home = () => {
                                 i.style.display = "inline-block"
                             }
                         }
+                    })
+
                         
-                    });
+                   
                 }
                 //Skjuler lasterInn-ikon 
                 setLasterInn(false);
-            })
+        }).fail(function (jqXHR) {
+            // Feilmelding her
+        })
     }, []);
 
 

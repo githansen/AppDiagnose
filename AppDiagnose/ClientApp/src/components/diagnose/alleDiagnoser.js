@@ -29,13 +29,13 @@ export const alleDiagnoser = () => {
     useEffect(() => {
         //Viser lasterInn-ikon
         setLasterInn(true);
-        fetch("/diagnose/HentalleDiagnoser")
-            .then(data => data.json())
-            .then((data) => {
-                //Skjuler lasterInn-ikon
+        $.get("/diagnose/HentalleDiagnoser", function (data) {   
+               //Skjuler lasterInn-ikon
                 setLasterInn(false);
                 setListe(data)
-            })
+        }).fail(function (jqXHR) {
+            //feilhåndtering
+        })
     }, []);
 
 
