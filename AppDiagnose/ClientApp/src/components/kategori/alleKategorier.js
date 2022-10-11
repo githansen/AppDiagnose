@@ -15,13 +15,13 @@ export const alleKategorier = () => {
     useEffect(() => {
         //Viser lasterInn-ikon
         setLasterInn(true);
-        fetch("/diagnose/HentAlleKategorier")
-            .then(data => data.json())
-            .then((data) => {
+        $.get("/diagnose/HentAlleKategorier", function (data) {
                 //Skjuler lasterInn-ikon
                 setLasterInn(false);
                 setListe(data)
-            })
+        }).fail(function (jqXHR) {
+            //feilhåndtering
+        })
     }, []);
 
 
