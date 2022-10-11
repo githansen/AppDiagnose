@@ -64,7 +64,7 @@ export const Home = () => {
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
-                    ut += `<div class="collapsible"><img className="img-fluid" src="./img/kategori_${i.id}.png"></img>`
+                    ut += `<div class="kollaps"><img className="img-fluid" src="./img/kategori_${i.id}.png"></img>`
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {
@@ -80,7 +80,7 @@ export const Home = () => {
                
                 
                
-                var coll = document.getElementsByClassName("collapsible");
+                var coll = document.getElementsByClassName("kollaps");
                 var i;
 
                 for (i = 0; i < coll.length; i++) {

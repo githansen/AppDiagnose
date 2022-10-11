@@ -1,4 +1,14 @@
-﻿body {
+﻿/*!
+ * MinDiagnose App - style.css
+ * Version - 1.0.0
+ * Licensed under The MIT License - https://choosealicense.com/licenses/mit/
+ *
+ * Copyright (c) 2022 style.css
+*/
+
+
+/* Generelle stiler */ 
+body {
     background: rgba(241,242,244,.6);
 }
 
@@ -10,99 +20,104 @@ code {
     color: #E01A76;
 }
 
-
+/* Tabell */ 
 .tableTitteltd {
     text-transform: capitalize;
 }
+
 .tableTitteltd img{
     width:50px!important;
     margin-right:10px;
 }
 
-.btn {
-    border-radius:100px;
-}
-
-.btn-disabled {
-    opacity: .3!important;
-    cursor: default!important;
-}
-.btn-disabled:hover {opacity:.3!important;}
-
-.btn-primary {
-    color: #fff;
-    background-color: #0A65CC !important;
-    border-color: #0A65CC !important;
-}
-
-.btn-primary:hover {
-    background-color: #171717 !important;
-    border-color: #171717 !important;
-}
-
-.btn-info {
-    background-color: #fff !important;
-    border-color: #0A65CC !important;
-    color: #0A65CC !important;
-}
-
-.btn-info:hover {
-    opacity:.75;
-}
-
-.btn-warning {
-    background-color: #171717 !important;
-    border-color: #171717 !important;
-    color: #fff !important;
+table thead tr th {
+    border-top: none !important;
 }
 
 
-.btn-warning:hover {
-    background-color: #fff !important;
-    border-color: #fff !important;
-    color: #171717 !important;
+table tr th:first-of-type {
+    width: 80px;
 }
 
-.btn-success {
-    background-color: #f5821f !important;
-    border-color: #f5821f !important;
-    color: #fff !important;
-}
+/* Knapp */
 
-.btn-success:hover {
-    background-color: #0da824 !important;
-    border-color: #0da824 !important;
-}
-.btn-danger {
-    background-color: #171717 !important;
-    border-color: #171717 !important;
-    color: #fff !important;
-}
-.btn-danger:hover {
-    background-color: #e81320 !important;
-    border-color: #e81320 !important;
-}
-.bg-light {
-    background-color: #fff !important;
-    border: none !important;
-    border-radius: calc(0.25rem - 1px);
-    box-shadow: 0 0 30px -20px rgba(0,0,0,0.175);
-}
+    /* Knapp - Inital */ 
+    .btn {
+        border-radius:100px;
+    }
 
-.bg-dark {
-    border: none !important;
-    border-radius: calc(0.25rem - 1px);
-    box-shadow: 0 0 30px -20px rgba(0,0,0,0.175);
-}
-.bg-dark.diagnos_bg {
-    background-position:center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+    .btn-disabled {
+        opacity: .3!important;
+        cursor: default!important;
+    }
 
+    .btn-primary {
+        color: #fff;
+        background-color: #0A65CC !important;
+        border-color: #0A65CC !important;
+    }
+
+    .btn-info {
+        background-color: #fff !important;
+        border-color: #0A65CC !important;
+        color: #0A65CC !important;
+    }
+
+    .btn-warning {
+        background-color: #171717 !important;
+        border-color: #171717 !important;
+        color: #fff !important;
+    }
+
+    .btn-success {
+        background-color: #f5821f !important;
+        border-color: #f5821f !important;
+        color: #fff !important;
+    }
+
+    .btn-danger {
+        background-color: #171717 !important;
+        border-color: #171717 !important;
+        color: #fff !important;
+    }
+
+
+    /* Knapp - Hover */ 
+    .btn-disabled:hover {
+        opacity:.3!important;
+    }
+
+    .btn-primary:hover {
+        background-color: #171717 !important;
+        border-color: #171717 !important;
+    }
+
+    .btn-info:hover {
+        opacity: .75;
+    }
+
+    .btn-warning:hover {
+        background-color: #fff !important;
+        border-color: #fff !important;
+        color: #171717 !important;
+    }
+
+    .btn-success:hover {
+        background-color: #0da824 !important;
+        border-color: #0da824 !important;
+    }
+
+    .btn-danger:hover {
+        background-color: #e81320 !important;
+        border-color: #e81320 !important;
+    }
+
+
+
+
+
+
+/* Boostrap - Kort (Cards) */ 
 .list-group-item {
     border-radius: calc(0.25rem - 1px)!important;
 }
@@ -115,23 +130,18 @@ code {
     background: rgba(10, 101, 204, 0.9);
 }
 
+/* Skjema elementer */ 
 select option {
     text-transform: capitalize
 }
 
-table thead tr th {
-    border-top:none!important;
-}
-
-.bg-primary {
-    background-color: #0A65CC!important;
-}
-
+/* LasteInn - Ikon */ 
 .lastInn-Boks {
     margin-top: 40px;
     text-align: center;
     color: #171717;
 }
+
 .lasterInn-Ikon {
     --bs-spinner-width: 2rem;
     --bs-spinner-height: 2rem;
@@ -152,6 +162,30 @@ table thead tr th {
     color: #171717 !important;
 }
 
-table tr th:first-of-type {
-    width:80px;
+/* Annet */
+.bg-primary {
+    background-color: #0A65CC !important;
 }
+
+.bg-light {
+    background-color: #fff !important;
+    border: none !important;
+    border-radius: calc(0.25rem - 1px);
+    box-shadow: 0 0 30px -20px rgba(0,0,0,0.175);
+}
+
+.bg-dark {
+    border: none !important;
+    border-radius: calc(0.25rem - 1px);
+    box-shadow: 0 0 30px -20px rgba(0,0,0,0.175);
+}
+
+.bg-dark.diagnos_bg {
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+    

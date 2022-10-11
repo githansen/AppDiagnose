@@ -1,5 +1,35 @@
-﻿
-.collapsible {
+﻿/*!
+ * MinDiagnose App - home.css
+ * Version - 1.0.0
+ * Licensed under The MIT License - https://choosealicense.com/licenses/mit/
+ *
+ * Copyright (c) 2022 home.css
+*/
+
+
+/* Knapp */
+
+
+    /* Knapp - Inital */ 
+    .btn-kalkuler {
+        background-color: #171717 !important;
+        border-color: #171717 !important;
+        color: #fff !important;
+        letter-spacing: 3px;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: calc(0.25rem - 1px) !important;
+        border-bottom-right-radius: calc(0.25rem - 1px) !important;
+    }
+
+    /* Knapp - Hover */ 
+    .btn-kalkuler:hover {
+        background-color: #0A65CC !important;
+        border-color: #0A65CC !important;
+    }
+
+/*  Kollaps (Collapsible) */ 
+.kollaps {
     background: #fff;
     color: #000;
     cursor: pointer;
@@ -13,17 +43,24 @@
     border-radius: 5px;
 }
 
-.collapsible.active, .collapsible:hover {
+.kollaps.active, .kollaps:hover {
     background-color: #e7f1ff;
     color: #0c63e4;
 }
 
-.collapsible.active {
+.kollaps.active {
     border-bottom-left-radius:0px;
     border-bottom-right-radius:0px;
     margin-bottom: 10px;
 }
 
+/* Bilde */
+#symptomByKategoriUtskrift img {
+    max-width:100px;
+    padding:10px 20px;
+}
+
+/* Annet */
 .kategoriBoks {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 5px;
@@ -38,55 +75,43 @@
     width: 33.333%;
 }
 
-#symptomByKategoriUtskrift label {
-    font-size:14px;
-}
-
-#symptomByKategoriUtskrift label:hover {
-    cursor: pointer;
-    color: #0c63e4;
-    opacity:.8;
-}
-
-#symptomByKategoriUtskrift input[type="checkbox"]:checked+label {
-    color: #0c63e4;
-}
-
-#symptomByKategoriUtskrift input[type="checkbox"] {
-    width: 12px;
-    height: 12px;
-}
-#symptomByKategoriUtskrift input[type="checkbox"]:hover {
-    cursor:pointer;
-}
-#symptomByKategoriUtskrift input[type="checkbox"]:hover+label {
-    color: #0c63e4;
-}
-
-#symptomByKategoriUtskrift img {
-    max-width:100px;
-    padding:10px 20px;
-}
-
 #etterDiagnose {
     display: none;
 }
 
 
-label {
-    margin-bottom: 0 !important;
-}
-.btn-kalkuler {
-    background-color: #171717 !important;
-    border-color: #171717 !important;
-    color: #fff !important;
-    letter-spacing: 3px;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-left-radius: calc(0.25rem - 1px) !important;
-    border-bottom-right-radius: calc(0.25rem - 1px)!important;
-}
-.btn-kalkuler:hover {
-    background-color: #0A65CC !important;
-    border-color: #0A65CC !important;
-}
+/* Skjema elementer - Start */
+
+    /* Label */
+    #symptomByKategoriUtskrift label {
+        font-size:14px;
+    }
+
+    #symptomByKategoriUtskrift label:hover {
+        cursor: pointer;
+        color: #0c63e4;
+        opacity:.8;
+    }
+
+    label {
+        margin-bottom: 0 !important;
+    }
+
+    /* Input */
+    #symptomByKategoriUtskrift input[type="checkbox"]:checked+label {
+        color: #0c63e4;
+    }
+
+    /* Checkbox */
+    #symptomByKategoriUtskrift input[type="checkbox"] {
+        width: 12px;
+        height: 12px;
+    }
+    #symptomByKategoriUtskrift input[type="checkbox"]:hover {
+        cursor:pointer;
+    }
+    #symptomByKategoriUtskrift input[type="checkbox"]:hover+label {
+        color: #0c63e4;
+    }
+
+/* Skjema elementer - Slutt */
