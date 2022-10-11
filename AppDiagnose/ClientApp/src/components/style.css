@@ -7,9 +7,20 @@
 */
 
 
-/* Generelle stiler */ 
+/* Generelle stiler */
+html {
+    font-size: 15px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
 body {
     background: rgba(241,242,244,.6);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 a {

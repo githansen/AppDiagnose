@@ -1,10 +1,10 @@
-﻿using AppDiagnose.Models;
+﻿using MinDiagnose.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
 
-namespace AppDiagnose.DAL
+namespace MinDiagnose.DAL
 {
     public static class DBinit
     {

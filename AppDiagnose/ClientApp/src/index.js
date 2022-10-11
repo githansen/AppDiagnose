@@ -1,7 +1,15 @@
+// File - index.js //
+
+//Stiler
 import 'bootstrap/dist/css/bootstrap.css';
+
+//JavaScript Bibliotek
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+
+
+//Annet
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

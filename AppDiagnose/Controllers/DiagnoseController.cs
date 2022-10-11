@@ -1,14 +1,14 @@
-﻿using AppDiagnose.Models;
+﻿using MinDiagnose.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using System.Security.Principal;
-using AppDiagnose.DAL;
+using MinDiagnose.DAL;
 using System.Threading.Tasks;
 
-namespace AppDiagnose.Controllers
+namespace MinDiagnose.Controllers
 {
     [Route("[controller]/[action]")]
     public class DiagnoseController : ControllerBase

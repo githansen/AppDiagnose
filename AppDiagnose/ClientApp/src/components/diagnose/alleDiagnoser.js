@@ -1,14 +1,19 @@
-﻿import React, { Component, useEffect, useState } from 'react';
+﻿// File - alleDiagnoser.js //
+
+//JavaScript Bibliotek
+import React, { Component, useEffect, useState } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
+//Funksjon 
 const slettDiagnose = (index) => {
     console.log(index)
     alert('Vil du slette denne? (Ingen funksjonalitet)');
 
 };
 
+//Funksjon 
 const leggTilNyDiagnose = (index) => {
     console.log(index)
     alert('Test! (Ingen funksjonalitet)');
@@ -16,7 +21,7 @@ const leggTilNyDiagnose = (index) => {
 };
 
 
-
+//OUTPUT 
 export const alleDiagnoser = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);

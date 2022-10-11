@@ -1,4 +1,4 @@
-using AppDiagnose.DAL;
+using MinDiagnose.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace AppDiagnose
+namespace MinDiagnose
 {
     public class Startup
     {
@@ -27,8 +27,8 @@ namespace AppDiagnose
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-        // må være med når det skal serialiseres "kompliserte" strukturer til JSON. 
-        // i tillegg må Microsoft.AspNetCore.NewtonsoftJson installeres som pakke
+        // mï¿½ vï¿½re med nï¿½r det skal serialiseres "kompliserte" strukturer til JSON. 
+        // i tillegg mï¿½ Microsoft.AspNetCore.NewtonsoftJson installeres som pakke
         );
 
             services.AddDbContext<DB>(options => options.UseSqlite("Data Source=Diagnose.db"));

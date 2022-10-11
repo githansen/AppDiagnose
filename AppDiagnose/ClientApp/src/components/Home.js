@@ -1,26 +1,21 @@
+// File - Home.js //
+
+//JavaScript Bibliotek
 import React, { Component, useState, useEffect } from 'react';
+import { Container, Row, Col, Tooltip } from 'reactstrap';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-import "./home.css"
-import {
-    Container,
-    Row,
-    Col,
-    Tooltip,
-} from 'reactstrap';
 import $ from 'jquery'
 
+//Stiler  
+import "./home.css"
 
 
 
-
-const lesMerOmDiagnose = () => {
-    alert('Linken kommer snart...');
-};
-
+//OUTPUT
 export const Home = () => {
-    const [diagnose, setDiagnose] = useState("")
-    const [symptomer, setSymptomer] = useState([])
-    const [kategorier, setKategorier] = useState([])
+    const [diagnose, setDiagnose] = useState("");
+    const [symptomer, setSymptomer] = useState([]);
+    const [kategorier, setKategorier] = useState([]);
     const [lasterInnIkon, setLasterInn] = useState(false);
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const toggle = () => setTooltipOpen(!tooltipOpen);

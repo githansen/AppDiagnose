@@ -1,11 +1,11 @@
-﻿using AppDiagnose.Models;
+﻿using MinDiagnose.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppDiagnose.DAL
+namespace MinDiagnose.DAL
 {
 
     public class DB : DbContext

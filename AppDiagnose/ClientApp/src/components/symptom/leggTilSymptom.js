@@ -1,12 +1,17 @@
-﻿import React, { Component, useEffect, useState } from 'react';
+﻿// File - leggTilSymptom.js //
+
+//JavaScript Bibliotek
+import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert } from "reactstrap";
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
 
+
+//OUTPUT
 export const leggTilSymptom = () => {
-    const [symptom, setSymptom] = useState(null)
-    const [kategorier, setKategorier] = useState([])
+    const [symptom, setSymptom] = useState(null);
+    const [kategorier, setKategorier] = useState([]);
     const id = window.location.search.substring(1);
 
     //Alert

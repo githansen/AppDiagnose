@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppDiagnose.Models
+namespace MinDiagnose.Models
 {
     public class SymptomForDiagnose
     {

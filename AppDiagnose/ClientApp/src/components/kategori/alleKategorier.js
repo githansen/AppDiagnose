@@ -1,9 +1,13 @@
-﻿import React, { Component, useEffect, useState } from 'react';
+﻿// File - alleKategorier.js //
+
+//JavaScript Bibliotek
+import React, { Component, useEffect, useState } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
 
+//OUTPUT 
 export const alleKategorier = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);

@@ -1,10 +1,15 @@
-﻿import React, { Component, useEffect, useState} from 'react';
+﻿// File - alleSymptomer.js //
+
+//JavaScript Bibliotek
+import React, { Component, useEffect, useState } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
+
+//Funksjon 
 const slettSymptom = (index) => {
-    //Sletter symptom fra databasen
+    //Sletter symptom fra databasen 
     let url = "/diagnose/slettSymptom?Id=" + index
     $.post(url, function (data) {
         //Laster inn siden på nytt for å se endringer 
@@ -13,18 +18,20 @@ const slettSymptom = (index) => {
 };
 
 
+
+//OUTPUT
 export const alleSymptomer = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
     //Use-Effect kjøres her 1 gang i det dokumentet rendres
     useEffect(() => {
-        //Viser lasterInn-ikon
+        //Viser lasterInn-ikon 
         setLasterInn(true);
-        //Henter liste over alle symptomer
+        //Henter liste over alle symptomer 
         fetch("/diagnose/hentalleSymptomer")
             .then(data => data.json())
             .then((data) => {
-                //Skjuler lasterInn-ikon
+                //Skjuler lasterInn-ikon 
                 setLasterInn(false);
                 setListe(data)
             })

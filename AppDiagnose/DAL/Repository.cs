@@ -1,4 +1,4 @@
-﻿using AppDiagnose.Models;
+﻿using MinDiagnose.Models;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace AppDiagnose.DAL
+namespace MinDiagnose.DAL
 {
     public class Repository : IRepository
     {

@@ -1,9 +1,13 @@
-﻿import React, { Component, useState } from 'react';
+﻿// File - Dokumentasjon.js //
+
+//JavaScript Bibliotek
+import React, { Component, useState } from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
 
+//OUTPUT
 export const Dokumentasjon = () => {
     return (
         <div className="container py-4">

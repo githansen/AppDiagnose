@@ -1,8 +1,8 @@
-﻿using AppDiagnose.Models;
+﻿using MinDiagnose.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AppDiagnose.DAL
+namespace MinDiagnose.DAL
 {
     public interface IRepository
     {

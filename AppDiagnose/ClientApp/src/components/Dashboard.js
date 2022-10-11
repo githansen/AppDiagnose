@@ -1,7 +1,13 @@
-﻿import React, { Component } from 'react';
+﻿// File - Dashboard.js //
+
+//JavaScript Bibliotek
+import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+
+
+//OUTPUT
 export const Dashboard = () => {
     return (
         <div className="container py-4">

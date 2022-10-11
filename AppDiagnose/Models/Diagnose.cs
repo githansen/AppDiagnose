@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppDiagnose.Models
+namespace MinDiagnose.Models
 {
     public class Diagnose
     {

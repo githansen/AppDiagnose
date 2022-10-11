@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
+
+//Side - Home
 import { Home } from './components/Home';
+//Side - Dashboard 
 import { Dashboard } from './components/Dashboard';
-import { Dokumentasjon } from './components/Dokumentasjon';
-//Symptom 
+//Side - Symptom 
 import { alleSymptomer } from './components/symptom/alleSymptomer';
 import { redigerSymptom } from './components/symptom/redigerSymptom';
 import { leggTilSymptom } from './components/symptom/leggTilSymptom';
-//Diagnose 
+//Side - Diagnose
 import { alleDiagnoser } from './components/diagnose/alleDiagnoser';
-//Kategori 
+//Side - Kategori 
 import { alleKategorier } from './components/kategori/alleKategorier';
+//Side - Dokumentasjon 
+import { Dokumentasjon } from './components/Dokumentasjon';
 
+//Stiler  
 import './components/style.css'
 
 export default class App extends Component {
