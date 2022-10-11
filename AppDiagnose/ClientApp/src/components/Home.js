@@ -25,7 +25,6 @@ export const Home = () => {
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const toggle = () => setTooltipOpen(!tooltipOpen);
 
-
     const kalkulerDiagnose = () => {
         //Sender bruker øverst på siden for å se diagnose
         window.scroll({ top: 0, left: 0, behavior: 'smooth' })
@@ -162,10 +161,10 @@ export const Home = () => {
                                 <h1><i className="bi bi-file-medical"></i></h1>
                                 <h5 className="card-title">Din diagnose er {diagnose.navn}</h5>
                                     <p className="card-text">
-                                    {diagnose.info} 
+                                    {diagnose.info}
                                     </p>
                                     <div className="d-grid gap-2 ">
-                                        <button className="mt-3 w-100 btn btn-info" type="button" onClick={lesMerOmDiagnose}><i className="bi bi-eye"></i> Les mer</button>
+                                        <a size="sm" className="mt-3 w-100 btn btn-info" href={`${diagnose.link}`} target="_blank"><i className="bi bi-eye"></i> Les mer</a>
                                         <button id="medisinKnp" className="mt-3 w-100 btn btn-info btn-disabled" type="button"><i className="bi bi-capsule"></i> Se medisiner</button>
                                           <Tooltip isOpen={tooltipOpen} target="medisinKnp" toggle={toggle} >
                                             Kommer snart...

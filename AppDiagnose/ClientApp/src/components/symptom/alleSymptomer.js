@@ -3,20 +3,13 @@ import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
-function Example() {
-    useEffect(() => {
-        document.title = 'My Page Title';
-    });
-}
-
 const slettSymptom = (index) => {
     //Sletter symptom fra databasen
     let url = "/diagnose/slettSymptom?Id=" + index
     $.post(url, function (data) {
+        //Laster inn siden på nytt for å se endringer 
         window.location.reload()
     });
-    
-   
 };
 
 
