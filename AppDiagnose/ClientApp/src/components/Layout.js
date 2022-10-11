@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 
 //Felles komponenter
 import { Container } from 'reactstrap';
-import { NavMenu } from './shared/NavMenu';
-import { Footer } from './shared/Footer';
+import { NavMenu } from './felles/NavMenu';
+import { Footer } from './felles/Footer';
 
 
 

@@ -4,8 +4,6 @@ import { Layout } from './components/Layout';
 
 //Side - Home
 import { Home } from './components/Home';
-//Side - Dashboard 
-import { Dashboard } from './components/Dashboard';
 //Side - Symptom 
 import { alleSymptomer } from './components/symptom/alleSymptomer';
 import { redigerSymptom } from './components/symptom/redigerSymptom';
@@ -15,7 +13,9 @@ import { alleDiagnoser } from './components/diagnose/alleDiagnoser';
 //Side - Kategori 
 import { alleKategorier } from './components/kategori/alleKategorier';
 //Side - Dokumentasjon 
-import { Dokumentasjon } from './components/Dokumentasjon';
+import { Dokumentasjon } from './components/dokumentasjon/Dokumentasjon';
+//Side - Dashboard 
+import { Dashboard } from './components/dashboard/Dashboard';
 
 //Stiler  
 import './components/style.css'
