@@ -14,8 +14,6 @@ import "./home.css"
 //OUTPUT
 export const Home = () => {
     const [diagnose, setDiagnose] = useState("");
-    const [symptomer, setSymptomer] = useState([]);
-    const [kategorier, setKategorier] = useState([]);
     const [lasterInnIkon, setLasterInn] = useState(false);
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const toggle = () => setTooltipOpen(!tooltipOpen);
@@ -55,7 +53,6 @@ export const Home = () => {
         fetch("/diagnose/hentAlleKategorier")
             .then(data => data.json())
             .then((data) => {
-                setKategorier(data)
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
@@ -104,13 +101,7 @@ export const Home = () => {
     }, []);
 
 
-    useEffect(() => {
-        fetch("/diagnose/HentAlleSymptomer")
-            .then(data => data.json())
-            .then((data) => {
-                setSymptomer(data);
-            })
-    }, []);
+   
 
 
 
