@@ -232,15 +232,15 @@ namespace MinDiagnose.DAL
 
         public async Task<bool> CreateSymptom(string navn, int kategoriId) // creates new symptom in the db -- to run: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
         {
-            try // tries to create new 'Symptom'
+            try // prøver å lage 'Symptom'
             { 
-                Kategori k = await _db.kategorier.FindAsync(kategoriId); // finds kategori given kategoriId
-                var new_symptom = new Symptom { navn = navn, kategori = k}; // creates new Symptom object
-                _db.Symptomer.Add(new_symptom); // adds that object to the database
-                await _db.SaveChangesAsync(); // saves!
-                return true; // returns true if successful
+                Kategori k = await _db.kategorier.FindAsync(kategoriId); // finner kategori gitt kategoriId
+                var new_symptom = new Symptom { navn = navn, kategori = k}; // lager nytt Symptom-objekt
+                _db.Symptomer.Add(new_symptom); // legger objektet i databasen
+                await _db.SaveChangesAsync(); // lagrer!
+                return true; // returnerer true hvis vellykket
             }
-            catch // if creation of 'Symptom' fails -> return false
+            catch // hvis skapelse av 'Symptom' feiler -> returner false
             {
                 return false;
             }
