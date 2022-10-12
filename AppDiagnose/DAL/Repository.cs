@@ -230,7 +230,7 @@ namespace MinDiagnose.DAL
             }
         }
 
-        public async Task<bool> CreateSymptom(string navn, int kategoriId) // creates new symptom in the db -- to run: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
+        public async Task<bool> CreateSymptom(string navn, int kategoriId) // lager nytt symptom databasen -- for å kjøre: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
         {
             try // prøver å lage 'Symptom'
             { 
