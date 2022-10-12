@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace MinDiagnose.DAL
 {
@@ -233,7 +234,12 @@ namespace MinDiagnose.DAL
         public async Task<bool> CreateSymptom(string navn, int kategoriId) // lager nytt symptom databasen -- for å kjøre: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
         {
             try // prøver å lage 'Symptom'
-            { 
+            {
+                bool regexTest = Regex.IsMatch(navn.ToString(), @"^[a-zA-ZæøåÆØÅ. \-]{2,20}$");
+                if (!regexTest) // input-validering
+                {
+                    return false;
+                }
                 Kategori k = await _db.kategorier.FindAsync(kategoriId); // finner kategori gitt kategoriId
                 var new_symptom = new Symptom { navn = navn, kategori = k}; // lager nytt Symptom-objekt
                 _db.Symptomer.Add(new_symptom); // legger objektet i databasen
@@ -248,3 +254,5 @@ namespace MinDiagnose.DAL
 
     }
 }
+
+// [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{2,20}$")]
