@@ -53,6 +53,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av hentAlleDiagnoser()");
                 return null;
             }
         }
@@ -74,6 +75,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av hentAlleSymptomer()");
                 return null;
             }
         }
@@ -94,6 +96,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av HentAlleKategorier()");
                 return null;
             }
         }
@@ -102,7 +105,11 @@ namespace MinDiagnose.DAL
 
         public async Task <Diagnose> kalkuler(Data data)
         {
-            if (data.symptomer.Count() == 0) return null;
+            if (data.symptomer.Count() == 0)
+            {
+                _log.LogInformation("kalkuler(Data data) ble kjørt med ingen symptomer valgt. Returnerte null.");
+                return null;
+            }
             try
             {
            
@@ -156,6 +163,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av kalkuler()");
                 return null;
             }
         }
@@ -182,6 +190,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av HentEtSymptom()");
                 return null;
             }
         }
@@ -207,6 +216,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av endreSymptom()");
                 return false;
             }
         }
@@ -231,11 +241,12 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av slettSymptom()");
                 return false;
             }
         }
 
-        public async Task<bool> CreateSymptom(string navn, int kategoriId) // lager nytt symptom databasen -- for å kjøre: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
+        public async Task<bool> CreateSymptom(string navn, int kategoriId) // lager nytt symptom i databasen -- for å kjøre: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
         {
             try // prøver å lage 'Symptom'
             {
@@ -260,5 +271,3 @@ namespace MinDiagnose.DAL
 
     }
 }
-
-// [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{2,20}$")]
