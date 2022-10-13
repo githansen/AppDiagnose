@@ -8,16 +8,20 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
 
 namespace MinDiagnose.DAL
 {
     public class Repository : IRepository
     {
         private readonly DB _db;
+        private ILogger<Repository> _log;
 
-        public Repository(DB db)
+
+        public Repository(DB db, ILogger<Repository> log)
         {
             _db = db;
+            _log = log;
         }
 
         public async Task<List<Diagnose>> hentalleDiagnoser()
@@ -238,6 +242,7 @@ namespace MinDiagnose.DAL
                 bool regexTest = Regex.IsMatch(navn.ToString(), @"^[a-zA-ZæøåÆØÅ. \-]{2,20}$");
                 if (!regexTest) // input-validering
                 {
+                    _log.LogInformation("Det gikk galt da bruker prøvde å lage nytt symptom");
                     return false;
                 }
                 Kategori k = await _db.kategorier.FindAsync(kategoriId); // finner kategori gitt kategoriId

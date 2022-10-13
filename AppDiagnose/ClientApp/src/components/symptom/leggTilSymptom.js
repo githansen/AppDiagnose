@@ -21,37 +21,74 @@ export const leggTilSymptom = () => {
 
 
     const createSymptom = () => {
-
-        //const s = {
-        //    symptomId: symptom.symptomId,
-        //    navn: $("#navn").val(),
-        //    kategori: $("#kat").val(),
-        //}
+        
+       
         var navn = $("#navn").val()
         var kategori = $("#kategoriSelect").val()
-        console.log(kategori)
-
-
-        $.post("/Diagnose/CreateSymptom?navn=" + navn + "&kategoriId=" + kategori,  function (data) {
-            console.log(data)
-        }).fail(function (jqXHR) {
-            //feilmelding her
-        })
-
 
         //Setter input og select til initial
         $('#navn').val('');
         $('#kategoriSelect').prop('selectedIndex', 0);
-        //Alert som viser at symptom er satt inn suksessfullt
-        setColor('success');
-        setText('Symptom "' + navn + '" ble lagt inn!');
-        setVisible(true);
-        //Gjemmer alert etter 2sek 
-        if (setVisible) {
-            setTimeout(() => {
-                setVisible(false);
-            }, 2000)
+
+        // front end input-validering
+        const regex = new RegExp(/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/);
+        var regextest = regex.test(navn);
+        if (!regextest) { // Hvis input-validering på front-end er mislykket
+            //Alert som viser at createSymptom feilet
+            setColor('danger');
+            setText(navn + ' er ikke et godkjent symptomnavn. Bruk vanlige bokstaver. 2 - 20 tegn.');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
+        } else {
+            $.post("/Diagnose/CreateSymptom?navn=" + navn + "&kategoriId=" + kategori, function (data) {
+                if (data == true) { // hvis return value er true -> createSymptom var vellykket
+                    //Alert som viser at symptom er satt inn suksessfullt
+                    setColor('success');
+                    setText('Symptom "' + navn + '" ble lagt inn!');
+                    setVisible(true);
+                    //Gjemmer alert etter 2sek 
+                    if (setVisible) {
+                        setTimeout(() => {
+                            setVisible(false);
+                        }, 2000)
+                    }
+                } else { // createSymptom returner enten false eller true
+                    //Alert som viser at createSymptom feilet
+                    setColor('danger');
+                    setText(navn + '" ble ikke lagt inn på grunn av feil i backend!');
+                    setVisible(true);
+                    //Gjemmer alert etter 2sek 
+                    if (setVisible) {
+                        setTimeout(() => {
+                            setVisible(false);
+                        }, 2000)
+                    }
+                }
+            }).fail(function (jqXHR) {
+                //Alert som viser at createSymptom feilet
+                setColor('danger');
+                setText('Feil i respons for API-kall');
+                setVisible(true);
+                //Gjemmer alert etter 2sek 
+                if (setVisible) {
+                    setTimeout(() => {
+                        setVisible(false);
+                    }, 2000)
+                }
+            })
         }
+
+        
+
+        
+
+        
+       
     };
 
     useEffect(() => {
