@@ -253,6 +253,7 @@ namespace MinDiagnose.DAL
             }
             catch // hvis skapelse av 'Symptom' feiler -> returner false
             {
+                _log.LogInformation("Noe gikk galt under laging av nytt symptom (CreateSymptom() returned false)");
                 return false;
             }
         }
