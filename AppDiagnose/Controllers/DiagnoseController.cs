@@ -7,6 +7,7 @@ using System;
 using System.Security.Principal;
 using MinDiagnose.DAL;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace MinDiagnose.Controllers
 {
@@ -14,10 +15,12 @@ namespace MinDiagnose.Controllers
     public class DiagnoseController : ControllerBase
     {
         private readonly IRepository _db;
+        private ILogger<DiagnoseController> _log;
 
-        public DiagnoseController(IRepository db)
+        public DiagnoseController(IRepository db, ILogger<DiagnoseController> log)
         {
              _db = db;
+            _log = log;
         }
 
 

@@ -7,16 +7,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using Microsoft.Extensions.Logging;
 
 namespace MinDiagnose.DAL
 {
     public class Repository : IRepository
     {
         private readonly DB _db;
+        private ILogger<Repository> _log;
 
-        public Repository(DB db)
+
+        public Repository(DB db, ILogger<Repository> log)
         {
             _db = db;
+            _log = log;
         }
 
         public async Task<List<Diagnose>> hentalleDiagnoser()
@@ -48,6 +53,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av hentAlleDiagnoser()");
                 return null;
             }
         }
@@ -69,6 +75,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av hentAlleSymptomer()");
                 return null;
             }
         }
@@ -89,6 +96,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av HentAlleKategorier()");
                 return null;
             }
         }
@@ -97,7 +105,11 @@ namespace MinDiagnose.DAL
 
         public async Task <Diagnose> kalkuler(Data data)
         {
-            if (data.symptomer.Count() == 0) return null;
+            if (data.symptomer.Count() == 0)
+            {
+                _log.LogInformation("kalkuler(Data data) ble kjørt med ingen symptomer valgt. Returnerte null.");
+                return null;
+            }
             try
             {
            
@@ -151,6 +163,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av kalkuler()");
                 return null;
             }
         }
@@ -177,6 +190,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av HentEtSymptom()");
                 return null;
             }
         }
@@ -202,6 +216,7 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av endreSymptom()");
                 return false;
             }
         }
@@ -226,22 +241,30 @@ namespace MinDiagnose.DAL
             }
             catch
             {
+                _log.LogInformation("Noe gikk galt under kjøring av slettSymptom()");
                 return false;
             }
         }
 
-        public async Task<bool> CreateSymptom(string navn, int kategoriId) // creates new symptom in the db -- to run: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
+        public async Task<bool> CreateSymptom(string navn, int kategoriId) // lager nytt symptom i databasen -- for å kjøre: https://localhost:44325/Diagnose/CreateSymptom?navn=testname&kategoriId=2
         {
-            try // tries to create new 'Symptom'
-            { 
-                Kategori k = await _db.kategorier.FindAsync(kategoriId); // finds kategori given kategoriId
-                var new_symptom = new Symptom { navn = navn, kategori = k}; // creates new Symptom object
-                _db.Symptomer.Add(new_symptom); // adds that object to the database
-                await _db.SaveChangesAsync(); // saves!
-                return true; // returns true if successful
-            }
-            catch // if creation of 'Symptom' fails -> return false
+            try // prøver å lage 'Symptom'
             {
+                bool regexTest = Regex.IsMatch(navn.ToString(), @"^[a-zA-ZæøåÆØÅ. \-]{2,20}$");
+                if (!regexTest) // input-validering
+                {
+                    _log.LogInformation("Det gikk galt da bruker prøvde å lage nytt symptom");
+                    return false;
+                }
+                Kategori k = await _db.kategorier.FindAsync(kategoriId); // finner kategori gitt kategoriId
+                var new_symptom = new Symptom { navn = navn, kategori = k}; // lager nytt Symptom-objekt
+                _db.Symptomer.Add(new_symptom); // legger objektet i databasen
+                await _db.SaveChangesAsync(); // lagrer!
+                return true; // returnerer true hvis vellykket
+            }
+            catch // hvis skapelse av 'Symptom' feiler -> returner false
+            {
+                _log.LogInformation("Noe gikk galt under laging av nytt symptom (CreateSymptom() returned false)");
                 return false;
             }
         }
