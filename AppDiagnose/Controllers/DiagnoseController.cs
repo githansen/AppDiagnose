@@ -71,7 +71,7 @@ namespace MinDiagnose.Controllers
         public async Task<ActionResult> CreateSymptom(string navn, int kategoriId)
         {
             bool lagret = await _db.CreateSymptom(navn, kategoriId);
-            if (!lagret) return BadRequest(lagret);
+            if (!lagret) return BadRequest(navn + " ble ikke lagret");
             else return Ok(lagret);
         }
     }
