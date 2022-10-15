@@ -37,6 +37,8 @@ namespace MinDiagnose.DAL
                     symptomer = k.symptomer,
                     link = k.link
                 }).ToListAsync();
+
+                //Klassestrukturen gir rekursive JSON-objekter for diagnoser. Ved å 'nulle' ut attributtene som ikke trengs her unngår vi rekursjonen
                 foreach(var i in diagnoseList)
                 {
                     foreach(var j in i.symptomer)
@@ -172,16 +174,14 @@ namespace MinDiagnose.DAL
         {
             try
             {
-
+                // Brukt kode fra forelesninger
                 Symptom hent = await _db.Symptomer.FindAsync(symptomId);
 
                 var retur = new Symptom()
                 {
                     SymptomId = hent.SymptomId,
                     navn = hent.navn,
-                   
                     kategori = hent.kategori
-
                 };
               
                 retur.kategori.symptomer.Clear();
