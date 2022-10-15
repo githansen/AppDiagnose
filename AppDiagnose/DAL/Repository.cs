@@ -196,6 +196,11 @@ namespace MinDiagnose.DAL
         }
         public async Task<bool> endreSymptom(Data s)
         {
+            bool regexTest = Regex.IsMatch(s.navn, @"^[a-zA-ZæøåÆØÅ. \-]{2,20}$");
+            if (!regexTest)
+            {
+                return false;
+            }
             try
             {
                 // Objektet s vil her inneholde nytt symptomnavn, ny symptomkategori(kun kategorinavn, ikke objektet) og opprinnelig SymptomId

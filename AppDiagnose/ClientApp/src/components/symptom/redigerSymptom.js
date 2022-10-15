@@ -27,23 +27,37 @@ export const redigerSymptom = () => {
             navn: $("#navn").val(),
             kategori: $("#kategoriSelect").val(),
         }
- 
-        $.post("/diagnose/endreSymptom", s, function (data) {
-            console.log(data)
-        })
-
-        //Endrer tittel på side til oppdatert navn
-        let nyttNavn = $("#navn").val();
-        $("#navnTittel").html(nyttNavn); 
-        //Alert som viser at symptom er satt inn suksessfullt
-        setColor('success');
-        setText('Dine endringer er nå lagret!');
-        setVisible(true);
-        //Gjemmer alert etter 2sek 
-        if (setVisible) {
-            setTimeout(() => {
-                setVisible(false);
-            }, 2000)
+        const regex = new RegExp(/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/);
+        var regextest = regex.test(s.navn);
+        if (regextest) {
+            $.post("/diagnose/endreSymptom", s, function (data) {
+                console.log(data)
+            })
+            //Endrer tittel på side til oppdatert navn
+            let nyttNavn = $("#navn").val();
+            $("#navnTittel").html(nyttNavn);
+            //Alert som viser at symptom er satt inn suksessfullt
+            setColor('success');
+            setText('Dine endringer er nå lagret!');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
+        }
+        else {
+            //Alert som viser at createSymptom feilet
+            setColor('danger');
+            setText(s.navn + ' er ikke et godkjent symptomnavn. Bruk vanlige bokstaver. 2 - 20 tegn.');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
         }
     };
 
