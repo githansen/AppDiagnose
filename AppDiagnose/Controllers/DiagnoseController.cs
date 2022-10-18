@@ -19,60 +19,44 @@ namespace MinDiagnose.Controllers
 
         public DiagnoseController(IRepository db, ILogger<DiagnoseController> log)
         {
-             _db = db;
+            _db = db;
             _log = log;
         }
 
 
-        public async Task <ActionResult> HentalleDiagnoser()
+        public async Task<List<Diagnose>> HentalleDiagnoser()
 
         {
-            var liste  = await _db.hentalleDiagnoser();
-            if (liste == null) return NotFound("Feil på server");
-            else return Ok(liste);
+            return await _db.hentalleDiagnoser();
         }
-        public async Task <ActionResult> hentalleSymptomer()
+        public async Task<List<Symptom>> hentalleSymptomer()
         {
-            var liste = await _db.hentalleSymptomer();
-            if (liste == null) return NotFound("Feil på server");
-            else return Ok(liste);
+            return await _db.hentalleSymptomer();
         }
-        
-        public async Task<ActionResult> HentAlleKategorier()
+
+        public async Task<List<Kategori>> HentAlleKategorier()
         {
-            var liste = await _db.HentAlleKategorier();
-            if (liste == null) return NotFound("Feil på server");
-            else return Ok(liste);
+            return await _db.HentAlleKategorier();
         }
-        public async Task <ActionResult> kalkuler(Data data)
+        public async Task<Diagnose> kalkuler(Data data)
         {
-            var diagnose = await _db.kalkuler(data);
-            if (diagnose == null) return NotFound("Feil på server eller ingen input");
-            else return Ok(diagnose);
+            return await _db.kalkuler(data);
         }
-        public async Task<ActionResult> HentEtSymptom(int id)
+        public async Task<Symptom> HentEtSymptom(int id)
         {
-            var symptom = await _db.HentEtSymptom(id);
-            if (symptom == null) return NotFound("Fant ikke symptom");
-            else return Ok(symptom);
+            return await _db.HentEtSymptom(id);
         }
-        public async Task<ActionResult> endreSymptom(Data s)
+        public async Task<bool> endreSymptom(Data s)
         {
-            bool suksess = await _db.endreSymptom(s);
-            if (!suksess) return BadRequest(s.navn + " ble ikke endret");
-            else return Ok(suksess);
+            return await _db.endreSymptom(s);
         }
-        public async Task<ActionResult> slettSymptom(int Id)
+        public async Task<bool> slettSymptom(int Id)
         {
-           bool slettet  = await _db.slettSymptom(Id);
-            if (!slettet) return BadRequest("Ble ikke slettet");
-            else return Ok(slettet);
+            return await _db.slettSymptom(Id);
         }
-        public async Task<ActionResult> CreateSymptom(string navn, int kategoriId)
+        public async Task<bool> CreateSymptom(string navn, int kategoriId)
         {
-            bool lagret = await _db.CreateSymptom(navn, kategoriId);
-            if (!lagret) return BadRequest(navn + " ble ikke lagret");
-            else return Ok(lagret);
+            return await _db.CreateSymptom(navn, kategoriId);
         }
     }
 }
