@@ -50,6 +50,11 @@ table tr th:first-of-type {
     width: 80px;
 }
 
+/* Navbar */
+.navbar.navbar-light {
+    background-color:#fff!important;
+}
+
 /* Knapp */
 
     /* Knapp - Inital */ 
