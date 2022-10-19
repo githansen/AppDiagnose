@@ -2,7 +2,7 @@
 
 //JavaScript Bibliotek
 import React, { Component, useEffect, useState } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -12,6 +12,11 @@ export const alleKategorier = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
 
+    //Alert
+    const [visible, setVisible] = useState(false);
+    const [color, setColor] = useState('primary');
+    const [alertText, setText] = useState('');
+
     useEffect(() => {
         //Viser lasterInn-ikon
         setLasterInn(true);
@@ -20,7 +25,16 @@ export const alleKategorier = () => {
                 setLasterInn(false);
                 setListe(data)
         }).fail(function (jqXHR) {
-            //feilhåndtering
+            //Alert som viser feil i API kall
+            setColor('danger');
+            setText('Feil i respons for API-kall');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
         })
     }, []);
 
@@ -28,6 +42,11 @@ export const alleKategorier = () => {
     return (
         <div className="container py-4">
             <div className="row align-items-center my-4">
+                <div className="col-md-12">
+                    <Alert id="varslingsBoks" color={color} isOpen={visible} >
+                        <div>{alertText}</div>
+                    </Alert>
+                </div>
                 <div className="col-md-12">
                     <h1><i className="bi bi-bookmarks"></i> Kategorier</h1>
                     <p>Liste over alle symptom-kategorier</p>

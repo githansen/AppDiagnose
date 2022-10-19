@@ -2,29 +2,19 @@
 
 //JavaScript Bibliotek
 import React, { Component, useEffect, useState } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
-
-//Funksjon 
-const slettDiagnose = (index) => {
-    console.log(index)
-    alert('Vil du slette denne? (Ingen funksjonalitet)');
-
-};
-
-//Funksjon 
-const leggTilNyDiagnose = (index) => {
-    console.log(index)
-    alert('Test! (Ingen funksjonalitet)');
-
-};
 
 
 //OUTPUT 
 export const alleDiagnoser = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
+
+    //Alert
+    const [visible, setVisible] = useState(false);
+    const [color, setColor] = useState('primary');
+    const [alertText, setText] = useState('');
 
     useEffect(() => {
         //Viser lasterInn-ikon
@@ -34,7 +24,16 @@ export const alleDiagnoser = () => {
                 setLasterInn(false);
                 setListe(data)
         }).fail(function (jqXHR) {
-            //feilhåndtering
+            //Alert som viser feil i API kall
+            setColor('danger');
+            setText('Feil i respons for API-kall');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
         })
     }, []);
 
@@ -42,6 +41,11 @@ export const alleDiagnoser = () => {
     return (
         <div className="container py-4">
             <div className="row align-items-center my-4">
+                <div className="col-md-12">
+                    <Alert id="varslingsBoks" color={color} isOpen={visible} >
+                        <div>{alertText}</div>
+                    </Alert>
+                </div>
                 <div className="col-md-12">
                     <h1><i className="bi bi-clipboard2-pulse"></i> Diagnoser</h1>
                 </div>
@@ -55,11 +59,12 @@ export const alleDiagnoser = () => {
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
                     <Table hover size="sm">
-                        <thead><tr><th>#ID</th><th>Navn</th><th></th></tr></thead><tbody>
+                        <thead><tr><th>#ID</th><th>Navn</th><th>Info</th><th></th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.diagnoseId}</th>
 
                                     <td className="tableTitteltd ">{i.navn}</td>
+                                    <td className="tableTitteltd longTxt">{i.info}</td>
                                     <td style={{ textAlign: 'right' }}>
                                         <a size="sm" className="mx-2 btn btn-success btn-sm" href={`${i.link}`} target="_blank"><i className="bi bi-box-arrow-up-right"></i></a>
                                     </td>

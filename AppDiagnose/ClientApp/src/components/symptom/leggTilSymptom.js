@@ -104,7 +104,16 @@ export const leggTilSymptom = () => {
         $.get("/diagnose/HentAlleKategorier", function (data) {
                 setKategorier(data)
             }).fail(function (jqXHR) {
-                //Feilmelding her
+                //Alert som viser feil i API kall
+                setColor('danger');
+                setText('Feil i respons for API-kall');
+                setVisible(true);
+                //Gjemmer alert etter 2sek 
+                if (setVisible) {
+                    setTimeout(() => {
+                        setVisible(false);
+                    }, 2000)
+                }
             })
 
     }, [])

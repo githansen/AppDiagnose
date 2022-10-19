@@ -2,7 +2,7 @@
 
 //JavaScript Bibliotek
 import React, { Component, useEffect, useState } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
@@ -23,6 +23,12 @@ const slettSymptom = (index) => {
 export const alleSymptomer = () => {
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
+
+    //Alert
+    const [visible, setVisible] = useState(false);
+    const [color, setColor] = useState('primary');
+    const [alertText, setText] = useState('');
+
     //Use-Effect kjøres her 1 gang i det dokumentet rendres
     useEffect(() => {
         //Viser lasterInn-ikon 
@@ -30,11 +36,20 @@ export const alleSymptomer = () => {
         //Henter liste over alle symptomer 
         $.get("/diagnose/hentalleSymptomer", function (data) {
             
-                //Skjuler lasterInn-ikon 
-                setLasterInn(false);
-                setListe(data)
+            //Skjuler lasterInn-ikon 
+            setLasterInn(false);
+            setListe(data)
         }).fail(function (jqXHR) {
-            //feilmelding her
+            //Alert som viser feil i API kall
+            setColor('danger');
+            setText('Feil i respons for API-kall');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
         })
     }, []);
 
@@ -42,6 +57,11 @@ export const alleSymptomer = () => {
     return (
         <div className="container py-4">
             <div className="row align-items-center my-4">
+                <div className="col-md-12">
+                    <Alert id="varslingsBoks" color={color} isOpen={visible} >
+                        <div>{alertText}</div>
+                    </Alert>
+                </div>
                 <div className="col-md-8">
                     <h1><i className="bi bi-activity"></i> Symptomer</h1>
                     <p>Legg til eller rediger symptomer</p>
@@ -71,7 +91,7 @@ export const alleSymptomer = () => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.symptomId}</th>
 
                                     <td className="tableTitteltd align-middle">{i.navn}</td>
-                                    <td className="tableTitteltd align-middle">{i.kategori.navn}</td>
+                                    <td className="tableTitteltd align-middle longTxt">{i.kategori.navn}</td>
                                     <td style={{ textAlign: 'right' }}>
                                         <Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerSymptom", search: `?id=${i.symptomId}` }}><i className="bi bi-pencil"></i></Button>
                                         <Button size="sm" color="danger" onClick={() => slettSymptom(i.symptomId)}><i className="bi bi-trash3"></i></Button></td>

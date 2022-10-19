@@ -21,7 +21,6 @@ export const Dashboard = () => {
                                 Dette er ditt dashboard. Her kan du legge til og endre kategorier, symptomer, diagnoser, bedrifter eller medisiner.
                                 Prøv deg frem!
                                 </p>
-
                             <Button
                                 className="mt-3"
                                 color="light"
@@ -54,7 +53,7 @@ export const Dashboard = () => {
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
                                         <h6 className="mb-0"><i className="bi bi-clipboard2-pulse"></i> Diagnoser</h6>
-                                        <p className="mb-0 opacity-75">Legg til eller rediger diagnoser</p>
+                                        <p className="mb-0 opacity-75">Se alle diagnoser</p>
                                     </div>
                                     <small className="opacity-50 text-nowrap">.02</small>
                                 </div>
@@ -66,7 +65,7 @@ export const Dashboard = () => {
                                 <div className="d-flex gap-2 w-100 justify-content-between">
                                     <div>
                                         <h6 className="mb-0"><i className="bi bi-bookmarks"></i> Kategorier</h6>
-                                        <p className="mb-0 opacity-75">Legg til eller rediger symptom kategorier</p>
+                                        <p className="mb-0 opacity-75">Se alle symptom-kategorier</p>
                                     </div>
                                     <small className="opacity-50 text-nowrap">.03</small>
                                 </div>

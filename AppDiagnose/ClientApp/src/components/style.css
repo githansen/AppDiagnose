@@ -27,10 +27,6 @@ a {
     color: #0A65CC;
 }
 
-code {
-    color: #E01A76;
-}
-
 /* Tabell */ 
 .tableTitteltd {
     text-transform: capitalize;
@@ -41,8 +37,17 @@ code {
     margin-right:10px;
 }
 
+.tableTitteltd.longTxt {
+    max-width:600px;
+    text-transform: initial!important;
+    color:gray
+}
+
 table thead tr th {
     border-top: none !important;
+}
+table td {
+    vertical-align: middle !important;
 }
 
 

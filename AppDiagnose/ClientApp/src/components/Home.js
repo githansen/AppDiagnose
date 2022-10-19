@@ -2,7 +2,7 @@
 
 //JavaScript Bibliotek
 import React, { Component, useState, useEffect } from 'react';
-import { Container, Row, Col, Tooltip } from 'reactstrap';
+import { Container, Row, Col, Tooltip, Alert } from 'reactstrap';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 import $ from 'jquery'
 
@@ -18,15 +18,14 @@ export const Home = () => {
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const toggle = () => setTooltipOpen(!tooltipOpen);
 
+    //Alert
+    const [visible, setVisible] = useState(false);
+    const [color, setColor] = useState('primary');
+    const [alertText, setText] = useState('');
+
     const kalkulerDiagnose = () => {
         //Sender bruker øverst på siden for å se diagnose 
         window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-        //Skjuler blokk som veileder brukeren 
-        var forDiagnose = document.getElementById("forDiagnose");
-        forDiagnose.style.display = "none"
-        //Viser blokk med diagnosen til brukeren
-        var etterDiagnose = document.getElementById("etterDiagnose");
-        etterDiagnose.style.display = "block"
 
         var y = document.getElementsByTagName("input")
         let symptomer = []
@@ -38,13 +37,52 @@ export const Home = () => {
         const s = {
             symptomer: symptomer
         };
-        $.post("/diagnose/Kalkuler", s, function (data) {
-            console.log(data)
-            setDiagnose(data);
-        })
-            .fail(function (jqXHR) {
-                //Håndter feilmelding her
+
+        //Sjekker om minst det er valgt minst et symptom
+        if (symptomer.length === 0) {
+            //Skjuler blokk som veileder brukeren 
+            var forDiagnose = document.getElementById("forDiagnose");
+            forDiagnose.style.display = "block"
+            //Viser blokk med diagnosen til brukeren
+            var etterDiagnose = document.getElementById("etterDiagnose");
+            etterDiagnose.style.display = "none"
+            //Alert som viser at createSymptom feilet
+            setColor('danger');
+            setText('Du må velge minst et symptom!');
+            setVisible(true);
+            //Gjemmer alert etter 2sek
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 4000)
+            }
+        } else {
+            setVisible(false); //Gjemmer alert 
+            //Skjuler blokk som veileder brukeren 
+            var forDiagnose = document.getElementById("forDiagnose");
+            forDiagnose.style.display = "none"
+            //Viser blokk med diagnosen til brukeren
+            var etterDiagnose = document.getElementById("etterDiagnose");
+            etterDiagnose.style.display = "block"
+
+
+            $.post("/diagnose/Kalkuler", s, function (data) {
+                console.log(data)
+                setDiagnose(data);
             })
+                .fail(function (jqXHR) {
+                    //Alert som viser at createSymptom feilet
+                    setColor('danger');
+                    setText('Feil i respons for API-kall');
+                    setVisible(true);
+                    //Gjemmer alert etter 2sek 
+                    if (setVisible) {
+                        setTimeout(() => {
+                            setVisible(false);
+                        }, 2000)
+                    }
+                })
+        }
 
     };
 
@@ -115,6 +153,12 @@ export const Home = () => {
         <div className="container py-4">
 
             <div className="row align-items-md-stretch">
+
+                <div className="col-md-12">
+                    <Alert id="varslingsBoks" color={color} isOpen={visible} >
+                        <div>{alertText}</div>
+                    </Alert>
+                </div>
                 <div className="col-md-8">
 
                     <div className="p-5 bg-light border rounded-3">
@@ -142,7 +186,7 @@ export const Home = () => {
                             <div className="card-img-overlay d-flex align-items-center justify-content-center">
                                 <div>
                                     <h1><i className="bi bi-file-medical"></i></h1>
-                                    <h5 className="card-title">Fyll ut skjemaet til venstre</h5>
+                                    <h5 id="diagnoseSkjema_smalltxt" className="card-title">Fyll ut skjemaet til venstre</h5>
                                 </div> 
                             </div>
                         </div>
