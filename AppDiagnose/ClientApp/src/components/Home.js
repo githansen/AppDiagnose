@@ -73,7 +73,7 @@ export const Home = () => {
                 document.getElementById("symptomByKategoriUtskrift").innerHTML = ut;
                
                 
-               
+               // Hentet fra: https://www.w3schools.com/howto/howto_js_collapsible.asp
                 var coll = document.getElementsByClassName("kollaps");
                 var i;
 
