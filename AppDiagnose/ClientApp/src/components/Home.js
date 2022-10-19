@@ -19,14 +19,14 @@ export const Home = () => {
     const toggle = () => setTooltipOpen(!tooltipOpen);
 
     const kalkulerDiagnose = () => {
-        //Sender bruker øverst på siden for å se diagnose
+        //Sender bruker øverst på siden for å se diagnose 
         window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+        //Skjuler blokk som veileder brukeren 
+        var forDiagnose = document.getElementById("forDiagnose");
+        forDiagnose.style.display = "none"
         //Viser blokk med diagnosen til brukeren
         var etterDiagnose = document.getElementById("etterDiagnose");
         etterDiagnose.style.display = "block"
-        //Skjuler blokk som veileder brukeren
-        var forDiagnose = document.getElementById("forDiagnose");
-        forDiagnose.style.display = "none"
 
         var y = document.getElementsByTagName("input")
         let symptomer = []
@@ -58,7 +58,7 @@ export const Home = () => {
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
-                    ut += `<div class="kollaps"><img className="img-fluid" src="./img/kategori_${i.id}.png"></img>`
+                    ut += `<div class="kollaps"><img className="img-fluid" src="./img/kategori_${i.id}.png" alt="${i.navn}_placeholder"></img>`
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {
@@ -138,7 +138,7 @@ export const Home = () => {
                 </div>
                 <div className="col-md-4">
                     <div id="forDiagnose" className="card text-center bg-dark text-white">
-                        <img className="card-img" src="./img/diagnose_bg_placeholder.jpg" alt="Diagnose_Placeholder"></img>
+                        <img className="card-img" src="./img/diagnose_bg_placeholder.png" alt="Diagnose_Placeholder"></img>
                             <div className="card-img-overlay d-flex align-items-center justify-content-center">
                                 <div>
                                     <h1><i className="bi bi-file-medical"></i></h1>
@@ -147,7 +147,7 @@ export const Home = () => {
                             </div>
                         </div>
                         <div id="etterDiagnose" className="card text-center bg-dark text-white">
-                            <img className="card-img" src="./img/diagnose_bg_placeholder.jpg" alt="Diagnose_Placeholder"></img>
+                            <img className="card-img" src="./img/diagnose_bg_placeholder.png" alt="Diagnose_Placeholder"></img>
                             <div className="card-img-overlay cio2 d-flex align-items-center justify-content-center">
                                 <div>
                                 <h1><i className="bi bi-file-medical"></i></h1>
