@@ -158,13 +158,13 @@ namespace MinDiagnose.DAL
                 context.Symptomer.Add(hodepine);
 
                 //K3-S3
-                var hallusinasjoner = new Symptom
+               /* var hallusinasjoner = new Symptom
                 {
                     navn = "Hallusinasjoner",
                     kategori = nevrologisk
                 };
                 context.Symptomer.Add(hallusinasjoner);
-
+               */
                 //K3-S4
                 var lammelse = new Symptom
                 {
