@@ -135,12 +135,15 @@ table tr th:first-of-type {
 
 
 
+/* Link */
+.onlyTxtLink {
+    padding:0;
+    margin-bottom:1rem;
+}
 
-
-
-/* Boostrap - Kort (Cards) */ 
+/* Boostrap - Kort (Cards) */
 .list-group-item {
-    border-radius: calc(0.25rem - 1px)!important;
+    border-radius: calc(0.25rem - 1px) !important;
 }
 
 .card-img-overlay {

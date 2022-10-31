@@ -16,6 +16,10 @@ import { alleKategorier } from './components/kategori/alleKategorier';
 import { Dokumentasjon } from './components/dokumentasjon/Dokumentasjon';
 //Side - Dashboard 
 import { Dashboard } from './components/dashboard/Dashboard';
+//Side - Konto 
+import { LoggInn } from './components/konto/LoggInn';
+//Side - Logg 
+import { allAktivitet } from './components/logg/allAktivitet';
 
 //Stiler  
 import './components/style.css'
@@ -34,6 +38,8 @@ export default class App extends Component {
         <Route path='/leggTilSymptom' component={leggTilSymptom} />
         <Route path='/alleDiagnoser' component={alleDiagnoser} />
         <Route path='/alleKategorier' component={alleKategorier} />
+        <Route path='/logginn' component={LoggInn} />
+        <Route path='/allAktivitet' component={allAktivitet} />
       </Layout>
     );
   }

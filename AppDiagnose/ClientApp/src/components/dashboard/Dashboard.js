@@ -71,6 +71,18 @@ export const Dashboard = () => {
                                 </div>
                             </div>
                         </NavLink>
+
+                        <NavLink tag={Link} className="text-dark" to="/allAktivitet">
+                            <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                                <div className="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <h6 className="mb-0"><i className="bi bi-person-lines-fill"></i> Aktivitet</h6>
+                                        <p className="mb-0 opacity-75">Se all logging av aktiviteter</p>
+                                    </div>
+                                    <small className="opacity-50 text-nowrap">.04</small>
+                                </div>
+                            </div>
+                        </NavLink>
                         <NavLink>
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style={{ backgroundColor: "rgba(241,242,244,.6)" }}>
                                 <div className="d-flex gap-2 w-100 justify-content-between">
@@ -78,7 +90,7 @@ export const Dashboard = () => {
                                         <h6 className="mb-0"><i className="bi bi-capsule"></i> Medisiner</h6>
                                         <p className="mb-0 opacity-75">Kommer snart...</p>
                                     </div>
-                                    <small className="opacity-50 text-nowrap">.04</small>
+                                    <small className="opacity-50 text-nowrap">.05</small>
                                 </div>
                             </div>
                         </NavLink>

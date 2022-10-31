@@ -28,6 +28,9 @@ export const NavMenu = () => {
                             <NavItem>
                                 <NavLink tag={Link} className="text-dark" to="/dokumentasjon"><i className="bi bi-file-text"></i> Dokumentasjon</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} className="text-dark" to="/logginn"><i className="bi bi-box-arrow-in-right"></i> Logg Inn</NavLink>
+                            </NavItem>
                         </ul>
                     </Collapse>
                 </Container>
