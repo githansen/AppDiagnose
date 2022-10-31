@@ -15,5 +15,6 @@ namespace MinDiagnose.DAL
         Task<bool> endreSymptom(Data s);
         Task<bool> slettSymptom(int Id);
         Task<bool> CreateSymptom(string navn, int kategoriId);
+        Task<bool> loggDBEndring(string beskrivelse);
     }
 }

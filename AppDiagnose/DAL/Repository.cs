@@ -217,6 +217,8 @@ namespace MinDiagnose.DAL
 
                 //Lagrer til slutt 
                 await _db.SaveChangesAsync();
+                await loggDBEndring("Endret symptom: Nytt navn: " + hent.navn + ". Ny kategori: " + s.kategori); // Loggfører endringen
+
                 return true;
             }
             catch
@@ -242,6 +244,9 @@ namespace MinDiagnose.DAL
                 Symptom symptom = await _db.Symptomer.FindAsync(Id);
                 _db.Remove(symptom);
                 await _db.SaveChangesAsync();
+
+                await loggDBEndring("Slettet symptom: " + symptom.navn); // Loggfører endringen
+
                 return true;
             }
             catch
@@ -264,6 +269,7 @@ namespace MinDiagnose.DAL
                 Kategori k = await _db.kategorier.FindAsync(kategoriId); // finner kategori gitt kategoriId
                 var new_symptom = new Symptom { navn = navn, kategori = k}; // lager nytt Symptom-objekt
                 _db.Symptomer.Add(new_symptom); // legger objektet i databasen
+                await loggDBEndring("Nytt symptom: " + navn);
                 await _db.SaveChangesAsync(); // lagrer!
                 return true; // returnerer true hvis vellykket
             }
@@ -274,5 +280,21 @@ namespace MinDiagnose.DAL
             }
         }
 
+
+        public async Task<bool> loggDBEndring(string beskrivelse)
+        {
+            try // prøver å loggføre endringer i db
+            {
+                var new_logEntry = new dbLog { beskrivelse = beskrivelse };
+                _db.dbLog.Add(new_logEntry);
+                await _db.SaveChangesAsync();
+                return true; // returnerer true hvis vellykket
+            }
+            catch // hvis opprettelsen feiler
+            {
+                _log.LogInformation("Noe gikk galt under loggføringen av endringene i db");
+                return false;
+            }
+        }
     }
 }

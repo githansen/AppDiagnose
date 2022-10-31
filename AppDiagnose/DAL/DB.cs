@@ -22,6 +22,7 @@ namespace MinDiagnose.DAL
         public virtual DbSet<SymptomForDiagnose> SymptomForDiagnose { get; set; }
 
         public virtual DbSet<Kategori> kategorier { get; set; }
+        public virtual DbSet<dbLog> dbLog { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // må importere pakken Microsoft.EntityFrameworkCore.Proxies
