@@ -23,6 +23,11 @@ namespace MinDiagnose.Controllers
             _log = log;
         }
 
+        // Konstruktør uten logg for enhetstesting
+        public DiagnoseController(IRepository db)
+        {
+            _db = db;
+        }
 
         public async Task <ActionResult> HentalleDiagnoser()
 
