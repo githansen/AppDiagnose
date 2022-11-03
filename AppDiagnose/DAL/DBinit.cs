@@ -16,6 +16,15 @@ namespace MinDiagnose.DAL
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
+                var bruker = new Brukere();
+                string passord = "admin";
+                bruker.Brukernavn = "admin";
+                byte[] salt = Repository.genSalt();
+                byte[] hash = Repository.genHash(passord, salt);
+                bruker.Passord = hash;
+                bruker.Salt = salt;
+
+                context.brukere.Add(bruker);
                 // KATEGORIER
 
                 //K1

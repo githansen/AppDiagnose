@@ -19,6 +19,12 @@ export const LoggInn = () => {
     const [alertText, setText] = useState('');
 
     const loggMegInn = () => {
+        const bruker = {
+            Brukernavn: $("#epost").val(), 
+            Passord: $("#passord").val()
+        }
+        $.get("/diagnose/logginn", bruker, function (data) {
+        })
         //Alert som viser at symptom er satt inn suksessfullt
         setColor('danger');
         setText('E-post eller passord er feil!');
@@ -48,12 +54,12 @@ export const LoggInn = () => {
                             <div className="col-md-12">
                                 <FormGroup>
                                     <Label for="epost">E-post</Label>
-                                    <Input id="epost" name="epost"></Input>
+                                    <Input type="text" id="epost" name="epost"></Input>
                                 </FormGroup>
 
                                 <FormGroup>
                                     <Label for="passord">Passord</Label>
-                                    <Input id="passord" name="passord"></Input>
+                                    <Input type="text" id="passord" name="passord"></Input>
                                 </FormGroup>
                             </div>
 

@@ -9,6 +9,9 @@ using System.Numerics;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace MinDiagnose.DAL
 {
@@ -280,7 +283,22 @@ namespace MinDiagnose.DAL
             }
         }
 
-
+        public static byte[] genHash(string passord, byte[] salt)
+        {
+            return KeyDerivation.Pbkdf2(
+                password: passord,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA512,
+                iterationCount: 1000,
+                numBytesRequested: 32);
+        }
+        public static byte[] genSalt()
+        {
+            var csp = new RNGCryptoServiceProvider();
+            var salt = new byte[24];
+            csp.GetBytes(salt);
+            return salt;
+        }
         public async Task<bool> loggDBEndring(string beskrivelse)
         {
             try // prøver å loggføre endringer i db
@@ -296,5 +314,28 @@ namespace MinDiagnose.DAL
                 return false;
             }
         }
+        public async Task<bool> logginn(Bruker bruker)
+        {
+            try
+            {
+                Brukere funnetBruker = await _db.brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
+                if(funnetBruker == null) return false;
+                // sjekk passordet
+                byte[] hash = genHash(bruker.Passord, funnetBruker.Salt);
+                bool ok = hash.SequenceEqual(funnetBruker.Passord);
+                if (ok)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
+        }
+
     }
+
 }

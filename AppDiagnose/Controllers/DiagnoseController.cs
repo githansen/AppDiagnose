@@ -74,5 +74,9 @@ namespace MinDiagnose.Controllers
             if (!lagret) return BadRequest(navn + " ble ikke lagret");
             else return Ok(lagret);
         }
+        public async Task<bool> logginn(Bruker bruker)
+        {
+            return await _db.logginn(bruker);
+        }
     }
 }
