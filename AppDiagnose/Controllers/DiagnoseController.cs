@@ -8,6 +8,7 @@ using System.Security.Principal;
 using MinDiagnose.DAL;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace MinDiagnose.Controllers
 {
@@ -15,13 +16,8 @@ namespace MinDiagnose.Controllers
     public class DiagnoseController : ControllerBase
     {
         private readonly IRepository _db;
-        private ILogger<DiagnoseController> _log;
-
-        public DiagnoseController(IRepository db, ILogger<DiagnoseController> log)
-        {
-             _db = db;
-            _log = log;
-        }
+        private const string _loggetInn = "loggetInn";
+        private const string _ikkeLoggetInn = "";
 
         // Konstruktør uten logg for enhetstesting
         public DiagnoseController(IRepository db)
@@ -79,9 +75,27 @@ namespace MinDiagnose.Controllers
             if (!lagret) return BadRequest(navn + " ble ikke lagret");
             else return Ok(lagret);
         }
-        public async Task<bool> logginn(Bruker bruker)
+        public async Task<ActionResult> logginn(Bruker bruker)
         {
-            return await _db.logginn(bruker);
+            bool ok = await _db.logginn(bruker);
+            if (ok)
+            {
+                HttpContext.Session.SetString(_loggetInn, _loggetInn);
+                return Ok(true);
+            }
+            else
+            {
+                HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
+                return Ok(false);
+            }
+        }
+        public async Task<ActionResult> ErLoggetInn()
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Ok(false);
+            }
+            else return Ok(true);
         }
     }
 }
