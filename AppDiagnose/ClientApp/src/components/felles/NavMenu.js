@@ -2,9 +2,9 @@
 
 //JavaScript Bibliotek
 import React, { Component } from 'react';
+import { loggetinn } from "../Variabler/Innlogget"
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
 //Stiler 
 import './NavMenu.css';
 
@@ -12,6 +12,7 @@ import './NavMenu.css';
 
 //OUTPUT
 export const NavMenu = () => {
+    
     return (
         <header>
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3 py-3" light>
@@ -28,9 +29,17 @@ export const NavMenu = () => {
                             <NavItem>
                                 <NavLink tag={Link} className="text-dark" to="/dokumentasjon"><i className="bi bi-file-text"></i> Dokumentasjon</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/logginn"><i className="bi bi-box-arrow-in-right"></i> Logg Inn</NavLink>
-                            </NavItem>
+                            {loggetinn() ? (
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/loggut"><i className="bi bi-box-arrow-in-right"></i> Logg ut</NavLink>
+                                </NavItem>
+                                
+                            ): (
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/logginn"><i className="bi bi-box-arrow-in-right"></i> Logg Inn</NavLink>
+                                </NavItem>
+                            ) }
+                            
                         </ul>
                     </Collapse>
                 </Container>

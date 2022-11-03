@@ -5,6 +5,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert, NavItem, NavLink } from "reactstrap";
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
+import { NavMenu } from '../felles/NavMenu';
 
 
 
@@ -24,6 +25,7 @@ export const LoggInn = () => {
             Passord: $("#passord").val()
         }
         $.get("/diagnose/logginn", bruker, function (data) {
+            window.location.href = "/loggut"
         })
         //Alert som viser at symptom er satt inn suksessfullt
         setColor('danger');

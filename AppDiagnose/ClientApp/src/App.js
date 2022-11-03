@@ -20,7 +20,7 @@ import { Dashboard } from './components/dashboard/Dashboard';
 import { LoggInn } from './components/konto/LoggInn';
 //Side - Logg 
 import { allAktivitet } from './components/logg/allAktivitet';
-
+import { Loggut } from './components/konto/Loggut'
 //Stiler  
 import './components/style.css'
 
@@ -40,6 +40,8 @@ export default class App extends Component {
         <Route path='/alleKategorier' component={alleKategorier} />
         <Route path='/logginn' component={LoggInn} />
         <Route path='/allAktivitet' component={allAktivitet} />
+        <Route path='/Loggut' component={Loggut} />
+
       </Layout>
     );
   }
