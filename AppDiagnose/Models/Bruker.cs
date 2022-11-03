@@ -9,6 +9,7 @@ namespace MinDiagnose.Models
         // Brukt kode fra forelesning om innlogging
         [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{2,20}$")]
         public String Brukernavn { get; set; }
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{5,}$")]
         public string Passord { get; set; }
     }
 }

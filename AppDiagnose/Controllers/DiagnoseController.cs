@@ -77,17 +77,21 @@ namespace MinDiagnose.Controllers
         }
         public async Task<ActionResult> logginn(Bruker bruker)
         {
-            bool ok = await _db.logginn(bruker);
-            if (ok)
+            if (ModelState.IsValid)
             {
-                HttpContext.Session.SetString(_loggetInn, _loggetInn);
-                return Ok(true);
+                bool ok = await _db.logginn(bruker);
+                if (ok)
+                {
+                    HttpContext.Session.SetString(_loggetInn, _loggetInn);
+                    return Ok(true);
+                }
+                else
+                {
+                    HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
+                    return Ok(false);
+                }
             }
-            else
-            {
-                HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
-                return Ok(false);
-            }
+            return BadRequest("Feil i inputvalidering");
         }
         public async Task<ActionResult> ErLoggetInn()
         {
