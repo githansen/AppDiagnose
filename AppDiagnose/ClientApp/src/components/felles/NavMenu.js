@@ -3,7 +3,7 @@
 //JavaScript Bibliotek
 import React, { Component } from 'react';
 import { loggetinn } from "../Funksjoner/Innlogget"
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Container, Button, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 //Stiler 
 import './NavMenu.css';
@@ -12,6 +12,15 @@ import './NavMenu.css';
 
 //OUTPUT
 export const NavMenu = () => {
+
+    //Knapp som logger bruker ut 
+    const loggUtKnapp = () => {
+        //Kjører funksjon for å logge ut i DiagnoseController 
+        $.get("/diagnose/LoggUt", function () { 
+            //Bruker blir sendt til logg-ut side
+            window.location.href = "/loggut"
+        })
+    };
     
     return (
         <header>
@@ -38,7 +47,7 @@ export const NavMenu = () => {
                             {/* Sjekker om bruker er innlogget. Hvis bruker er innlogget vises logg-ut link, hvis ikke vises logg-inn link.*/}
                             {loggetinn() ? (
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/loggut"><i className="bi bi-door-open"></i> Logg ut</NavLink>
+                                    <NavLink tag={Link} className="text-dark" onClick={() => loggUtKnapp()}><i className="bi bi-door-open"></i> Logg ut</NavLink>
                                 </NavItem>
                             ): (
                                 <NavItem>
