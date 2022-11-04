@@ -5,6 +5,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert, NavItem, NavLink } from "reactstrap";
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
+import { NavMenu } from '../felles/NavMenu';
 
 
 
@@ -24,6 +25,7 @@ export const LoggInn = () => {
             Passord: $("#passord").val()
         }
         $.get("/diagnose/logginn", bruker, function (data) {
+            window.location.href = "/dashboard"
         })
         //Alert som viser at symptom er satt inn suksessfullt
         setColor('danger');
@@ -40,38 +42,38 @@ export const LoggInn = () => {
     return (
         <div className="container py-5">
             <div className="row align-items-md-stretch">
-                <div className="col-md-4 offset-md-4">
+                <div className="col-md-6 offset-md-3">
                     <Alert id="varslingsBoks" color={color} isOpen={visible} >
                         <div>{alertText}</div>
                     </Alert>
                 </div>
-                <div id="leggInnBoks" className="col-md-4 offset-md-4">
-                    <h1 className="text-center">MinDiagnose App</h1>
-                    <p className="text-center">Skriv inn brukernavn og passord</p>
+                <div id="loggInnBoks" className="col-md-6 offset-md-3 mx-auto d-block">
+                    <img className="card-img loggInnLogo mx-auto d-block" src="./img/MinDiagnose_logo.png" alt="Logo"></img>
+                    <h2 className="text-center">MinDiagnose - Backend</h2>
+                    <p className="text-center text-muted">Skriv inn brukernavn og passord</p>
 
                     <Form>
                         <div className="row align-items-md-stretch">
                             <div className="col-md-12">
                                 <FormGroup>
-                                    <Label for="brukernavn">Brukernavn</Label>
-                                    <Input type="text" id="brukernavn" name="brukernavn"></Input>
+                                    <Label for="brukernavn">Brukernavn (admin)</Label>
+                                    <Input type="text" id="brukernavn" name="brukernavn" className="form-control" required="" autoFocus=""></Input>
                                 </FormGroup>
-
                                 <FormGroup>
-                                    <Label for="passord">Passord</Label>
-                                    <Input type="text" id="passord" name="passord"></Input>
+                                    <Label for="passord">Passord (admin)</Label>
+                                    <Input type="password" id="passord" name="passord" className="form-control" required="" autoFocus=""></Input>
                                 </FormGroup>
                             </div>
 
                             <div className="col-md-12">
-                                <NavLink tag={Link} className="text-dark onlyTxtLink" to="/glemt-passord">Glemt passordet?</NavLink>
+                                <NavLink tag={Link} className="text-dark onlyTxtLink text-muted" to="/glemtpassord">Glemt passordet?</NavLink>
                             </div>
 
                             <div className="col-md-12 text-center">
                                 <Button
                                     color="primary"
                                     onClick={() => loggMegInn()}
-                                    className="text-center px-4"
+                                    className="text-center px-4 btn-lg btn-block"
                                 >
                                     <i className="bi bi-box-arrow-in-right pr-2"></i> 
                                       Logg inn

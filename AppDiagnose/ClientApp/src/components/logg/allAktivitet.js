@@ -4,10 +4,27 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Table, Button, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import $ from 'jquery'
 
 
 //OUTPUT 
 export const allAktivitet = () => {
+
+    //Sjekker om bruker er innlogget, hvis ikke sendes bruker til innloggingssiden
+    const url = "/diagnose/ErLoggetInn"
+    let innlogget = null;
+    $.ajax({
+        url: url,
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data == false) {
+                window.location.href = "/logginn"
+            }
+        }
+    })
+
+
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
 

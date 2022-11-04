@@ -18,14 +18,18 @@ import { Dokumentasjon } from './components/dokumentasjon/Dokumentasjon';
 import { Dashboard } from './components/dashboard/Dashboard';
 //Side - Konto 
 import { LoggInn } from './components/konto/LoggInn';
+import { GlemtPassord } from './components/konto/GlemtPassord';
+import { LoggUt } from './components/konto/LoggUt'
 //Side - Logg 
 import { allAktivitet } from './components/logg/allAktivitet';
-
 //Stiler  
 import './components/style.css'
 
+
+
 export default class App extends Component {
   static displayName = App.name;
+
 
   render () {
     return (
@@ -38,8 +42,10 @@ export default class App extends Component {
         <Route path='/leggTilSymptom' component={leggTilSymptom} />
         <Route path='/alleDiagnoser' component={alleDiagnoser} />
         <Route path='/alleKategorier' component={alleKategorier} />
-        <Route path='/logginn' component={LoggInn} />
         <Route path='/allAktivitet' component={allAktivitet} />
+        <Route path='/logginn' component={LoggInn} />
+        <Route path='/glemtpassord' component={GlemtPassord} />
+        <Route path='/Loggut' component={LoggUt} />
       </Layout>
     );
   }

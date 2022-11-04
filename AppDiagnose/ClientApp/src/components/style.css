@@ -212,4 +212,16 @@ select option {
     -o-background-size: cover;
     background-size: cover;
 }
-    
+
+/* Logg Inn - Page */
+#loggInnBoks {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    max-width:420px;
+}
+.loggInnLogo {
+    max-width: 100px;
+    margin: 30px 0;
+}

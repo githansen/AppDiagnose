@@ -107,5 +107,9 @@ namespace MinDiagnose.Controllers
         {
             HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
         }
+        public void LoggUt()
+        {
+            HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
+        }
     }
 }

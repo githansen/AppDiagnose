@@ -10,6 +10,22 @@ import $ from 'jquery'
 
 //OUTPUT
 export const leggTilSymptom = () => {
+
+    //Sjekker om bruker er innlogget, hvis ikke sendes bruker til innloggingssiden
+    const url = "/diagnose/ErLoggetInn"
+    let innlogget = null;
+    $.ajax({
+        url: url,
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data == false) {
+                window.location.href = "/logginn"
+            }
+        }
+    })
+
+
     const [symptom, setSymptom] = useState(null);
     const [kategorier, setKategorier] = useState([]);
     const id = window.location.search.substring(1);
