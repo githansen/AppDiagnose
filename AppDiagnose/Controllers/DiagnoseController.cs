@@ -101,5 +101,9 @@ namespace MinDiagnose.Controllers
             }
             else return Ok(true);
         }
+        public void LoggUt()
+        {
+            HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
+        }
     }
 }

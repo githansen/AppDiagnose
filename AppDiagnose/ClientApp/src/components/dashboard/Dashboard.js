@@ -1,14 +1,29 @@
 ﻿// File - Dashboard.js //
 
 //JavaScript Bibliotek
-import React, { Component } from 'react';
+import React, { Component, useState, useNavigate } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import $ from 'jquery'
 
 
 
 //OUTPUT
 export const Dashboard = () => {
+    //Sjekker om bruker er innlogget, hvis ikke sendes bruker til innloggingssiden
+    const url = "/diagnose/ErLoggetInn"
+    let innlogget = null;
+    $.ajax({
+        url: url,
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data == false) {
+                window.location.href = "/logginn"
+            }
+        }
+    })
+
     return (
         <div className="container py-4">
 
@@ -27,7 +42,7 @@ export const Dashboard = () => {
                                 tag={Link}
                                 to="/dokumentasjon"
                             >
-                            Se dokumentasjonen her
+                            <i className="bi bi-file-text"></i> Se dokumentasjonen her
                             </Button>
                         </div>
                     </div>

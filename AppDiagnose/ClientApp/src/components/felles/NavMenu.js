@@ -24,16 +24,22 @@ export const NavMenu = () => {
                                 <NavLink tag={Link} to="/"><i className="bi bi-stars"></i> Finn diagnose</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/dashboard"><i className="bi bi-house-door"></i> Dashboard</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink tag={Link} className="text-dark" to="/dokumentasjon"><i className="bi bi-file-text"></i> Dokumentasjon</NavLink>
                             </NavItem>
+                            {/* Sjekker om bruker er innlogget, i så fall vises dashboard link*/}
                             {loggetinn() ? (
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/loggut"><i className="bi bi-box-arrow-in-right"></i> Logg ut</NavLink>
+                                    <NavLink tag={Link} className="text-dark" to="/dashboard"><i className="bi bi-house-door"></i> Dashboard</NavLink>
                                 </NavItem>
-                                
+                            ): (
+                                <NavItem>
+                                </NavItem>
+                            ) }
+                            {/* Sjekker om bruker er innlogget. Hvis bruker er innlogget vises logg-ut link, hvis ikke vises logg-inn link.*/}
+                            {loggetinn() ? (
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/loggut"><i className="bi bi-door-open"></i> Logg ut</NavLink>
+                                </NavItem>
                             ): (
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/logginn"><i className="bi bi-box-arrow-in-right"></i> Logg Inn</NavLink>

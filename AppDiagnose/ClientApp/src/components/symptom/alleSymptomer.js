@@ -21,6 +21,22 @@ const slettSymptom = (index) => {
 
 //OUTPUT
 export const alleSymptomer = () => {
+
+    //Sjekker om bruker er innlogget, hvis ikke sendes bruker til innloggingssiden
+    const url = "/diagnose/ErLoggetInn"
+    let innlogget = null;
+    $.ajax({
+        url: url,
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data == false) {
+                window.location.href = "/logginn"
+            }
+        }
+    })
+
+
     const [liste, setListe] = useState([])
     const [lasterInnIkon, setLasterInn] = useState(false);
 
