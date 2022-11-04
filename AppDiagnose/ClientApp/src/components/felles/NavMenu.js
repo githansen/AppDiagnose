@@ -2,7 +2,7 @@
 
 //JavaScript Bibliotek
 import React, { Component } from 'react';
-import { loggetinn } from "../Variabler/Innlogget"
+import { loggetinn } from "../Funksjoner/Innlogget"
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 //Stiler 
