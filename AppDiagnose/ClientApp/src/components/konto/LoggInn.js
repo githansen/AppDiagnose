@@ -20,14 +20,14 @@ export const LoggInn = () => {
 
     const loggMegInn = () => {
         const bruker = {
-            Brukernavn: $("#epost").val(), 
+            Brukernavn: $("#brukernavn").val(), 
             Passord: $("#passord").val()
         }
         $.get("/diagnose/logginn", bruker, function (data) {
         })
         //Alert som viser at symptom er satt inn suksessfullt
         setColor('danger');
-        setText('E-post eller passord er feil!');
+        setText('Brukernavn eller passord er feil!');
         setVisible(true);
         //Gjemmer alert etter 2sek 
         if (setVisible) {
@@ -47,14 +47,14 @@ export const LoggInn = () => {
                 </div>
                 <div id="leggInnBoks" className="col-md-4 offset-md-4">
                     <h1 className="text-center">MinDiagnose App</h1>
-                    <p className="text-center">Skriv inn e-post og passord</p>
+                    <p className="text-center">Skriv inn brukernavn og passord</p>
 
                     <Form>
                         <div className="row align-items-md-stretch">
                             <div className="col-md-12">
                                 <FormGroup>
-                                    <Label for="epost">E-post</Label>
-                                    <Input type="text" id="epost" name="epost"></Input>
+                                    <Label for="brukernavn">Brukernavn</Label>
+                                    <Input type="text" id="brukernavn" name="brukernavn"></Input>
                                 </FormGroup>
 
                                 <FormGroup>
