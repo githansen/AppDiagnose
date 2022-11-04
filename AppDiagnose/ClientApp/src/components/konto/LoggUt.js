@@ -4,12 +4,12 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import $ from 'jquery'
 
 
 
 //OUTPUT
 export const LoggUt = () => {
-
     return (
         <div className="container py-5">
             <div className="row align-items-center text-center my-4">
