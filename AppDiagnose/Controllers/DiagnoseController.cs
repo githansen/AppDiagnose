@@ -9,6 +9,7 @@ using MinDiagnose.DAL;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel;
 
 namespace MinDiagnose.Controllers
 {
@@ -65,6 +66,7 @@ namespace MinDiagnose.Controllers
         }
         public async Task<ActionResult> slettSymptom(int Id)
         {
+           
            bool slettet  = await _db.slettSymptom(Id);
             if (!slettet) return BadRequest("Ble ikke slettet");
             else return Ok(slettet);
@@ -79,10 +81,12 @@ namespace MinDiagnose.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool ok = await _db.logginn(bruker);
-                if (ok)
+                Bruker ok = await _db.logginn(bruker);
+                if (ok != null)
                 {
-                    HttpContext.Session.SetString(_loggetInn, _loggetInn);
+                    string b = HttpContext.Session.GetString(_loggetInn);
+                    string loggetinn = b + ok.Id;
+                    HttpContext.Session.SetString(_loggetInn, loggetinn);
                     return Ok(true);
                 }
                 else
@@ -93,14 +97,15 @@ namespace MinDiagnose.Controllers
             } //R
             return BadRequest("Feil i inputvalidering");
         }
-        public   ActionResult ErLoggetInn()
+        public async  Task<ActionResult> ErLoggetInn()
         {
-           
+            Bruker retur = await _db.ErLoggetInn(HttpContext.Session.GetString(_loggetInn));
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Ok(false);
+                retur = new Bruker();
+                return Ok(retur);
             }
-            else return Ok(true);
+            else return Ok(retur);
             
         }
         public void LoggUt()

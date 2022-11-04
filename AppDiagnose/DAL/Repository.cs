@@ -317,41 +317,52 @@ namespace MinDiagnose.DAL
                 return false;
             }
         }
-        public async Task<bool> logginn(Bruker bruker)
+        public async Task<Bruker> logginn(Bruker bruker)
         {
             try
             {
                 Brukere funnetBruker = await _db.brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
-                if (funnetBruker == null) return false;
+                if (funnetBruker == null) return null;
                 // sjekk passordet
                 byte[] hash = genHash(bruker.Passord, funnetBruker.Salt);
                 bool ok = hash.SequenceEqual(funnetBruker.Passord);
                 if (ok)
                 {
-                    return true;
+                    var retur = new Bruker
+                    {
+                        Brukernavn = funnetBruker.Brukernavn,
+                        Id = funnetBruker.Id
+                    };
+                    return retur;
                 }
-                return false;
+                return null;
             }
             catch (Exception e)
             {
-                return false;
+                return null;
             }
         }
-        public async Task<Brukere> ErLoggetInn(HttpContext httpContext)
+        public async Task<Bruker> ErLoggetInn(string bruker)
         {
-            if (string.IsNullOrEmpty(httpContext.Session.GetString(_loggetInn)))
+            if (string.IsNullOrEmpty(bruker))
             {
                 return null;
             }
             else
             {
-                string bruker = httpContext.Session.GetString(_loggetInn);
+                
                 char[] c = bruker.ToCharArray();
-                int id =(int) c[c.Length - 1] - '0';
+                int id = (int)Char.GetNumericValue(c[c.Length-1]);
+                Debug.WriteLine(id);
                 Brukere retur = await _db.brukere.FindAsync(id);
                 retur.Passord = null;
                 retur.Salt = null;
-                return retur;
+                var b = new Bruker
+                {
+                    Id = retur.Id,
+                    Brukernavn = retur.Brukernavn
+                };
+                return b;
             }
                 
         }

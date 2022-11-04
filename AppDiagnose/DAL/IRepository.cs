@@ -18,7 +18,7 @@ namespace MinDiagnose.DAL
         Task<bool> slettSymptom(int Id);
         Task<bool> CreateSymptom(string navn, int kategoriId);
         Task<bool> loggDBEndring(string beskrivelse);
-        Task<bool> logginn(Bruker bruker);
-        Task<Brukere> ErLoggetInn(HttpContext httpContext);
+        Task<Bruker> logginn(Bruker bruker);
+        Task<Bruker> ErLoggetInn(string bruker);
     }
 }
