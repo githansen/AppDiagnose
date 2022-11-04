@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace MinDiagnose.DAL
 {
@@ -26,7 +28,8 @@ namespace MinDiagnose.DAL
             _db = db;
             _log = log;
         }
-
+        private const string _loggetInn = "loggetInn";
+        private const string _ikkeLoggetInn = "";
         public async Task<List<Diagnose>> hentalleDiagnoser()
         {
             try
@@ -314,26 +317,44 @@ namespace MinDiagnose.DAL
                 return false;
             }
         }
-        public async Task<bool> logginn(Bruker bruker)
+        public async Task<Brukere> logginn(Bruker bruker)
         {
             try
             {
                 Brukere funnetBruker = await _db.brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
-                if(funnetBruker == null) return false;
+                if(funnetBruker == null) return null;
                 // sjekk passordet
                 byte[] hash = genHash(bruker.Passord, funnetBruker.Salt);
                 bool ok = hash.SequenceEqual(funnetBruker.Passord);
                 if (ok)
                 {
-                    return true;
+                    return funnetBruker;
                 }
-                return false;
+                return null;
             }
             catch (Exception e)
             {
                 _log.LogInformation(e.Message);
-                return false;
+                return null;
             }
+        }
+        public async Task<Brukere> ErLoggetInn(HttpContext httpContext)
+        {
+            if (string.IsNullOrEmpty(httpContext.Session.GetString(_loggetInn)))
+            {
+                return null;
+            }
+            else
+            {
+                string bruker = httpContext.Session.GetString(_loggetInn);
+                char[] c = bruker.ToCharArray();
+                int id =(int) c[c.Length - 1] - '0';
+                Brukere retur = await _db.brukere.FindAsync(id);
+                retur.Passord = null;
+                retur.Salt = null;
+                return retur;
+            }
+                
         }
 
     }
