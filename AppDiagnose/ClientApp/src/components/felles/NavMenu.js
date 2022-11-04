@@ -47,7 +47,7 @@ export const NavMenu = () => {
                             {/* Sjekker om bruker er innlogget. Hvis bruker er innlogget vises logg-ut link, hvis ikke vises logg-inn link.*/}
                             {loggetinn() ? (
                                 <NavItem>
-                                    <NavLink className="text-dark" onClick={() => loggUtKnapp()}><i className="bi bi-door-open"></i> Logg ut</NavLink>
+                                    <NavLink tag={Link} className="text-dark" onClick={() => loggUtKnapp()}><i className="bi bi-door-open"></i> Logg ut</NavLink>
                                 </NavItem>
                             ): (
                                 <NavItem>

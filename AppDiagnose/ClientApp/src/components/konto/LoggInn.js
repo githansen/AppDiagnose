@@ -56,11 +56,11 @@ export const LoggInn = () => {
                         <div className="row align-items-md-stretch">
                             <div className="col-md-12">
                                 <FormGroup>
-                                    <Label for="brukernavn">Brukernavn</Label>
+                                    <Label for="brukernavn">Brukernavn (admin)</Label>
                                     <Input type="text" id="brukernavn" name="brukernavn" className="form-control" required="" autoFocus=""></Input>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="passord">Passord</Label>
+                                    <Label for="passord">Passord (admin)</Label>
                                     <Input type="password" id="passord" name="passord" className="form-control" required="" autoFocus=""></Input>
                                 </FormGroup>
                             </div>
