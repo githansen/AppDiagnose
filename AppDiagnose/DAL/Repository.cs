@@ -334,7 +334,6 @@ namespace MinDiagnose.DAL
             }
             catch (Exception e)
             {
-                _log.LogInformation(e.Message);
                 return false;
             }
         }
