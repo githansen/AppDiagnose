@@ -79,33 +79,33 @@ namespace MinDiagnose.Controllers
         {
             if (ModelState.IsValid)
             {
-                Brukere b = await _db.logginn(bruker);
-                if (b != null)
+                bool ok = await _db.logginn(bruker);
+                if (ok)
                 {
-                    string logginn = _loggetInn + b.Id;
-                    HttpContext.Session.SetString(_loggetInn, logginn);
-                    return Ok(b);
+                    HttpContext.Session.SetString(_loggetInn, _loggetInn);
+                    return Ok(true);
                 }
                 else
                 {
                     HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
-                    return Ok("Feil brukernavn/passord");
+                    return Ok(false);
                 }
-            }
+            } //R
             return BadRequest("Feil i inputvalidering");
         }
         public async Task <ActionResult> ErLoggetInn()
         {
-            Brukere bruker = await _db.ErLoggetInn(HttpContext);
-            /*
+           
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
                 return Ok(false);
             }
             else return Ok(true);
-            */
-            if (bruker != null) return Ok(bruker);
-            else return Ok(false);
+            
+        }
+        public void LoggUt()
+        {
+            HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
         }
     }
 }

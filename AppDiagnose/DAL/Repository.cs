@@ -317,25 +317,25 @@ namespace MinDiagnose.DAL
                 return false;
             }
         }
-        public async Task<Brukere> logginn(Bruker bruker)
+        public async Task<bool> logginn(Bruker bruker)
         {
             try
             {
                 Brukere funnetBruker = await _db.brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
-                if(funnetBruker == null) return null;
+                if (funnetBruker == null) return false;
                 // sjekk passordet
                 byte[] hash = genHash(bruker.Passord, funnetBruker.Salt);
                 bool ok = hash.SequenceEqual(funnetBruker.Passord);
                 if (ok)
                 {
-                    return funnetBruker;
+                    return true;
                 }
-                return null;
+                return false;
             }
             catch (Exception e)
             {
                 _log.LogInformation(e.Message);
-                return null;
+                return false;
             }
         }
         public async Task<Brukere> ErLoggetInn(HttpContext httpContext)
