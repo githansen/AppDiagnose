@@ -93,7 +93,7 @@ namespace MinDiagnose.Controllers
             } //R
             return BadRequest("Feil i inputvalidering");
         }
-        public async Task <ActionResult> ErLoggetInn()
+        public   ActionResult ErLoggetInn()
         {
            
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
