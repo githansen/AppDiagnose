@@ -183,9 +183,8 @@ namespace MinDiagnoseTest
                 SymptomId = 1
             };
 
-            var mock = new Mock<IRepository>();
-            mock.Setup(s => s.HentEtSymptom(It.IsAny<int>())).ReturnsAsync(returSymptom);
-            var diagnoseController = new DiagnoseController(mock.Object);
+            mockRep.Setup(s => s.HentEtSymptom(It.IsAny<int>())).ReturnsAsync(returSymptom);
+            var diagnoseController = new DiagnoseController(mockRep.Object);
 
             // Act
             var resultat = await diagnoseController.HentEtSymptom(It.IsAny<int>()) as OkObjectResult;
@@ -222,36 +221,60 @@ namespace MinDiagnoseTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            //Assert.Equal(true, resultat.Value);
-            Assert.True((bool)resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
         public async Task logginn()
         {
             // Arrange
-            mockRep.Setup(k => k.logginn(It.IsAny<Bruker>())).ReturnsAsync(true);
+            var returBruker = new Bruker
+            {
+                Id = 1,
+                Brukernavn = "admin",
+                Passord = "admin"
+            };
 
-            var kundeController = new DiagnoseController(mockRep.Object);
+            mockRep.Setup(b => b.logginn(It.IsAny<Bruker>())).ReturnsAsync(returBruker);
+            var diagnoseController = new DiagnoseController(mockRep.Object);
 
             mockSession[_loggetInn] = _loggetInn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
+            diagnoseController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await kundeController.logginn(It.IsAny<Bruker>()) as OkObjectResult;
+            var resultat = await diagnoseController.logginn(It.IsAny<Bruker>()) as OkObjectResult;
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.True((bool)resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
-        /*
         [Fact]
         public async Task ErLoggetInn()
         {
+            // Arrange
+            var returBruker = new Bruker
+            {
+                Id = 1,
+                Brukernavn = "admin",
+                Passord = "admin"
+            };
 
+            mockRep.Setup(b => b.ErLoggetInn(It.IsAny<String>())).ReturnsAsync(returBruker);
+            var diagnoseController = new DiagnoseController(mockRep.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            diagnoseController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await diagnoseController.ErLoggetInn() as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            //Assert.Equal(true, resultat.Value);
+            Assert.Equal<Bruker>(returBruker, (Bruker)resultat.Value);
         }
-        */
     }
 }
