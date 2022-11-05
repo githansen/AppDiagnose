@@ -5,24 +5,16 @@ import React, { Component, useState, useNavigate } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
+import {  loggetinn } from "../Funksjoner/Innlogget"
 
 
 
 //OUTPUT
 export const Dashboard = () => {
-    //Sjekker om bruker er innlogget, hvis ikke sendes bruker til innloggingssiden
-    const url = "/diagnose/ErLoggetInn"
-    let innlogget = null;
-    $.ajax({
-        url: url,
-        type: 'get',
-        async: false,
-        success: function (data) {
-            if (data == false) {
-                window.location.href = "/logginn"
-            }
-        }
-    })
+
+    if (loggetinn().id == 0) {
+        window.location.href = "/logginn"
+    }
 
     return (
         <div className="container py-4">
