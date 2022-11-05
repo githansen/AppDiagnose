@@ -36,7 +36,7 @@ export const NavMenu = () => {
                                 <NavLink tag={Link} className="text-dark" to="/dokumentasjon"><i className="bi bi-file-text"></i> Dokumentasjon</NavLink>
                             </NavItem>
                             {/* Sjekker om bruker er innlogget, i så fall vises dashboard link*/}
-                            {loggetinn() ? (
+                            {loggetinn().id != 0 ? (
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/dashboard"><i className="bi bi-house-door"></i> Dashboard</NavLink>
                                 </NavItem>

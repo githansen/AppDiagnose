@@ -3,8 +3,9 @@
 //JavaScript Bibliotek
 import React, { Component, useEffect, useState } from 'react';
 import { Table, Button, Alert } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+import { loggetinn } from "../Funksjoner/Innlogget"
 
 
 //Funksjon 
@@ -22,19 +23,10 @@ const slettSymptom = (index) => {
 //OUTPUT
 export const alleSymptomer = () => {
 
-    //Sjekker om bruker er innlogget, hvis ikke sendes bruker til innloggingssiden
-    const url = "/diagnose/ErLoggetInn"
-    let innlogget = null;
-    $.ajax({
-        url: url,
-        type: 'get',
-        async: false,
-        success: function (data) {
-            if (data == false) {
-                window.location.href = "/logginn"
-            }
-        }
-    })
+    const history = useHistory();
+    if (loggetinn().id == 0) {
+        history.push("/logginn");
+    }
 
 
     const [liste, setListe] = useState([])

@@ -3,16 +3,20 @@
 //JavaScript Bibliotek
 import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert, NavItem, NavLink } from "reactstrap";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
 import { NavMenu } from '../felles/NavMenu';
+import { loggetinn } from "../Funksjoner/Innlogget"
 
 
 
 //OUTPUT 
-export const LoggInn = () => { 
-    //Laster inn - Ikon 
-    const [lasterInnIkon, setLasterInn] = useState(false);
+export const LoggInn = () => {
+
+    const history = useHistory();
+    if (loggetinn().id !== 0) {
+        window.location.href = "/dashboard"
+    }
 
     //Alert
     const [visible, setVisible] = useState(false);
@@ -25,29 +29,26 @@ export const LoggInn = () => {
             Passord: $("#passord").val()
         }
         $.get("/diagnose/logginn", bruker, function (data) {
-            window.location.href = "/dashboard"
+            setColor('success');
+            setText('Velkommen! Du blir nå sendt til dashboardet.');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    window.location.href = "/dashboard"
+                    setVisible(false);
+                }, 2000)
+            }
         })
-        //Alert som viser at symptom er satt inn suksessfullt
-        setColor('danger');
-        setText('Brukernavn eller passord er feil!');
-        setVisible(true);
-        //Gjemmer alert etter 2sek 
-        if (setVisible) {
-            setTimeout(() => {
-                setVisible(false);
-            }, 3000)
-        }
     }
 
     return (
         <div className="container py-5">
             <div className="row align-items-md-stretch">
-                <div className="col-md-6 offset-md-3">
+                <div id="loggInnBoks" className="col-md-6 offset-md-3 mx-auto d-block loggInnBoks">
                     <Alert id="varslingsBoks" color={color} isOpen={visible} >
                         <div>{alertText}</div>
                     </Alert>
-                </div>
-                <div id="loggInnBoks" className="col-md-6 offset-md-3 mx-auto d-block">
                     <img className="card-img loggInnLogo mx-auto d-block" src="./img/MinDiagnose_logo.png" alt="Logo"></img>
                     <h2 className="text-center">MinDiagnose - Backend</h2>
                     <p className="text-center text-muted">Skriv inn brukernavn og passord</p>

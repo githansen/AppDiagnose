@@ -3,7 +3,7 @@
 //JavaScript Bibliotek
 import React, { Component, useState, useNavigate } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
 import {  loggetinn } from "../Funksjoner/Innlogget"
 
@@ -12,8 +12,9 @@ import {  loggetinn } from "../Funksjoner/Innlogget"
 //OUTPUT
 export const Dashboard = () => {
 
+    const history = useHistory();
     if (loggetinn().id == 0) {
-        window.location.href = "/logginn"
+        history.push("/logginn");
     }
 
     return (
