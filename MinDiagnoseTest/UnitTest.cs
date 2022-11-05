@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 namespace MinDiagnoseTest
 {
@@ -27,21 +28,30 @@ namespace MinDiagnoseTest
         public async Task CreateSymptom()
         {
             //Arrange
-            var innSymptom = new Symptom
-            {
-                navn = "Kramper",
-                SymptomId = 2,   // Egentlig kategoriID, men må bruke int
-            };
-
-            mockRep.Setup(d => d.CreateSymptom(innSymptom.navn, innSymptom.SymptomId)).ReturnsAsync(true);
+            mockRep.Setup(s => s.CreateSymptom(It.IsAny<String>(), It.IsAny<int>())).ReturnsAsync(true);
             var diagnoseController = new DiagnoseController(mockRep.Object);
 
             // Act
-            var resultat = await diagnoseController.CreateSymptom(innSymptom.navn, innSymptom.SymptomId) as OkObjectResult;
+            var resultat = await diagnoseController.CreateSymptom(It.IsAny<String>(), It.IsAny<int>()) as OkObjectResult;
             
             // Assert
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal(true, resultat.Value);
+        }
+        
+        [Fact]
+        public async Task CreateSymptomFailed()
+        {
+            //Arrange
+            mockRep.Setup(s => s.CreateSymptom(It.IsAny<String>(), It.IsAny<int>())).ReturnsAsync(false);
+            var diagnoseController = new DiagnoseController(mockRep.Object);
+
+            // Act
+            var resultat = await diagnoseController.CreateSymptom(It.IsAny<String>(), It.IsAny<int>()) as BadRequestObjectResult;
+
+            // Assert
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal(" ble ikke lagret", resultat.Value);
         }
 
         [Fact]
@@ -78,6 +88,21 @@ namespace MinDiagnoseTest
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal<List<Diagnose>>((List<Diagnose>)resultat.Value, diagnoseListe);
+        }
+
+        [Fact]
+        public async Task HentalleDiagnoserTomListe()
+        {
+            // Arrange
+            mockRep.Setup(d => d.hentalleDiagnoser()).ReturnsAsync(() => null);
+            var diagnoseController = new DiagnoseController(mockRep.Object);
+
+            // Act
+            var resultat = await diagnoseController.HentalleDiagnoser() as NotFoundObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
+            Assert.Equal("Feil på server", resultat.Value);
         }
 
         [Fact]
@@ -248,6 +273,25 @@ namespace MinDiagnoseTest
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal(true, resultat.Value);
+        }
+
+        [Fact]
+        public async Task LoggInnFeil()
+        {
+            mockRep.Setup(b => b.logginn(It.IsAny<Bruker>())).ReturnsAsync((Bruker)null);
+
+            var diagnoseController = new DiagnoseController(mockRep.Object);
+
+            mockSession[_loggetInn] = _ikkeLoggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            diagnoseController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await diagnoseController.logginn(It.IsAny<Bruker>()) as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.False((bool)resultat.Value);
         }
 
         [Fact]
