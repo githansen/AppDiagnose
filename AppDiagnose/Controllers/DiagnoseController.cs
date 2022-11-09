@@ -85,7 +85,7 @@ namespace MinDiagnose.Controllers
                 if (ok != null)
                 {
                     string b = HttpContext.Session.GetString(_loggetInn);
-                    string loggetinn = b + ok.Id;
+                    string loggetinn = b + ok.Id; //Lagrer akkurat hvilken bruker som er logget inn
                     HttpContext.Session.SetString(_loggetInn, loggetinn);
                     return Ok(true);
                 }

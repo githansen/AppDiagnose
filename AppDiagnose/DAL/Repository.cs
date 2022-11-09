@@ -288,6 +288,7 @@ namespace MinDiagnose.DAL
 
         public static byte[] genHash(string passord, byte[] salt)
         {
+            //Fulgt kode fra forelesning
             return KeyDerivation.Pbkdf2(
                 password: passord,
                 salt: salt,
@@ -297,6 +298,7 @@ namespace MinDiagnose.DAL
         }
         public static byte[] genSalt()
         {
+            //Fulgt kode fra forelesning
             var csp = new RNGCryptoServiceProvider();
             var salt = new byte[24];
             csp.GetBytes(salt);
@@ -319,6 +321,8 @@ namespace MinDiagnose.DAL
         }
         public async Task<Bruker> logginn(Bruker bruker)
         {
+
+            //Fulgt gjennomgått kode fra forelesninger
             try
             {
                 Brukere funnetBruker = await _db.brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
@@ -328,6 +332,7 @@ namespace MinDiagnose.DAL
                 bool ok = hash.SequenceEqual(funnetBruker.Passord);
                 if (ok)
                 {
+                    //Skal returnere objekt uten salt og passord
                     var retur = new Bruker
                     {
                         Brukernavn = funnetBruker.Brukernavn,
@@ -335,15 +340,17 @@ namespace MinDiagnose.DAL
                     };
                     return retur;
                 }
-                return null;
+                return null; //Feil brukernavn/passord
             }
             catch (Exception e)
             {
+                _log.LogInformation(e.Message);
                 return null;
             }
         }
         public async Task<Bruker> ErLoggetInn(string bruker)
         {
+            //String bruker er sesjons-strengen, her med en ID som appendix slik at vi finner hvem som er innlogget
             if (string.IsNullOrEmpty(bruker))
             {
                 return null;
@@ -352,7 +359,7 @@ namespace MinDiagnose.DAL
             {
                 
                 char[] c = bruker.ToCharArray();
-                int id = (int)Char.GetNumericValue(c[c.Length-1]);
+                int id = (int)Char.GetNumericValue(c[c.Length-1]); //Henter ID fra sesjons-strengen
                 Debug.WriteLine(id);
                 Brukere retur = await _db.brukere.FindAsync(id);
                 retur.Passord = null;
