@@ -112,6 +112,12 @@ namespace MinDiagnose.Controllers
         {
             HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
         }
-        
+        public async Task<ActionResult> HentHeleLoggen()
+        {
+            var liste = await _db.HentHeleLoggen();
+            if (liste == null) return NotFound("Feil på server");
+            else return Ok(liste);
+        }
+
     }
 }

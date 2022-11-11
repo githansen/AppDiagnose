@@ -319,6 +319,26 @@ namespace MinDiagnose.DAL
                 return false;
             }
         }
+        public async Task<List<dbLog>> HentHeleLoggen()
+        {
+            try
+            {
+                //Samme som i forelesninger
+                List<dbLog> liste = await _db.dbLog.Select(l => new dbLog
+                {
+                    dbLogId = l.dbLogId,
+                    beskrivelse = l.beskrivelse,
+                }).ToListAsync();
+
+
+                return liste;
+            }
+            catch
+            {
+                _log.LogInformation("Noe gikk galt under kjøring av HentHeleLoggen()");
+                return null;
+            }
+        }
         public async Task<Bruker> logginn(Bruker bruker)
         {
 
