@@ -4,12 +4,17 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Container, Row, Col, Tooltip, Alert } from 'reactstrap';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+import one from './img/kategori_1.png'
+import two from './img/kategori_2.png'
+import three from './img/kategori_3.png'
+import four from './img/kategori_4.png'
+import placeholder from "./img/diagnose_bg_placeholder.png"
 import $ from 'jquery'
 
 //Stiler  
 import "./home.css"
 
-
+let bilder = [one, two, three, four]
 
 //OUTPUT
 export const Home = () => {
@@ -26,7 +31,6 @@ export const Home = () => {
     const kalkulerDiagnose = () => {
         //Sender bruker øverst på siden for å se diagnose 
         window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-
         var y = document.getElementsByTagName("input")
         let symptomer = []
         for (let i of y) {
@@ -96,7 +100,7 @@ export const Home = () => {
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
-                    ut += `<div class="kollaps"><img className="img-fluid" src="./img/kategori_${i.id}.png" alt="${i.navn}_placeholder"></img>`
+                    ut += `<div class="kollaps"><img className="img-fluid" src=${bilder[i.id-1]} alt="${i.navn}_placeholder"></img>`
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {
@@ -151,7 +155,6 @@ export const Home = () => {
 
     return (
         <div className="container py-4">
-
             <div className="row align-items-md-stretch">
 
                 <div className="col-md-12">
@@ -182,7 +185,7 @@ export const Home = () => {
                 </div>
                 <div className="col-md-4">
                     <div id="forDiagnose" className="card text-center bg-dark text-white">
-                        <img className="card-img" src="./img/diagnose_bg_placeholder.png" alt="Diagnose_Placeholder"></img>
+                        <img className="card-img" src={placeholder} alt="Diagnose_Placeholder"></img>
                             <div className="card-img-overlay d-flex align-items-center justify-content-center">
                                 <div>
                                     <h1><i className="bi bi-file-medical"></i></h1>
@@ -191,7 +194,7 @@ export const Home = () => {
                             </div>
                         </div>
                         <div id="etterDiagnose" className="card text-center bg-dark text-white">
-                            <img className="card-img" src="./img/diagnose_bg_placeholder.png" alt="Diagnose_Placeholder"></img>
+                        <img className="card-img" src={placeholder} alt="Diagnose_Placeholder"></img>
                             <div className="card-img-overlay cio2 d-flex align-items-center justify-content-center">
                                 <div>
                                 <h1><i className="bi bi-file-medical"></i></h1>
