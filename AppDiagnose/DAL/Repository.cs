@@ -28,8 +28,7 @@ namespace MinDiagnose.DAL
             _db = db;
             _log = log;
         }
-        private const string _loggetInn = "loggetInn";
-        private const string _ikkeLoggetInn = "";
+        
         public async Task<List<Diagnose>> hentalleDiagnoser()
         {
             try
@@ -165,8 +164,6 @@ namespace MinDiagnose.DAL
                     }
 
                 }
-
-
                 return retur;
             }
             catch
