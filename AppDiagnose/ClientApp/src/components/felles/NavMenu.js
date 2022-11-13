@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { loggetinn } from "../Funksjoner/Innlogget"
 import { Collapse, Container, Button, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import logo from '../img/MinDiagnose_logo.png'
+
 //Stiler 
 import './NavMenu.css';
 
@@ -27,7 +27,7 @@ export const NavMenu = () => {
         <header>
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3 py-3" light>
                 <Container>
-                    <NavbarBrand tag={Link} className="d-flex align-items-center logo" to="/"><img className="card-img" src={logo} alt="Logo"></img> MinDiagnose</NavbarBrand>
+                    <NavbarBrand tag={Link} className="d-flex align-items-center logo" to="/"><img className="card-img" src="./img/MinDiagnose_logo.png" alt="Logo"></img> MinDiagnose</NavbarBrand>
                     <Collapse className="d-sm-inline-flex flex-sm-row-reverse" navbar>
                         <ul className="navbar-nav flex-grow">
                             <NavItem className="special">
