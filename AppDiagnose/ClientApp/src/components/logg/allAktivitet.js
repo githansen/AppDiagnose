@@ -25,6 +25,27 @@ export const allAktivitet = () => {
     const [color, setColor] = useState('primary');
     const [alertText, setText] = useState('');
 
+    useEffect(() => {
+        //Viser lasterInn-ikon
+        setLasterInn(true);
+        $.get("/diagnose/HentHeleLoggen", function (data) {
+            //Skjuler lasterInn-ikon
+            setLasterInn(false);
+            setListe(data)
+        }).fail(function (jqXHR) {
+            //Alert som viser feil i API kall
+            setColor('danger');
+            setText('Feil i respons for API-kall');
+            setVisible(true);
+            //Gjemmer alert etter 2sek 
+            if (setVisible) {
+                setTimeout(() => {
+                    setVisible(false);
+                }, 2000)
+            }
+        })
+    }, []);
+
 
     return (
         <div className="container py-4">
@@ -36,7 +57,7 @@ export const allAktivitet = () => {
                 </div>
                 <div className="col-md-12">
                     <h1><i className="bi bi-person-lines-fill"></i> Aktivitet</h1>
-                    <p>Her kan du følge med på de 30 siste endringene som har blitt gjort, sortert fra nyeste aktivitet.</p>
+                    <p>Her kan du følge med på de 15 siste endringene som har blitt gjort, sortert fra nyeste aktivitet.</p>
                 </div>
             </div>
             {lasterInnIkon && (
@@ -47,14 +68,14 @@ export const allAktivitet = () => {
             )}
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
-                    <Table hover size="sm">
-                        <thead><tr><th>Tidspunkt</th><th>Bruker</th><th>Info</th></tr></thead><tbody>
+                    <Table hover size="md">
+                        <thead><tr><th>Tid</th><th>ID</th><th>Bruker</th><th>Beskrivelse</th></tr></thead><tbody>
                             {liste.map((i, index) => {
-                                return
-                                <tr key={index}>
-                                    <th scope="row" className="align-middle"> {i.diagnoseId}</th>
-                                    <td className="tableTitteltd ">{i.navn}</td>
-                                    <td className="tableTitteltd longTxt">{i.info}</td>
+                                return <tr key={index}>
+                                    <td></td>
+                                    <td className="tableTitteltd align-middle">{i.dbLogId}</td>
+                                    <td></td>
+                                    <td className="tableTitteltd longTxt">{i.beskrivelse}</td>
                                 </tr>
                             })}
                         </tbody>
