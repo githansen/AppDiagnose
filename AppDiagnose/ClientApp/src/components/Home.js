@@ -2,7 +2,7 @@
 
 //JavaScript Bibliotek
 import React, { Component, useState, useEffect } from 'react';
-import { Container, Row, Col, Tooltip, Alert } from 'reactstrap';
+import { Container, Row, Col, Alert } from 'reactstrap';
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 import $ from 'jquery'
 //Stiler  
@@ -14,8 +14,6 @@ import "./home.css"
 export const Home = () => {
     const [diagnose, setDiagnose] = useState("");
     const [lasterInnIkon, setLasterInn] = useState(false);
-    const [tooltipOpen, setTooltipOpen] = useState(false);
-    const toggle = () => setTooltipOpen(!tooltipOpen);
 
     //Alert
     const [visible, setVisible] = useState(false);
@@ -94,7 +92,7 @@ export const Home = () => {
                 let ut = ""
                 for (let i of data) {
                     ut += '<div class="kategoriBoks">'
-                    ut += `<div class="kollaps"><img className="img-fluid" src="./img/kategori_${i.id}.png" alt="${i.navn}_placeholder"></img>`
+                    ut += `<div class="kollaps"><img className="img-fluid" src="./img/kategori_${i.id}.webp" alt="${i.navn}_placeholder"></img>`
                     ut += `${i.navn}`
                     ut += '</div>'
                     for (let j of i.symptomer) {
@@ -198,10 +196,6 @@ export const Home = () => {
                                     </p>
                                     <div className="d-grid gap-2 ">
                                         <a size="sm" className="mt-3 w-100 btn btn-info" href={`${diagnose.link}`} target="_blank"><i className="bi bi-eye"></i> Les mer</a>
-                                        <button id="medisinKnp" className="mt-3 w-100 btn btn-info btn-disabled" type="button"><i className="bi bi-capsule"></i> Se medisiner</button>
-                                          <Tooltip isOpen={tooltipOpen} target="medisinKnp" toggle={toggle} >
-                                            Kommer snart...
-                                          </Tooltip>
                                     </div>
                                 </div> 
                             </div>

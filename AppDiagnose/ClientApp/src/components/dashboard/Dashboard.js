@@ -26,7 +26,7 @@ export const Dashboard = () => {
                         <div className="container-fluid py-5">
                             <h1 className="display-5 fw-bold text-light">CRUD Dashboard</h1>
                             <p className="col-md-12 fs-5 text-light p-0">
-                                Dette er ditt dashboard. Her kan du legge til og endre kategorier, symptomer, diagnoser, bedrifter eller medisiner.
+                                Dette er ditt dashboard. Her kan du legge til og endre kategorier, symptomer, diagnoser, bedrifter. Eller se siste aktivitet.
                                 Prøv deg frem!
                                 </p>
                             <Button
@@ -88,17 +88,6 @@ export const Dashboard = () => {
                                         <p className="mb-0 opacity-75">Se all logging av aktiviteter</p>
                                     </div>
                                     <small className="opacity-50 text-nowrap">.04</small>
-                                </div>
-                            </div>
-                        </NavLink>
-                        <NavLink>
-                            <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style={{ backgroundColor: "rgba(241,242,244,.6)" }}>
-                                <div className="d-flex gap-2 w-100 justify-content-between">
-                                    <div>
-                                        <h6 className="mb-0"><i className="bi bi-capsule"></i> Medisiner</h6>
-                                        <p className="mb-0 opacity-75">Kommer snart...</p>
-                                    </div>
-                                    <small className="opacity-50 text-nowrap">.05</small>
                                 </div>
                             </div>
                         </NavLink>

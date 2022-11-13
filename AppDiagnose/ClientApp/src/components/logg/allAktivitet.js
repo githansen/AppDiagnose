@@ -69,13 +69,12 @@ export const allAktivitet = () => {
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
                     <Table hover size="md">
-                        <thead><tr><th>Tid</th><th>ID</th><th>Bruker</th><th>Beskrivelse</th></tr></thead><tbody>
+                        <thead><tr><th>Tid</th><th>Beskrivelse</th><th>Bruker</th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
-                                    <td className="tableTitteltd align-middle"> {i.tid }</td>
-                                    <td className="tableTitteltd align-middle">{i.dbLogId}</td>
+                                    <td className="tableTitteltd dateTxt"> {i.tid}</td>
+                                    <td className="tableTitteltd">{i.beskrivelse}</td>
                                     <td></td>
-                                    <td className="tableTitteltd longTxt">{i.beskrivelse}</td>
                                 </tr>
                             })}
                         </tbody>

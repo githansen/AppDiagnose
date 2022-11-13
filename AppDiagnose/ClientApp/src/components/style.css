@@ -43,6 +43,11 @@ a {
     color:gray
 }
 
+.tableTitteltd.dateTxt {
+    min-width:150px;
+    color:gray
+}
+
 table thead tr th {
     border-top: none !important;
 }

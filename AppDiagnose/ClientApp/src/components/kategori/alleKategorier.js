@@ -30,9 +30,9 @@ export const alleKategorier = () => {
         //Viser lasterInn-ikon
         setLasterInn(true);
         $.get("/diagnose/HentAlleKategorier", function (data) {
+                setListe(data)
                 //Skjuler lasterInn-ikon
                 setLasterInn(false);
-                setListe(data)
         }).fail(function (jqXHR) {
             //Alert som viser feil i API kall
             setColor('danger');
@@ -73,7 +73,7 @@ export const alleKategorier = () => {
                         <thead><tr><th>Alle kategorier</th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
-                                    <td className="tableTitteltd align-middle"><img className="img-fluid" src={`./img/kategori_${i.id}.png`}></img>{i.navn}</td>
+                                    <td className="tableTitteltd align-middle"><img className="img-fluid" src={`./img/kategori_${i.id}.webp`}></img>{i.navn}</td>
                                     
                                 </tr>
                             })}
