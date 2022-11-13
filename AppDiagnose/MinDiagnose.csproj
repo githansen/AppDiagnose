@@ -23,8 +23,15 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\public\img\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\public\img\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\public\img\**" />
+    <None Remove="ClientApp\public\img\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +48,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\components\diagnose\" />
     <Folder Include="ClientApp\src\components\symptom\" />
-    <Folder Include="ClientApp\public\img\" />
     <Folder Include="ClientApp\src\components\kategori\" />
     <Folder Include="ClientApp\src\components\dashboard\" />
     <Folder Include="ClientApp\src\components\dokumentasjon\" />
