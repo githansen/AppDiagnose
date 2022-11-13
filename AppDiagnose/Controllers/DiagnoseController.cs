@@ -118,8 +118,8 @@ namespace MinDiagnose.Controllers
             if (liste == null) return NotFound("Feil på server");
             else
             {
-                liste = liste.OrderByDescending(x => x.dbLogId).ToList();
-                return Ok(liste.Take(15));
+                liste = liste.OrderByDescending(x => x.dbLogId).ToList(); //Sorterer synkende
+                return Ok(liste.Take(15)); //Sender kun de siste 15 endringene
             }
         }
 
