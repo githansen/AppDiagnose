@@ -305,7 +305,10 @@ namespace MinDiagnose.DAL
         {
             try // prøver å loggføre endringer i db
             {
-                var new_logEntry = new dbLog { beskrivelse = beskrivelse };
+                var new_logEntry = new dbLog {
+                    beskrivelse = beskrivelse,
+                    tid = DateTime.Now.ToString("MM/dd/yyyy HH:mm")
+                };
                 _db.dbLog.Add(new_logEntry);
                 await _db.SaveChangesAsync();
                 return true; // returnerer true hvis vellykket
@@ -325,6 +328,7 @@ namespace MinDiagnose.DAL
                 {
                     dbLogId = l.dbLogId,
                     beskrivelse = l.beskrivelse,
+                    tid = l.tid
                 }).ToListAsync();
 
 

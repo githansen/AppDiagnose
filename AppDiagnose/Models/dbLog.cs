@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MinDiagnose.Models
 {
@@ -6,5 +7,6 @@ namespace MinDiagnose.Models
     {
         public int dbLogId { get; set; }
         public string beskrivelse { get; set; }
+        public string tid { get; set; }
     }
 }

@@ -72,7 +72,7 @@ export const allAktivitet = () => {
                         <thead><tr><th>Tid</th><th>ID</th><th>Bruker</th><th>Beskrivelse</th></tr></thead><tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
-                                    <td></td>
+                                    <td className="tableTitteltd align-middle"> {i.tid }</td>
                                     <td className="tableTitteltd align-middle">{i.dbLogId}</td>
                                     <td></td>
                                     <td className="tableTitteltd longTxt">{i.beskrivelse}</td>

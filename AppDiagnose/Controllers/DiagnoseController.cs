@@ -116,7 +116,11 @@ namespace MinDiagnose.Controllers
         {
             var liste = await _db.HentHeleLoggen();
             if (liste == null) return NotFound("Feil på server");
-            else return Ok(liste);
+            else
+            {
+                liste = liste.OrderByDescending(x => x.dbLogId).ToList();
+                return Ok(liste.Take(15));
+            }
         }
 
     }
