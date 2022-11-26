@@ -20,6 +20,14 @@
         border-top-right-radius: 0 !important;
         border-bottom-left-radius: calc(0.25rem - 1px) !important;
         border-bottom-right-radius: calc(0.25rem - 1px) !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-kalkuler i{
+        margin-right:5px;
+        font-size:40px;
     }
 
     /* Knapp - Hover */ 
@@ -59,7 +67,6 @@
     max-width:100px;
     padding:10px 20px;
 }
-
 /* Annet */
 .kategoriBoks {
     border: 1px solid rgba(0,0,0,.125);
@@ -77,6 +84,9 @@
 
 #etterDiagnose {
     display: none;
+}
+#etterDiagnose .card-text {
+    font-weight:300;
 }
 
 

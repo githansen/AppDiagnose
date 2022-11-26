@@ -165,7 +165,10 @@ export const Home = () => {
                             <div id="symptomByKategoriUtskrift"></div>
                         </Container> 
                     </div>
-                    <button className="w-100 btn btn-lg btn-kalkuler p-3 " type="button" onClick={kalkulerDiagnose}><i className="bi bi-stars"></i> KALKULER</button>
+                    <button className="w-100 btn btn-lg btn-kalkuler p-3 " type="button" onClick={kalkulerDiagnose}>
+                        <i className="bi bi-heart-pulse"></i>
+                        DIAGNOSER
+                    </button>
                 </div>
                 <div className="col-md-4">
                     <div id="forDiagnose" className="card text-center bg-dark text-white">
@@ -189,13 +192,13 @@ export const Home = () => {
                                     <i className="bi bi-file-medical"></i>
                                 </h1>
                                 <h5 className="card-title">
-                                    Din diagnose er {diagnose.navn}
+                                    Diagnose: {diagnose.navn}
                                 </h5>
                                 <p className="card-text">
                                     {diagnose.info}
                                 </p>
                                 <div className="d-grid gap-2 ">
-                                    <a size="sm" className="mt-3 w-100 btn btn-info" href={`${diagnose.link}`} target="_blank"><i className="bi bi-eye"></i> Les mer</a>
+                                    <a size="sm" className="mt-3 w-100 btn btn-info" href={`${diagnose.link}`} target="_blank"><i className="bi bi-box-arrow-up-right"></i> Les mer</a>
                                 </div>
                             </div> 
                         </div>
