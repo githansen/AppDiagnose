@@ -5,6 +5,8 @@ import React, { Component, useState, useNavigate } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import {  loggetinn } from "../Funksjoner/Innlogget"
 
 
@@ -12,21 +14,22 @@ import {  loggetinn } from "../Funksjoner/Innlogget"
 //OUTPUT
 export const Dashboard = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
     }
 
     return (
-        <div className="container py-4">
-
+        <div className="dashboard container py-4">
             <div className="row align-items-md-stretch">
                 <div className="col-md-6">
-                    <div className="p-5 mb-4 bg-primary rounded-3">
-                        <div className="container-fluid py-5">
-                            <h1 className="display-5 fw-bold text-light">CRUD Dashboard</h1>
+                    <div className="p-5 mb-4 bg-primary">
+                        <div className="container-fluid py-5 text-center">
+                            <img src="./img/big_avatar_1.webp"></img>
+                            <h1 className="display-5 fw-bold text-light">Hei, {loggetinn().brukernavn}.</h1>
                             <p className="col-md-12 fs-5 text-light p-0">
-                                Dette er ditt dashboard. Her kan du legge til og endre kategorier, symptomer, diagnoser, bedrifter. Eller se siste aktivitet.
+                                Dette er ditt CRUD dashboard. Her kan du legge til og endre symptomer, eller se diagnoser, kategorier og siste aktivitet.
                                 Prøv deg frem!
                                 </p>
                             <Button
@@ -40,10 +43,8 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="col-md-6">
                     <div className="list-group w-auto">
-
                         <NavLink tag={Link} className="text-dark pt-0" to="/alleSymptomer">
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                 <div className="d-flex gap-2 w-100 justify-content-between">
@@ -55,7 +56,6 @@ export const Dashboard = () => {
                                 </div>
                             </div>
                         </NavLink>
-
                         <NavLink tag={Link} className="text-dark" to="/alleDiagnoser">
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                 <div className="d-flex gap-2 w-100 justify-content-between">
@@ -67,7 +67,6 @@ export const Dashboard = () => {
                                 </div>
                             </div>
                         </NavLink>
-
                         <NavLink tag={Link} className="text-dark" to="/alleKategorier">
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                 <div className="d-flex gap-2 w-100 justify-content-between">
@@ -79,7 +78,6 @@ export const Dashboard = () => {
                                 </div>
                             </div>
                         </NavLink>
-
                         <NavLink tag={Link} className="text-dark" to="/allAktivitet">
                             <div className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                 <div className="d-flex gap-2 w-100 justify-content-between">
@@ -91,7 +89,6 @@ export const Dashboard = () => {
                                 </div>
                             </div>
                         </NavLink>
-
                     </div>
                 </div>
             </div>

@@ -29,8 +29,8 @@ export const LoggInn = () => {
             Passord: $("#passord").val()
         }
         $.get("/diagnose/logginn", bruker, function (data) {
-            setColor('success');
-            setText('Velkommen! Du blir nå sendt til dashboardet.');
+            setColor('info');
+            setText('Sjekker info...');
             setVisible(true);
             //Gjemmer alert etter 2sek 
             if (setVisible) {
@@ -49,27 +49,24 @@ export const LoggInn = () => {
                     <Alert id="varslingsBoks" color={color} isOpen={visible} >
                         <div>{alertText}</div>
                     </Alert>
-                    <img className="card-img loggInnLogo mx-auto d-block" src="./img/MinDiagnose_logo.png" alt="Logo"></img>
+                    <img className="card-img loggInnLogo mx-auto d-block" src="./img/MinDiagnose_logo.webp" alt="Logo"></img>
                     <h2 className="text-center">MinDiagnose - Backend</h2>
                     <p className="text-center text-muted">Skriv inn brukernavn og passord</p>
-
                     <Form>
                         <div className="row align-items-md-stretch">
                             <div className="col-md-12">
                                 <FormGroup>
                                     <Label for="brukernavn">Brukernavn (admin)</Label>
-                                    <Input type="text" id="brukernavn" name="brukernavn" className="form-control" required="" autoFocus=""></Input>
+                                    <Input type="text" id="brukernavn" name="brukernavn" className="form-control"></Input>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="passord">Passord (admin)</Label>
-                                    <Input type="password" id="passord" name="passord" className="form-control" required="" autoFocus=""></Input>
+                                    <Input type="password" id="passord" name="passord" className="form-control"></Input>
                                 </FormGroup>
                             </div>
-
                             <div className="col-md-12">
                                 <NavLink tag={Link} className="text-dark onlyTxtLink text-muted" to="/glemtpassord">Glemt passordet?</NavLink>
                             </div>
-
                             <div className="col-md-12 text-center">
                                 <Button
                                     color="primary"
@@ -77,7 +74,7 @@ export const LoggInn = () => {
                                     className="text-center px-4 btn-lg btn-block"
                                 >
                                     <i className="bi bi-box-arrow-in-right pr-2"></i> 
-                                      Logg inn
+                                    Logg inn
                                 </Button>
                             </div>
                         </div>

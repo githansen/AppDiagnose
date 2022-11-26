@@ -1,3 +1,5 @@
+// File - App.js //
+
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Layout } from './components/Layout';

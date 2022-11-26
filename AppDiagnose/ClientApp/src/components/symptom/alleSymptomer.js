@@ -5,6 +5,8 @@ import React, { Component, useEffect, useState } from 'react';
 import { Table, Button, Alert } from 'reactstrap';
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import { loggetinn } from "../Funksjoner/Innlogget"
 
 
@@ -23,13 +25,16 @@ const slettSymptom = (index) => {
 //OUTPUT
 export const alleSymptomer = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
     }
 
 
+    //Konstant for liste til symptomer
     const [liste, setListe] = useState([])
+    //Konstant for innslastningsikon
     const [lasterInnIkon, setLasterInn] = useState(false);
 
     //Alert
@@ -94,20 +99,27 @@ export const alleSymptomer = () => {
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
                     <Table hover size="sm">
-                        <thead><tr><th>#ID</th><th>Navn</th><th>Kategori</th><th></th></tr></thead><tbody>
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Navn</th>
+                                <th>Kategori</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.symptomId}</th>
-
                                     <td className="tableTitteltd align-middle">{i.navn}</td>
                                     <td className="tableTitteltd align-middle longTxt">{i.kategori.navn}</td>
                                     <td style={{ textAlign: 'right' }}>
                                         <Button size="sm" className="mx-2" color="primary" tag={Link} to={{ pathname: "/redigerSymptom", search: `?id=${i.symptomId}` }}><i className="bi bi-pencil"></i></Button>
-                                        <Button size="sm" color="danger" onClick={() => slettSymptom(i.symptomId)}><i className="bi bi-trash3"></i></Button></td>
+                                        <Button size="sm" color="danger" onClick={() => slettSymptom(i.symptomId)}><i className="bi bi-trash3"></i></Button>
+                                    </td>
                                 </tr>
                             })}
                         </tbody>
                     </Table>
-                      
                 </div>
             </div>
         </div>

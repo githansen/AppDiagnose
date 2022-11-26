@@ -1,23 +1,28 @@
-﻿// File - alleDiagnoser.js //
+﻿// File - allAktivitet.js //
 
 //JavaScript Bibliotek
 import React, { Component, useEffect, useState } from 'react';
 import { Table, Button, Alert } from 'reactstrap';
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import { loggetinn } from "../Funksjoner/Innlogget"
 
 
 //OUTPUT 
 export const allAktivitet = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
     }
 
 
+    //Konstant for liste til aktiviteter
     const [liste, setListe] = useState([])
+    //Konstant for innslastningsikon
     const [lasterInnIkon, setLasterInn] = useState(false);
 
     //Alert
@@ -57,7 +62,7 @@ export const allAktivitet = () => {
                 </div>
                 <div className="col-md-12">
                     <h1><i className="bi bi-person-lines-fill"></i> Aktivitet</h1>
-                    <p>Her kan du følge med på de 15 siste endringene som har blitt gjort, sortert fra nyeste aktivitet.</p>
+                    <p>Her kan du følge med på de siste endringene som har blitt gjort.</p>
                 </div>
             </div>
             {lasterInnIkon && (
@@ -69,17 +74,21 @@ export const allAktivitet = () => {
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
                     <Table hover size="md">
-                        <thead><tr><th>Tid</th><th>Beskrivelse</th><th>Bruker</th></tr></thead><tbody>
+                        <thead>
+                            <tr>
+                                <th>Tid</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
                                     <td className="tableTitteltd dateTxt"> {i.tid}</td>
                                     <td className="tableTitteltd">{i.beskrivelse}</td>
-                                    <td></td>
                                 </tr>
                             })}
                         </tbody>
                     </Table>
-
                 </div>
             </div>
         </div>

@@ -5,6 +5,8 @@ import React, { Component, useEffect, useState } from 'react';
 import { Table, Button, Alert } from 'reactstrap';
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import { loggetinn } from "../Funksjoner/Innlogget"
 
 
@@ -12,13 +14,16 @@ import { loggetinn } from "../Funksjoner/Innlogget"
 //OUTPUT 
 export const alleKategorier = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
     }
 
 
+    //Konstant for liste til kategorier
     const [liste, setListe] = useState([])
+    //Konstant for innslastningsikon
     const [lasterInnIkon, setLasterInn] = useState(false);
 
     //Alert
@@ -70,16 +75,19 @@ export const alleKategorier = () => {
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
                     <Table hover size="md">
-                        <thead><tr><th>Alle kategorier</th></tr></thead><tbody>
+                        <thead>
+                            <tr>
+                                <th>Alle kategorier</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}>
                                     <td className="tableTitteltd align-middle"><img className="img-fluid" src={`./img/kategori_${i.id}.webp`}></img>{i.navn}</td>
-                                    
                                 </tr>
                             })}
                         </tbody>
                     </Table>
-
                 </div>
             </div>
         </div>

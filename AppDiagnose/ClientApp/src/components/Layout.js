@@ -8,8 +8,6 @@ import { Container } from 'reactstrap';
 import { NavMenu } from './felles/NavMenu';
 import { Footer } from './felles/Footer';
 
-
-
 //OUTPUT
 export class Layout extends Component {
   static displayName = Layout.name;

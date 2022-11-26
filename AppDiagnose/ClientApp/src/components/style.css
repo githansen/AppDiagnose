@@ -59,11 +59,24 @@ table td {
 table tr th:first-of-type {
     width: 80px;
 }
+/* Dashboard */
+.dashboard img {
+    max-width: 200px;
+    margin-bottom:20px;
+}
 
 /* Navbar */
 .navbar.navbar-light {
     background-color:#fff!important;
 }
+.nav-item .nav-link img {
+    max-height: 25px;
+    margin-right: 5px;
+}
+.nav-item .nav-link.capitalize {
+    text-transform:capitalize;
+}
+
 
 /* Knapp */
 

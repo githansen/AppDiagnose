@@ -5,6 +5,8 @@ import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert } from "reactstrap";
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import { loggetinn } from "../Funksjoner/Innlogget"
 
 
@@ -12,6 +14,7 @@ import { loggetinn } from "../Funksjoner/Innlogget"
 //OUTPUT
 export const redigerSymptom = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
@@ -21,6 +24,7 @@ export const redigerSymptom = () => {
     const [symptom, setSymptom] = useState(null);
     const [kategorier, setKategorier] = useState([]);
     const id = window.location.search.substring(1);
+    //Konstant for innslastningsikon
     const [lasterInnIkon, setLasterInn] = useState(false);
 
     //Alert
@@ -29,7 +33,6 @@ export const redigerSymptom = () => {
     const [alertText, setText] = useState('');
 
     const lagreSymptom = () => {
-    
         const s = {
             symptomId: symptom.symptomId,
             navn: $("#navn").val(),
@@ -76,7 +79,6 @@ export const redigerSymptom = () => {
         const url = "/diagnose/HentEtSymptom?" + id 
         console.log(url)
         $.get(url, function (data) {
-            
                 setSymptom(data)
                 document.getElementById("navn").value = data.navn
                 document.getElementById("navnTittel").innerHTML = data.navn
@@ -124,48 +126,47 @@ export const redigerSymptom = () => {
                     <p>*Alle felt må være fyllt ut</p>
                     <Form >
                         <div className="row align-items-md-stretch">
-                        <div className="col-md-4">
-                        <FormGroup>
-                            <Label for="kategoriSelect">
-                              Velg kategori
-                            </Label>
-                            <Input
-                              id="kategoriSelect"
-                              name="kategoriSelect"
-                              type="select"
-                            >
-                                {kategorier.map((kat, index) => {
-                                    return <option value={kat.navn}> {kat.navn.charAt(0).toUpperCase() + kat.navn.slice(1)} </option>
-                                })}
-                            </Input>
-                          </FormGroup>
+                            <div className="col-md-4">
+                                <FormGroup>
+                                    <Label for="kategoriSelect">
+                                        Velg kategori
+                                    </Label>
+                                <Input
+                                  id="kategoriSelect"
+                                  name="kategoriSelect"
+                                  type="select"
+                                >
+                                    {kategorier.map((kat, index) => {
+                                        return <option value={kat.navn}> {kat.navn.charAt(0).toUpperCase() + kat.navn.slice(1)} </option>
+                                    })}
+                                </Input>
+                                </FormGroup>
                             </div>
-                        <div className="col-md-8">
-                        <FormGroup>
-                            <Label for="navn">Navn</Label>
-                            <Input id="navn" name="navn"></Input>
-                        </FormGroup>
+                            <div className="col-md-8">
+                                <FormGroup>
+                                    <Label for="navn">Navn</Label>
+                                    <Input id="navn" name="navn"></Input>
+                                </FormGroup>
                             </div>
                         </div>
                         <ButtonGroup className="float-right">
-                        <Button
-                            color="danger"
-                            tag={Link}
-                            to="/alleSymptomer"
-                        >
-                            <i className="bi bi-box-arrow-in-left"></i> 
-                            Tilbake
-                          </Button>
-                          <Button
-                            color="success"
-                            onClick={() => lagreSymptom()}
-                          >
+                            <Button
+                                color="danger"
+                                tag={Link}
+                                to="/alleSymptomer"
+                            >
+                                <i className="bi bi-box-arrow-in-left"></i> 
+                                Tilbake
+                            </Button>
+                            <Button
+                                color="success"
+                                onClick={() => lagreSymptom()}
+                            >
                             <i className="bi bi-check"></i>
                             Lagre
-                          </Button>
+                            </Button>
                         </ButtonGroup>
                     </Form>
-
                     {lasterInnIkon && (
                         <div className="lastInn-Boks">
                             <div className="lasterInn-Ikon"></div>

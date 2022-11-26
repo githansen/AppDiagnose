@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import $ from 'jquery'
 
 
-
 //OUTPUT
 export const LoggUt = () => {
     return (

@@ -5,19 +5,23 @@ import React, { Component, useEffect, useState } from 'react';
 import { Table, Button, Alert } from 'reactstrap';
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import { loggetinn } from "../Funksjoner/Innlogget"
 
 
 //OUTPUT 
 export const alleDiagnoser = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
     }
 
-
+    //Konstant for liste til diagnoser
     const [liste, setListe] = useState([])
+    //Konstant for innslastningsikon
     const [lasterInnIkon, setLasterInn] = useState(false);
 
     //Alert
@@ -68,7 +72,15 @@ export const alleDiagnoser = () => {
             <div className="row align-items-center bg-light p-4">
                 <div className="col-md-12">
                     <Table hover size="sm">
-                        <thead><tr><th>#ID</th><th>Navn</th><th>Info</th><th></th></tr></thead><tbody>
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Navn</th>
+                                <th>Info</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {liste.map((i, index) => {
                                 return <tr key={index}><th scope="row" className="align-middle"> {i.diagnoseId}</th>
 
@@ -81,7 +93,6 @@ export const alleDiagnoser = () => {
                             })}
                         </tbody>
                     </Table>
-
                 </div>
             </div>
         </div>

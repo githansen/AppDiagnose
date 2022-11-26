@@ -5,6 +5,8 @@ import React, { Component, useEffect, useState } from 'react';
 import { Form, FormGroup, Input, Label, Button, ButtonGroup, Alert } from "reactstrap";
 import { Link, useHistory } from 'react-router-dom';
 import $ from 'jquery'
+
+//Kjører sjekk om bruker er innlogget 
 import { loggetinn } from "../Funksjoner/Innlogget"
 
 
@@ -12,6 +14,7 @@ import { loggetinn } from "../Funksjoner/Innlogget"
 //OUTPUT
 export const leggTilSymptom = () => {
 
+    //Om brukeren ikke er innlogget, send til innlogging
     const history = useHistory();
     if (loggetinn().id == 0) {
         history.push("/logginn");
@@ -90,13 +93,6 @@ export const leggTilSymptom = () => {
                 }
             })
         }
-
-        
-
-        
-
-        
-       
     };
 
     useEffect(() => {
@@ -136,15 +132,13 @@ export const leggTilSymptom = () => {
                 <div id="leggInnBoks" className="col-md-12">
                     <h1><i className="bi bi-activity"></i> Legg til nytt symptom</h1>
                     <p>*Alle felt må være fyllt ut</p>
-
                     <Form >
-
                         <div className="row align-items-md-stretch">
                             <div className="col-md-4">
                                 <FormGroup>
                                     <Label for="kategoriSelect">
                                         Velg kategori
-                            </Label>
+                                    </Label>
                                     <Input
                                         id="kategoriSelect"
                                         name="kategoriSelect"
@@ -178,7 +172,7 @@ export const leggTilSymptom = () => {
                                 onClick={() => createSymptom()}
                             >
                                 <i className="bi bi-plus"></i>
-                            Legg til
+                                Legg til
                           </Button>
                         </ButtonGroup>
                     </Form>
