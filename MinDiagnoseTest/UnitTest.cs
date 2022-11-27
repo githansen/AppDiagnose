@@ -454,12 +454,12 @@ namespace MinDiagnoseTest
         public async Task ErLoggetInnIkkeOK()
         {
             // Arrange
-            var returBruker = new Bruker();
+            var returBruker = (Bruker) null;
 
             mockRep.Setup(b => b.ErLoggetInn(null)).ReturnsAsync(returBruker);
             var diagnoseController = new DiagnoseController(mockRep.Object);
 
-            mockSession[_loggetInn] = _ikkeLoggetInn;
+            mockSession.SetString(_loggetInn, _ikkeLoggetInn);
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
             diagnoseController.ControllerContext.HttpContext = mockHttpContext.Object;
 
@@ -469,7 +469,7 @@ namespace MinDiagnoseTest
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             //Assert.Equal(true, resultat.Value);
-            Assert.Equal<Bruker>(returBruker, (Bruker) resultat.Value);
+            Assert.Null(resultat.Value);
         }
 
         [Fact]
