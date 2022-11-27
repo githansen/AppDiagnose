@@ -100,7 +100,7 @@ namespace MinDiagnose.Controllers
         public async  Task<ActionResult> ErLoggetInn()
         {
             Bruker retur = await _db.ErLoggetInn(HttpContext.Session.GetString(_loggetInn));
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            if (retur == null)
             {
                 retur = new Bruker();
                 return Ok(retur);

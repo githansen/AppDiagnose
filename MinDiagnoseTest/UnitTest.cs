@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestPlatform.Utilities;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace MinDiagnoseTest
 {
@@ -454,9 +455,9 @@ namespace MinDiagnoseTest
         public async Task ErLoggetInnIkkeOK()
         {
             // Arrange
-            var returBruker = (Bruker) null;
+            var returBruker = new Bruker();
 
-            mockRep.Setup(b => b.ErLoggetInn(null)).ReturnsAsync(returBruker);
+            mockRep.Setup(b => b.ErLoggetInn(null)).ReturnsAsync((Bruker) null);
             var diagnoseController = new DiagnoseController(mockRep.Object);
 
             mockSession.SetString(_loggetInn, _ikkeLoggetInn);
@@ -466,11 +467,18 @@ namespace MinDiagnoseTest
             // Act
             var resultat = await diagnoseController.ErLoggetInn() as OkObjectResult;
 
+            // Sjekker om verdiene til Bruker-objektene er like
+            bool likeBrukere = false;
+            if (JsonConvert.SerializeObject(returBruker) == JsonConvert.SerializeObject(resultat.Value))
+            {
+                likeBrukere = true;
+            }
+
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            //Assert.Equal(true, resultat.Value);
-            Assert.Null(resultat.Value);
+            Assert.True(likeBrukere);
         }
+        
 
         [Fact]
         public void LoggUt()
