@@ -19,6 +19,8 @@ namespace MinDiagnoseTest
 {
     public class UnitTest
     {
+        // Tatt inspirasjon fra KundeApp-løsningen med enhetstester på Canvas
+        // En del av testene vil ha likheter til denne grunnet lik funksjonalitet i applikasjonene
         private const string _loggetInn = "loggetInn";
         private const string _ikkeLoggetInn = "";
 
