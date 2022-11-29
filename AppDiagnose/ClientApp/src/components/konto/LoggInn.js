@@ -32,7 +32,11 @@ export const LoggInn = () => {
         }
         //Sjekker i controller om det er en bruker
         $.get("/diagnose/logginn", bruker, function (data) {
-            if (data === true) {//Om det er riktig brukernavn og passord 
+            if (data === true) {//Om det er riktig brukernavn og passord
+                setVisible(false);
+                setColor('success');
+                setText('Vellykket! Du blir nå sendt til dashboardet...');
+                setVisible(true);
                 window.location.href = "/dashboard" //Send bruker til dashboard
             } else { //Om det er feil brukernavn og passord
                 setVisible(false);
