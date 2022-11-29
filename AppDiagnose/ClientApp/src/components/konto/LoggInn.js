@@ -38,12 +38,6 @@ export const LoggInn = () => {
                 setVisible(true);
                 $('#brukernavn').val('');
                 $('#passord').val('');
-                //Gjemmer alert etter 2sek
-                if (setVisible) {
-                    setTimeout(() => {
-                        setVisible(false);
-                    }, 2000)
-                }
             }  
         })
     }
