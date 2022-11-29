@@ -26,7 +26,7 @@ export const Dashboard = () => {
                 <div className="col-md-6">
                     <div className="p-5 mb-4 bg-primary">
                         <div className="container-fluid py-5 text-center">
-                            <img src="./img/big_avatar_1.webp"></img>
+                            <img src={`./img/big_avatar_${loggetinn().id}.webp`}></img>
                             <h1 className="display-5 fw-bold text-light">Hei, {loggetinn().brukernavn}.</h1>
                             <p className="col-md-12 fs-5 text-light p-0">
                                 Dette er ditt CRUD dashboard. Her kan du legge til og endre symptomer, eller se diagnoser, kategorier og siste aktivitet.

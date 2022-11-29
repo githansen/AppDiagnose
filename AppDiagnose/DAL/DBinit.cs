@@ -18,13 +18,21 @@ namespace MinDiagnose.DAL
 
                 var bruker = new Brukere();
                 string passord = "admin";
-                bruker.Brukernavn = "admin";
+                bruker.Brukernavn = "anna";
                 byte[] salt = Repository.genSalt();
                 byte[] hash = Repository.genHash(passord, salt);
                 bruker.Passord = hash;
                 bruker.Salt = salt;
-
                 context.brukere.Add(bruker);
+
+
+                var bruker2 = new Brukere();
+                string passord2 = "admin";
+                bruker2.Brukernavn = "per";
+                byte[] hash2 = Repository.genHash(passord2, salt);
+                bruker2.Passord = hash2;
+                bruker2.Salt = salt;
+                context.brukere.Add(bruker2);
                 // KATEGORIER
 
                 //K1

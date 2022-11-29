@@ -39,7 +39,7 @@ export const NavMenu = () => {
                             {/* Sjekker om bruker er innlogget, i så fall vises dashboard link*/}
                             {loggetinn().id != 0 ? (
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark capitalize" to="/dashboard"><img src="./img/avatar_1.webp"></img>{loggetinn().brukernavn}</NavLink>
+                                    <NavLink tag={Link} className="text-dark capitalize" to="/dashboard"><img src={`./img/avatar_${loggetinn().id}.webp`}></img>{loggetinn().brukernavn}</NavLink>
                                 </NavItem>
                             ): (
                                 <NavItem>

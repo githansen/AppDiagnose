@@ -29,16 +29,22 @@ export const LoggInn = () => {
             Passord: $("#passord").val()
         }
         $.get("/diagnose/logginn", bruker, function (data) {
-            setColor('info');
-            setText('Sjekker info...');
-            setVisible(true);
-            //Gjemmer alert etter 2sek 
-            if (setVisible) {
-                setTimeout(() => {
-                    window.location.href = "/dashboard"
-                    setVisible(false);
-                }, 2000)
-            }
+            if (data === 'true') {//Om det er riktig brukernavn og passord 
+                window.location.href = "/dashboard" //Send bruker til dashboard
+            } else { //Om det er feil brukernavn og passord
+                setVisible(false);
+                setColor('danger');
+                setText('Feil brukernavn eller passord. Prøv igjen!');
+                setVisible(true);
+                $('#brukernavn').val('');
+                $('#passord').val('');
+                //Gjemmer alert etter 2sek
+                if (setVisible) {
+                    setTimeout(() => {
+                        setVisible(false);
+                    }, 2000)
+                }
+            }  
         })
     }
 
@@ -56,7 +62,7 @@ export const LoggInn = () => {
                         <div className="row align-items-md-stretch">
                             <div className="col-md-12">
                                 <FormGroup>
-                                    <Label for="brukernavn">Brukernavn (admin)</Label>
+                                    <Label for="brukernavn">Brukernavn (per eller anna)</Label>
                                     <Input type="text" id="brukernavn" name="brukernavn" className="form-control"></Input>
                                 </FormGroup>
                                 <FormGroup>
