@@ -95,7 +95,7 @@ namespace MinDiagnose.Controllers
                     return Ok(false);
                 }
             } //R
-            return BadRequest("Feil i inputvalidering");
+            return Ok(false);
         }
         public async  Task<ActionResult> ErLoggetInn()
         {
