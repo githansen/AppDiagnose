@@ -27,7 +27,11 @@ a {
     color: #0A65CC;
 }
 
-/* Tabell */ 
+.display-5.fw-bold.text-light {
+    text-transform: capitalize;
+}
+
+/* Tabell */
 .tableTitteltd {
     text-transform: capitalize;
 }
