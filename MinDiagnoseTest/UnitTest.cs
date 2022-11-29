@@ -417,11 +417,11 @@ namespace MinDiagnoseTest
             diagnoseController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await diagnoseController.logginn(It.IsAny<Bruker>()) as BadRequestObjectResult;
+            var resultat = await diagnoseController.logginn(It.IsAny<Bruker>()) as OkObjectResult;
 
             // Assert 
-            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil i inputvalidering", resultat.Value);
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.False((bool) resultat.Value);
         }
 
         [Fact]
