@@ -23,11 +23,14 @@ export const LoggInn = () => {
     const [color, setColor] = useState('primary');
     const [alertText, setText] = useState('');
 
-    const loggMegInn = () => {
+    //Når logginn skjema sendes
+    const loggMegInn = e => {
+        e.preventDefault();
         const bruker = {
             Brukernavn: $("#brukernavn").val(), 
             Passord: $("#passord").val()
         }
+        //Sjekker i controller om det er en bruker
         $.get("/diagnose/logginn", bruker, function (data) {
             if (data === true) {//Om det er riktig brukernavn og passord 
                 window.location.href = "/dashboard" //Send bruker til dashboard
@@ -36,7 +39,8 @@ export const LoggInn = () => {
                 setColor('danger');
                 setText('Feil brukernavn eller passord. Prøv igjen!');
                 setVisible(true);
-                $('#brukernavn').val('');
+                //Setter brukernavn og passord felt tomme, og setter fokus på brukernavn felt
+                $('#brukernavn').val('').focus();
                 $('#passord').val('');
             }  
         })
@@ -52,7 +56,7 @@ export const LoggInn = () => {
                     <img className="card-img loggInnLogo mx-auto d-block" src="./img/MinDiagnose_logo.webp" alt="Logo"></img>
                     <h2 className="text-center">MinDiagnose - Backend</h2>
                     <p className="text-center text-muted">Skriv inn brukernavn og passord</p>
-                    <Form>
+                    <Form onSubmit={loggMegInn}>
                         <div className="row align-items-md-stretch">
                             <div className="col-md-12">
                                 <FormGroup>
@@ -69,8 +73,8 @@ export const LoggInn = () => {
                             </div>
                             <div className="col-md-12 text-center">
                                 <Button
+                                    type="submit"
                                     color="primary"
-                                    onClick={() => loggMegInn()}
                                     className="text-center px-4 btn-lg btn-block"
                                 >
                                     <i className="bi bi-box-arrow-in-right pr-2"></i> 
